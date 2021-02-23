@@ -1,0 +1,177 @@
+{
+	"name": "MergeArticles",
+	"author": "Dejan Savuljesku <savuljesku@hallowelt.com>",
+	"license-name": "GPL-3.0-only",
+	"version": "1.0.0",
+	"MessagesDirs": {
+		"MergeArticles": "i18n"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "MergeArticles/resources"
+	},
+	"SpecialPages": {
+		"MergeArticles": "\\MergeArticles\\Special\\MergeArticles"
+	},
+	"APIModules": {
+		"ma-merge-page-new": "\\MergeArticles\\Api\\MergeNewPage",
+		"ma-merge-page-existing": "\\MergeArticles\\Api\\MergeExistingPage",
+		"ma-set-related-titles": "\\MergeArticles\\Api\\SetRelatedTitle",
+		"ma-discard-draft": "\\MergeArticles\\Api\\DiscardDraft"
+	},
+	"AvailableRights": [
+		"merge-articles"
+	],
+	"GroupPermissions": {
+		"*": {
+			"merge-articles": false
+		},
+		"sysop": {
+			"merge-articles": false
+		}
+	},
+	"AutoloadNamespaces": {
+		"MergeArticles\\": "src/"
+	},
+	"ResourceModules": {
+		"ext.mergearticles": {
+			"scripts": [
+				"widget/MultilineTextInputWidget.js",
+				"ext.mergearticles.js"
+			],
+			"styles": [
+			],
+			"dependencies": [
+				"mediawiki.api",
+				"mediawiki.Title",
+				"oojs",
+				"oojs-ui",
+				"oojs-ui.styles.icons-editing-core"
+
+			]
+		},
+		"ext.mergearticles.overview": {
+			"scripts": [
+				"widget/PageItem.js",
+				"panel/Overview.js",
+				"ext.mergearticles.overview.js"
+			],
+			"styles": [
+				"ext.mergearticles.overview.less"
+			],
+			"dependencies": [
+				"ext.mergearticles"
+			],
+			"messages": [
+				"ma-target-exists-label",
+				"ma-target-new-label",
+				"ma-page-item-action-compare",
+				"ma-page-item-action-review",
+				"ma-type-file",
+				"ma-type-article",
+				"ma-type-template",
+				"ma-type-category",
+				"ma-no-pages-available"
+			]
+		},
+		"ext.mergearticles.review": {
+			"scripts": [
+				"panel/Review.js",
+				"ext.mergearticles.review.js"
+			],
+			"styles": [
+				"ext.mergearticles.action.less"
+			],
+			"dependencies": [
+				"ext.mergearticles"
+			],
+			"messages": [
+				"ma-do-merge-label",
+				"ma-merge-success-header",
+				"ma-merge-success-page-label",
+				"ma-merge-fail-header",
+				"ma-back-to-overview",
+				"ma-merge-new-help",
+				"ma-page-content-label",
+				"ma-no-content-message",
+				"ma-review-header",
+				"ma-discard-draft",
+				"ma-discard-draft-help",
+				"ma-draft-discard-fail-header",
+				"ma-draft-discard-success-header",
+				"ma-draft-discard-success-text"
+			]
+		},
+		"ext.mergearticles.compare": {
+			"scripts": [
+				"panel/Review.js",
+				"panel/Compare.js",
+				"ext.mergearticles.compare.js"
+			],
+			"styles": [
+				"ext.mergearticles.action.less"
+			],
+			"dependencies": [
+				"ext.mergearticles"
+			],
+			"messages": [
+				"ma-do-merge-label",
+				"ma-diff-action-accept",
+				"ma-diff-action-refuse",
+				"ma-resolution-counter",
+				"ma-same-block-label",
+				"ma-diff-option-hide-identical-blocks-label",
+				"ma-diff-option-accept-all-label",
+				"ma-diff-accepted",
+				"ma-diff-refused",
+				"ma-diff-item-undo",
+				"ma-show-final-text-button-label",
+				"ma-show-final-text-label",
+				"ma-diff-header",
+				"final-text-header-label",
+				"final-text-header-note",
+				"ma-merge-success-header",
+				"ma-merge-success-page-label",
+				"ma-merge-fail-header",
+				"ma-discard-draft",
+				"ma-discard-draft-help",
+				"ma-draft-discard-fail-header",
+				"ma-draft-discard-success-header",
+				"ma-draft-discard-success-text",
+				"ma-no-diff-message",
+				"ma-back-to-overview",
+				"ma-no-diff-file-message",
+				"ma-diff-action-refuse-both",
+				"ma-diff-action-accept-both",
+				"ma-diff-accepted-both",
+				"ma-diff-refused-both"
+			]
+		}
+	},
+	"Hooks": {
+	},
+	"namespaces": [
+		{
+			"id": 1004,
+			"constant": "NS_DRAFT",
+			"name": "Draft"
+		},
+		{
+			"id": 1005,
+			"constant": "NS_DRAFT_TALK",
+			"name": "Draft_talk"
+		}
+	],
+	"config": {
+		"MADraftFilePrefix": {
+			"value": "Draft_"
+		},
+		"MAUseLineByLineDiff": {
+			"value": false
+		},
+		"MAEnableBetaFeatures": {
+			"value": false
+		}
+	},
+	"manifest_version": 2
+}
