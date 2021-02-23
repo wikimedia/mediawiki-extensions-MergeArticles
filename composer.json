@@ -1,0 +1,10 @@
+{
+	"name": "mediawiki/merge-articles",
+	"type": "mediawiki-extension",
+	"description": "Allows merging comparing and merging articles",
+	"autoload": {
+		"psr-4": {
+			"MergeArticles\\": "src"
+		}
+	}
+}
