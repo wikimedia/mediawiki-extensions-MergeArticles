@@ -3,8 +3,22 @@
 	"author": "Dejan Savuljesku <savuljesku@hallowelt.com>",
 	"license-name": "GPL-3.0-only",
 	"version": "1.0.0",
+	"descriptionmsg": "mergearticles-extension-desc",
 	"MessagesDirs": {
 		"MergeArticles": "i18n"
+	},
+	"ExtensionMessagesFiles": {
+		"MergeArticlesAlias": "languages/MergeArticles.alias.php"
+	},
+	"attributes":{
+		"BlueSpiceFoundation": {
+			"PermissionRegistry": {
+				"merge-articles": {
+					"type": "global",
+					"roles": [ "admin" ]
+				}
+			}
+		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "resources",
@@ -26,6 +40,9 @@
 		"*": {
 			"merge-articles": false
 		},
+		"user": {
+			"merge-articles": false
+		},
 		"sysop": {
 			"merge-articles": false
 		}
@@ -38,8 +55,6 @@
 			"scripts": [
 				"widget/MultilineTextInputWidget.js",
 				"ext.mergearticles.js"
-			],
-			"styles": [
 			],
 			"dependencies": [
 				"mediawiki.api",
@@ -148,8 +163,6 @@
 			]
 		}
 	},
-	"Hooks": {
-	},
 	"namespaces": [
 		{
 			"id": 1004,
@@ -173,5 +186,6 @@
 			"value": false
 		}
 	},
+	"load_composer_autoloader": true,
 	"manifest_version": 2
 }

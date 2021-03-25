@@ -9,9 +9,9 @@ class MergeNewPage extends MergeBase {
 	protected function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'target' => [
-				\ApiBase::PARAM_TYPE => 'string',
-				\ApiBase::PARAM_REQUIRED => true,
-				\ApiBase::PARAM_HELP_MSG => 'apihelp-ma-target-help',
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-target',
 			],
 		];
 	}

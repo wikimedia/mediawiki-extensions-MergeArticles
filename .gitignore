@@ -1,2 +1,4 @@
-/node_modules
-
+vendor
+Thumbs.db
+composer.lock
+node_modules
