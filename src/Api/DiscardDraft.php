@@ -20,9 +20,9 @@ class DiscardDraft extends MergeBase {
 	protected function getAllowedParams() {
 		return [
 			'pageID' => [
-				\ApiBase::PARAM_TYPE => 'integer',
-				\ApiBase::PARAM_REQUIRED => true,
-				\ApiBase::PARAM_HELP_MSG => 'apihelp-ma-page-id-help',
+				static::PARAM_TYPE => 'integer',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-pageid',
 			]
 		];
 	}

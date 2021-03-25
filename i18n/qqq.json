@@ -1,2 +1,21 @@
 {
+	"@metadata": {
+		"authors": [
+			"Dejan Savuljesku",
+			"Patric Wirth"
+		]
+	},
+	"mergearticles-extension-desc": "{{desc|name=MergeArticles}}",
+	"apihelp-ma-merge-page-new-summary": "{{doc-apihelp-summary|ma-merge-page-new}}",
+	"apihelp-ma-merge-page-existing-summary": "{{doc-apihelp-summary|ma-merge-page-existing}}",
+	"apihelp-ma-set-related-titles-summary": "{{doc-apihelp-summary|ma-set-related-titles}}",
+	"apihelp-ma-discard-draft-summary": "{{doc-apihelp-summary|ma-discard-draft}}",
+	"mergearticles-apihelp-param-pageid": "{{doc-apihelp-param|ma-discard-draft|pageID}}",
+	"mergearticles-apihelp-param-targetid": "{{doc-apihelp-param|ma-merge-page-existing|targetId}}",
+	"mergearticles-apihelp-param-text": "{{doc-apihelp-param|ma-merge-page-existing|text}}",
+	"mergearticles-apihelp-param-skipfile": "{{doc-apihelp-param|ma-merge-page-existing|skipFile}}",
+	"mergearticles-apihelp-param-target": "{{doc-apihelp-param|ma-merge-page-new|target}}",
+	"mergearticles-apihelp-param-relatedto": "{{doc-apihelp-param|ma-merge-page-new|relatedTo}}",
+	"action-merge-articles": "{{doc-action|merge-articles}}",
+	"right-merge-articles": "{{doc-right|merge-articles}}"
 }
