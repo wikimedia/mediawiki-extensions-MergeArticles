@@ -1,4 +1,11 @@
 {
+	"@metadata": {
+		"authors": [
+			"Dejan Savuljesku",
+			"Patric Wirth"
+		]
+	},
+	"mergearticles-extension-desc": "Allows merging comparing and merging articles",
 	"mergearticles": "Merge articles",
 	"ma-target-exists-label": "Merge target: $1",
 	"ma-target-new-label": "New page",
@@ -56,6 +63,17 @@
 	"ma-diff-action-refuse-both": "Reject both",
 	"ma-diff-action-accept-both": "Accept both",
 	"ma-diff-accepted-both": "Both kept",
-    "ma-diff-refused-both": "Both removed"
-
+    "ma-diff-refused-both": "Both removed",
+	"apihelp-ma-merge-page-new-summary": "Merges a draft version into a new page",
+	"apihelp-ma-merge-page-existing-summary": "Merges a draft version into an existing page",
+	"apihelp-ma-set-related-titles-summary": "Relates a page to a draft version of the page",
+	"apihelp-ma-discard-draft-summary": "Discard existing draft version of a page",
+	"mergearticles-apihelp-param-pageid": "ID of a page",
+	"mergearticles-apihelp-param-targetid": "ID of a page",
+	"mergearticles-apihelp-param-text": "Text content of a page",
+	"mergearticles-apihelp-param-skipfile": "Bool. Set if files should be skiped",
+	"mergearticles-apihelp-param-target": "Title of the target page",
+	"mergearticles-apihelp-param-relatedto": "Integer. ID of the page, the given page should be set as related to",
+	"action-merge-articles": "merge this article",
+	"right-merge-articles": "Merge articles"
 }

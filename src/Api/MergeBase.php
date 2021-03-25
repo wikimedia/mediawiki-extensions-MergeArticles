@@ -36,19 +36,20 @@ class MergeBase extends \ApiBase {
 	protected function getAllowedParams() {
 		return [
 			'pageID' => [
-				\ApiBase::PARAM_TYPE => 'integer',
-				\ApiBase::PARAM_REQUIRED => true,
-				\ApiBase::PARAM_HELP_MSG => 'apihelp-ma-page-id-help',
+				static::PARAM_TYPE => 'integer',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-pageid',
 			],
 			'text' => [
-				\ApiBase::PARAM_TYPE => 'string',
-				\ApiBase::PARAM_REQUIRED => false,
-				\ApiBase::PARAM_HELP_MSG => 'apihelp-ma-text-help',
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => false,
+				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-text',
 			],
 			'skipFile' => [
-				\ApiBase::PARAM_TYPE => 'boolean',
-				\ApiBase::PARAM_REQUIRED => false,
-				\ApiBase::PARAM_DFLT => false
+				static::PARAM_TYPE => 'boolean',
+				static::PARAM_REQUIRED => false,
+				static::PARAM_DFLT => false,
+				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-skipfile',
 			]
 		];
 	}
