@@ -23,8 +23,13 @@
 	OO.inheritClass( mergeArticles.ui.PageItemWidget, OO.ui.Widget );
 
 	mergeArticles.ui.PageItemWidget.prototype.makeType = function() {
+		// mergearticles-type-file
+		// mergearticles-type-article
+		// mergearticles-type-template
+		// mergearticles-type-category
+		var msgKey = 'mergearticles-type-' + this.type;
 		var typeLabel = new OO.ui.LabelWidget( {
-			label: mw.message( 'ma-type-' + this.type ).text()
+			label: mw.message( msgKey ).text()
 		} );
 		typeLabel.$element.addClass( 'ma-page-item-type-label' );
 		this.$dataContainer.append( typeLabel.$element );
@@ -49,7 +54,7 @@
 		var $target = $( '<div>' ).addClass( 'ma-page-item-data-target' );
 
 		if( this.target.exists ) {
-			var text = mw.message( 'ma-target-exists-label' ).escaped();
+			var text = mw.message( 'mergearticles-target-exists-label' ).escaped();
 			var anchor = '<a href="' + this.target.url + '">' + this.target.text + '</a>';
 			text = text.replace( '$1', anchor );
 
@@ -58,7 +63,7 @@
 				.data( 'id', this.target.id )
 				.html( text );
 		} else {
-			var text = mw.message( 'ma-target-new-label' ).escaped();
+			var text = mw.message( 'mergearticles-target-new-label' ).escaped();
 			$target
 				.addClass( 'new' )
 				.html( text );
@@ -71,10 +76,10 @@
 		var labelText;
 		if( this.target.exists ) {
 			this.action = 'compare';
-			labelText = mw.message( 'ma-page-item-action-compare' ).text();
+			labelText = mw.message( 'mergearticles-page-item-action-compare' ).text();
 		} else {
 			this.action = 'review';
-			labelText = mw.message( 'ma-page-item-action-review' ).text();
+			labelText = mw.message( 'mergearticles-page-item-action-review' ).text();
 		}
 
 		var button = new OO.ui.ButtonWidget( {
