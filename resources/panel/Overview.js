@@ -21,7 +21,7 @@
 		this.criteriaLayout.$element.addClass( 'merge-articles-criterial-layout' );
 
 		this.noPagesMessage = new OO.ui.LabelWidget( {
-			label: mw.message( 'ma-no-pages-available' ).text()
+			label: mw.message( 'mergearticles-no-pages-available' ).text()
 		} );
 		this.noPagesMessage.$element.addClass( 'ma-no-pages-available' );
 		this.pageLayout = new OO.ui.HorizontalLayout( {
@@ -39,25 +39,25 @@
 
 	mergeArticles.panel.Overview.prototype.makeTypeLayout = function() {
 		this.articlesTypeButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.message( 'ma-type-article' ).text()
+			label: mw.message( 'mergearticles-type-article' ).text()
 		} );
 		this.articlesTypeButton.on( 'click', function() {
 			this.onTypeChange( 'article', this.articlesTypeButton.getValue() )
 		}.bind( this ) );
 		this.categoriesTypeButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.message( 'ma-type-category' ).text()
+			label: mw.message( 'mergearticles-type-category' ).text()
 		} );
 		this.categoriesTypeButton.on( 'click', function() {
 			this.onTypeChange( 'category', this.categoriesTypeButton.getValue() )
 		}.bind( this ) );
 		this.templatesTypeButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.message( 'ma-type-template' ).text()
+			label: mw.message( 'mergearticles-type-template' ).text()
 		} );
 		this.templatesTypeButton.on( 'click', function() {
 			this.onTypeChange( 'template', this.templatesTypeButton.getValue() )
 		}.bind( this ) );
 		this.filesTypeButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.message( 'ma-type-file' ).text()
+			label: mw.message( 'mergearticles-type-file' ).text()
 		} );
 		this.filesTypeButton.on( 'click', function() {
 			this.onTypeChange( 'file', this.filesTypeButton.getValue() )

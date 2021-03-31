@@ -32,7 +32,7 @@
 
 	mergeArticles.panel.Review.prototype.makeNoTextContent = function() {
 		var label = new OO.ui.LabelWidget( {
-			label: mw.message( "ma-no-content-message" ).text()
+			label: mw.message( "mergearticles-no-content-message" ).text()
 		} );
 		label.$element.addClass( 'ma-review-no-content' );
 		this.$element.append( label.$element );
@@ -42,7 +42,7 @@
 		var button = new OO.ui.ButtonWidget( {
 			framed: false,
 			href: mw.config.get( 'maBaseURL' ),
-			label: mw.message( 'ma-back-to-overview' ).text()
+			label: mw.message( 'mergearticles-back-to-overview' ).text()
 		} );
 		button.$element.addClass( 'ma-back-to-overview-button' );
 
@@ -51,7 +51,7 @@
 
 	mergeArticles.panel.Review.prototype.makeButtons = function() {
 		this.mergeButton = new OO.ui.ButtonWidget( {
-			label: mw.message( 'ma-do-merge-label' ).plain(),
+			label: mw.message( 'mergearticles-do-merge-label' ).plain(),
 			flags: [
 				'primary',
 				'progressive'
@@ -74,26 +74,26 @@
 			text: this.contentInput.getValue()
 		}).done( function( response ) {
 			if( response.success ) {
-				var msg = mw.message( 'ma-merge-success-page-label' ).text();
+				var msg = mw.message( 'mergearticles-merge-success-page-label' ).text();
 				var anchor = "<a href='" + response.targetPage.url + "'>" + response.targetPage.text + "</a>";
 				msg = msg.replace( '$1', anchor );
 
 				this.showActionResult(
 					true,
-					mw.message( 'ma-merge-success-header' ).text(),
+					mw.message( 'mergearticles-merge-success-header' ).text(),
 					msg
 				);
 			} else {
 				this.showActionResult(
 					false,
-					mw.message( 'ma-merge-fail-header' ).text(),
+					mw.message( 'mergearticles-merge-fail-header' ).text(),
 					response.error
 				);
 			}
 		}.bind( this ) ).fail( function( error ) {
 			this.showActionResult(
 				false,
-				mw.message( 'ma-merge-fail-header' ).text(),
+				mw.message( 'mergearticles-merge-fail-header' ).text(),
 				error
 			);
 		}.bind( this ) );
@@ -134,10 +134,10 @@
 		var discardButton = new OO.ui.ButtonWidget( {
 			icon: 'close',
 			framed: false,
-			label: mw.message( 'ma-discard-draft' ).text()
+			label: mw.message( 'mergearticles-discard-draft' ).text()
 		} );
 		discardButton.on( 'click', function() {
-			OO.ui.confirm( mw.message( 'ma-discard-draft-help' ).text() )
+			OO.ui.confirm( mw.message( 'mergearticles-discard-draft-help' ).text() )
 				.done( function( confirmed ) {
 					if( !confirmed ) {
 						return;
@@ -149,13 +149,13 @@
 					} ).done( function( response ) {
 						this.showActionResult(
 							true,
-							mw.message( 'ma-draft-discard-success-header' ).text(),
-							mw.message( 'ma-draft-discard-success-text', response.title ).text(),
+							mw.message( 'mergearticles-draft-discard-success-header' ).text(),
+							mw.message( 'mergearticles-draft-discard-success-text', response.title ).text(),
 						);
 					}.bind( this ) ).fail( function( code, response ) {
 						this.showActionResult(
 							false,
-							mw.message( 'ma-draft-discard-fail-header' ).text(),
+							mw.message( 'mergearticles-draft-discard-fail-header' ).text(),
 							response.exception || response.error.info
 						);
 					}.bind( this ) );
