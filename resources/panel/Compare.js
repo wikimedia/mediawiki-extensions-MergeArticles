@@ -37,7 +37,7 @@
 		var fileReject = new OO.ui.ButtonWidget( {
 			icon: 'close',
 			framed: false,
-			title: mw.message( 'ma-diff-action-refuse' ).text(),
+			title: mw.message( 'mergearticles-diff-action-refuse' ).text(),
 			flags: [
 				'destructive',
 				'primary'
@@ -47,7 +47,7 @@
 		var fileApprove = new OO.ui.ButtonWidget( {
 			icon: 'check',
 			framed: false,
-			title: mw.message( 'ma-diff-action-accept' ).text(),
+			title: mw.message( 'mergearticles-diff-action-accept' ).text(),
 			flags: [
 				'progressive',
 				'primary'
@@ -70,12 +70,12 @@
 		this.fileData.accepted = outcome;
 		var label = new OO.ui.LabelWidget( {
 			classes: outcome ? [ 'approve' ] : [ 'reject' ],
-			label: outcome ? mw.message( "ma-diff-accepted" ).text() : mw.message( "ma-diff-refused" ).text()
+			label: outcome ? mw.message( "mergearticles-diff-accepted" ).text() : mw.message( "mergearticles-diff-refused" ).text()
 		} );
 		var undoButton = new OO.ui.ButtonWidget( {
 			icon: 'undo',
 			framed: false,
-			title: mw.message( 'ma-diff-item-undo' ).text()
+			title: mw.message( 'mergearticles-diff-item-undo' ).text()
 		} );
 		undoButton.connect( this, { click: 'undoFileResolve' } );
 		$container.empty().append( label.$element, undoButton.$element );
@@ -121,7 +121,7 @@
 		var buttonAccept = new OO.ui.ButtonWidget( {
 			icon: 'check',
 			framed: false,
-			title: mw.message( 'ma-diff-action-accept' ).text(),
+			title: mw.message( 'mergearticles-diff-action-accept' ).text(),
 			flags: [
 				'progressive',
 				'primary'
@@ -130,7 +130,7 @@
 		var buttonRefuse = new OO.ui.ButtonWidget( {
 			icon: 'cancel',
 			framed: false,
-			title: mw.message( 'ma-diff-action-refuse' ).text(),
+			title: mw.message( 'mergearticles-diff-action-refuse' ).text(),
 			flags: [
 				'destructive'
 			]
@@ -156,7 +156,7 @@
 			var buttonAcceptBoth = new OO.ui.ButtonWidget( {
 				icon: 'checkAll',
 				framed: false,
-				title: mw.message( 'ma-diff-action-accept-both' ).text(),
+				title: mw.message( 'mergearticles-diff-action-accept-both' ).text(),
 				flags: [
 					'progressive',
 					'primary'
@@ -171,7 +171,7 @@
 			var buttonRejectBoth = new OO.ui.ButtonWidget( {
 				icon: 'block',
 				framed: false,
-				title: mw.message( 'ma-diff-action-refuse-both' ).text(),
+				title: mw.message( 'mergearticles-diff-action-refuse-both' ).text(),
 				flags: [
 					'destructive'
 				]
@@ -194,7 +194,7 @@
 			this.resolutionCounter.$element.insertAfter( $( 'span.ma-diff-header-label' ) );
 		}
 		this.resolutionCounter.setLabel(  mw.message(
-				'ma-resolution-counter',
+				'mergearticles-resolution-counter',
 				this.conflicts.total,
 				this.conflicts.resolved
 			).text()
@@ -215,14 +215,14 @@
 			this.hideMatchingBlocks( value );
 		}.bind( this ) );
 		var hideNoDiffLabel = new OO.ui.LabelWidget( {
-			label: mw.message( 'ma-diff-option-hide-identical-blocks-label' ).text(),
+			label: mw.message( 'mergearticles-diff-option-hide-identical-blocks-label' ).text(),
 			input: hideNoDiffCheckbox
 		} );
 
 		var acceptAllButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			icon: 'check', //'checkAll' in newer version
-			label: mw.message( 'ma-diff-option-accept-all-label' ).text()
+			label: mw.message( 'mergearticles-diff-option-accept-all-label' ).text()
 		} );
 		acceptAllButton.$element.addClass( 'ma-diff-option-accept-all' );
 		acceptAllButton.on( 'click', this.acceptAllChanges.bind( this ) );
@@ -259,7 +259,7 @@
 			}
 
 			var hiddenBlocksButton = new OO.ui.ButtonWidget( {
-				label: mw.message( "ma-same-block-label", toBeHidden.length ).text(),
+				label: mw.message( "mergearticles-same-block-label", toBeHidden.length ).text(),
 				framed: false
 			} );
 			hiddenBlocksButton.$element.addClass( 'ma-same-block' );
@@ -290,7 +290,7 @@
 		diff.accepted = accepted;
 		diff.applyToBoth = applyToBoth;
 
-		var messageKey = accepted ? 'ma-diff-accepted' : 'ma-diff-refused';
+		var messageKey = accepted ? 'mergearticles-diff-accepted' : 'mergearticles-diff-refused';
 		if ( applyToBoth ) {
 			messageKey += '-both';
 		}
@@ -311,7 +311,7 @@
 		var undoButton = new OO.ui.ButtonWidget( {
 			icon: 'undo',
 			framed: false,
-			title: mw.message( 'ma-diff-item-undo' ).text()
+			title: mw.message( 'mergearticles-diff-item-undo' ).text()
 		} );
 		undoButton.$element.addClass( 'diff-undo' );
 		undoButton.$element.on( 'click', {
@@ -353,14 +353,14 @@
 	mergeArticles.panel.Compare.prototype.compareDone = function( done ) {
 		if( !this.showFinalTextLayout ) {
 			var button = new OO.ui.ButtonWidget( {
-				label: mw.message( 'ma-show-final-text-button-label' ).text()
+				label: mw.message( 'mergearticles-show-final-text-button-label' ).text()
 			} );
 			button.on( 'click', this.showComparedText.bind( this ) );
 			var icon = new OO.ui.IconWidget( {
 				icon: 'check'
 			} );
 			var label = new OO.ui.LabelWidget( {
-				label: mw.message( 'ma-show-final-text-label' ).text()
+				label: mw.message( 'mergearticles-show-final-text-label' ).text()
 			} );
 			this.showFinalTextLayout = new OO.ui.HorizontalLayout( {
 				items: [
@@ -397,7 +397,7 @@
 		this.$diffContainer.slideUp( 200, function() {
 			var expandButton = new OO.ui.ButtonWidget( {
 				framed: false,
-				label: mw.message( 'ma-diff-header' ).plain()
+				label: mw.message( 'mergearticles-diff-header' ).plain()
 			} );
 			expandButton.$element.addClass( 'ma-diff-header-expand' );
 			expandButton.on( 'click', function() {
@@ -459,12 +459,12 @@
 			.addClass( 'final-text-header' )
 			.append(
 				new OO.ui.LabelWidget( {
-					label: mw.message( 'final-text-header-label' ).text()
+					label: mw.message( 'mergearticles-final-text-header-label' ).text()
 				} ).$element,
 				new OO.ui.LabelWidget( {
 					label: new OO.ui.HtmlSnippet(
 						'<small> ' +
-						mw.message( 'final-text-header-note' ).text() +
+						mw.message( 'mergearticles-final-text-header-note' ).text() +
 						'</small>'
 					)
 				} ).$element,
@@ -498,19 +498,19 @@
 			text: text
 		} ).done( function( response ) {
 			if( response.success ) {
-				var msg = mw.message( 'ma-merge-success-page-label' ).text();
+				var msg = mw.message( 'mergearticles-merge-success-page-label' ).text();
 				var anchor = "<a href='" + response.targetPage.url + "'>" + response.targetPage.text + "</a>";
 				msg = msg.replace( '$1', anchor );
 
 				this.showActionResult(
 					true,
-					mw.message( 'ma-merge-success-header' ).text(),
+					mw.message( 'mergearticles-merge-success-header' ).text(),
 					msg
 				);
 			} else {
 				this.showActionResult(
 					false,
-					mw.message( 'ma-merge-fail-header' ).text(),
+					mw.message( 'mergearticles-merge-fail-header' ).text(),
 					response.error
 				);
 			}
@@ -520,7 +520,7 @@
 			}
 			this.showActionResult(
 				false,
-				mw.message( 'ma-merge-fail-header' ).text(),
+				mw.message( 'mergearticles-merge-fail-header' ).text(),
 				error
 			);
 		}.bind( this ) );
@@ -528,7 +528,7 @@
 
 	mergeArticles.panel.Compare.prototype.getButtons = function() {
 		this.mergeButton = new OO.ui.ButtonWidget( {
-			label: mw.message( 'ma-do-merge-label' ).plain(),
+			label: mw.message( 'mergearticles-do-merge-label' ).plain(),
 			flags: [
 				'primary',
 				'progressive'
@@ -544,11 +544,11 @@
 	};
 
 	mergeArticles.panel.Compare.prototype.displayNoTextDiff = function() {
-		this.displayNoDiff( mw.message( 'ma-no-diff-message' ).text() );
+		this.displayNoDiff( mw.message( 'mergearticles-no-diff-message' ).text() );
 	};
 
 	mergeArticles.panel.Compare.prototype.displayNoFileDiff = function() {
-		this.displayNoDiff( mw.message( 'ma-no-diff-file-message' ).text(), $( '.ma-diff-header.diff-file' ) );
+		this.displayNoDiff( mw.message( 'mergearticles-no-diff-file-message' ).text(), $( '.ma-diff-header.diff-file' ) );
 	};
 
 	mergeArticles.panel.Compare.prototype.displayNoDiff = function( message, $element ) {
