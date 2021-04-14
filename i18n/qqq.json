@@ -61,7 +61,7 @@
 	"mergearticles-diff-action-refuse-both": "Label for button, that removes both (removed section and new section)\n{{Identical|Reject both}}",
 	"mergearticles-diff-action-accept-both": "Label for button, that keeps both (removed section and new section)\n{{Identical|Accept both}}",
 	"mergearticles-diff-accepted-both": "Info text when both (removed section and new section) have been kept",
-    "mergearticles-diff-refused-both": "Info text when both (removed section and new section) have been removed",
+	"mergearticles-diff-refused-both": "Info text when both (removed section and new section) have been removed",
 	"apihelp-ma-merge-page-new-summary": "{{doc-apihelp-summary|ma-merge-page-new}}",
 	"apihelp-ma-merge-page-existing-summary": "{{doc-apihelp-summary|ma-merge-page-existing}}",
 	"apihelp-ma-set-related-titles-summary": "{{doc-apihelp-summary|ma-set-related-titles}}",

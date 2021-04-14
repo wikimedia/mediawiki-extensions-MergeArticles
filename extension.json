@@ -13,7 +13,7 @@
 	"ExtensionMessagesFiles": {
 		"MergeArticlesAlias": "languages/MergeArticles.alias.php"
 	},
-	"attributes":{
+	"attributes": {
 		"BlueSpiceFoundation": {
 			"PermissionRegistry": {
 				"merge-articles": {

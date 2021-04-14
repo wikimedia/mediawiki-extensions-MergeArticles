@@ -61,7 +61,7 @@
 	"mergearticles-diff-action-refuse-both": "Reject both",
 	"mergearticles-diff-action-accept-both": "Accept both",
 	"mergearticles-diff-accepted-both": "Both kept",
-    "mergearticles-diff-refused-both": "Both removed",
+	"mergearticles-diff-refused-both": "Both removed",
 	"apihelp-ma-merge-page-new-summary": "Merges a draft version into a new page",
 	"apihelp-ma-merge-page-existing-summary": "Merges a draft version into an existing page",
 	"apihelp-ma-set-related-titles-summary": "Relates a page to a draft version of the page",
