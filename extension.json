@@ -4,6 +4,9 @@
 	"license-name": "GPL-3.0-only",
 	"version": "1.0.0",
 	"descriptionmsg": "mergearticles-extension-desc",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"MessagesDirs": {
 		"MergeArticles": "i18n"
 	},
