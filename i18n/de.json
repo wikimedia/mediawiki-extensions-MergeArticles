@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"mergearticles-extension-desc": "Ermöglicht das Zusammenführen von Vergleichen und Zusammenführen von Artikeln",
+	"mergearticles": "Artikel zusammenführen",
+	"mergearticles-target-exists-label": "Zusammenführungsziel: $1",
+	"mergearticles-target-new-label": "Neue Seite",
+	"mergearticles-page-item-action-compare": "Vergleichen & Zusammenführen",
+	"mergearticles-page-item-action-review": "Prüfen & Zusammenführen",
+	"mergearticles-type-file": "Datei",
+	"mergearticles-type-article": "Seite",
+	"mergearticles-type-template": "Vorlage",
+	"mergearticles-type-category": "Kategorie",
+	"mergearticles-no-pages-available": "Nichts zu sehen!",
+	"mergearticles-action-unknown": "Unbekannte Aktion",
+	"mergearticles-request-invalid": "Ungültige Anfrage",
+	"mergearticles-sp-review": "Seiten zusammenführen - überprüfen und zusammenführen",
+	"mergearticles-sp-compare": "Seiten zusammenführen - vergleichen und zusammenführen",
+	"mergearticles-do-merge-label": "Zusammenführen",
+	"mergearticles-merge-success-header": "Das Zusammenführen der Seite war erfolgreich!",
+	"mergearticles-merge-success-page-label": "Zielseite: $1",
+	"mergearticles-merge-fail-header": "Zusammenführen fehlgeschlagen!",
+	"mergearticles-back-to-overview": "Zurück zur Übersicht"
+}

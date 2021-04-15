@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chirifo"
+		]
+	},
+	"mergearticles-extension-desc": "cheli laɣibu maɣisibu mini laɣibu sabibu",
+	"mergearticles": "Sabibu laɣibu",
+	"mergearticles-target-exists-label": "Yuli gbai laɣimbu:$1",
+	"mergearticles-target-new-label": "Yaɣi palli",
+	"mergearticles-page-item-action-review": "Labi yuli & Laɣimbu",
+	"mergearticles-type-article": "Yaɣili",
+	"mergearticles-no-pages-available": "sheli kani wuhira!",
+	"mergearticles-merge-success-page-label": "Yuli gbai yaɣili: $1",
+	"mergearticles-back-to-overview": "yuli yaɣi nyanga",
+	"mergearticles-file-info-name": "Yuli:$1",
+	"mergearticles-file-info-mime": "MIME balli: $1",
+	"mergearticles-file-info-size": "Size:$1",
+	"mergearticles-diff-accepted": "Saɣiti",
+	"mergearticles-diff-refused": "Zaɣi siya",
+	"mergearticles-diff-header": "sabbu taɣibu",
+	"mergearticles-diff-option-accept-all-label": "Saɣiti di zaa",
+	"mergearticles-show-final-text-button-label": "Wuhimi bahigu satarili",
+	"mergearticles-final-text-header-label": "kpalin kpa satarili",
+	"mergearticles-discard-draft": "Wurimi draft ŋɔ",
+	"mergearticles-no-diff-message": "Waligim sim ka satarili mini draft ni yuli gbai yaɣili",
+	"mergearticles-draft-discard-fail-header": "Draft ŋɔ ku tooi wurimi",
+	"mergearticles-draft-discard-success-header": "Draft wurin ya",
+	"mergearticles-no-diff-file-message": "Soli kuligu taɣiliya ni yuli gbai kuligu",
+	"mergearticles-diff-action-accept-both": "Deemi di zaa",
+	"mergearticles-apihelp-param-skipfile": "Bool. sagiti diyi niŋ ka kuligu tu kpahiyaɣi",
+	"mergearticles-apihelp-param-target": "Yuli bonti yuli gbai yaɣili"
+}
