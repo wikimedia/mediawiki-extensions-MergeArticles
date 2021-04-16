@@ -1,33 +1,44 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chirifo"
+			"Chirifo",
+			"Munkaila Sulemana"
 		]
 	},
 	"mergearticles-extension-desc": "cheli laɣibu maɣisibu mini laɣibu sabibu",
 	"mergearticles": "Sabibu laɣibu",
 	"mergearticles-target-exists-label": "Yuli gbai laɣimbu:$1",
 	"mergearticles-target-new-label": "Yaɣi palli",
+	"mergearticles-page-item-action-compare": "Zaŋ ŋmahim ka laɣim",
 	"mergearticles-page-item-action-review": "Labi yuli & Laɣimbu",
+	"mergearticles-type-file": "Lahabali koligu",
 	"mergearticles-type-article": "Yaɣili",
 	"mergearticles-no-pages-available": "sheli kani wuhira!",
+	"mergearticles-sp-review": "Laɣim mi yaɣa- labi lihi",
+	"mergearticles-do-merge-label": "Kol laɣim",
 	"mergearticles-merge-success-page-label": "Yuli gbai yaɣili: $1",
 	"mergearticles-back-to-overview": "yuli yaɣi nyanga",
 	"mergearticles-file-info-name": "Yuli:$1",
 	"mergearticles-file-info-mime": "MIME balli: $1",
 	"mergearticles-file-info-size": "Size:$1",
+	"mergearticles-diff-action-accept": "Saɛiti",
+	"mergearticles-diff-action-refuse": "Zaɣisi",
 	"mergearticles-diff-accepted": "Saɣiti",
 	"mergearticles-diff-refused": "Zaɣi siya",
 	"mergearticles-diff-header": "sabbu taɣibu",
 	"mergearticles-diff-option-accept-all-label": "Saɣiti di zaa",
 	"mergearticles-show-final-text-button-label": "Wuhimi bahigu satarili",
+	"mergearticles-show-final-text-label": "Laɣim zaba maa zaa maliya, kpalinkpaa satarili pa n tooi nya ka, dii bɔra, mali niŋ poi laɣimbu.",
 	"mergearticles-final-text-header-label": "kpalin kpa satarili",
 	"mergearticles-discard-draft": "Wurimi draft ŋɔ",
 	"mergearticles-no-diff-message": "Waligim sim ka satarili mini draft ni yuli gbai yaɣili",
 	"mergearticles-draft-discard-fail-header": "Draft ŋɔ ku tooi wurimi",
 	"mergearticles-draft-discard-success-header": "Draft wurin ya",
+	"mergearticles-review-header": "Yaɣ'palli satarili",
 	"mergearticles-no-diff-file-message": "Soli kuligu taɣiliya ni yuli gbai kuligu",
 	"mergearticles-diff-action-accept-both": "Deemi di zaa",
+	"mergearticles-diff-refused-both": "Zaa yihiya",
 	"mergearticles-apihelp-param-skipfile": "Bool. sagiti diyi niŋ ka kuligu tu kpahiyaɣi",
-	"mergearticles-apihelp-param-target": "Yuli bonti yuli gbai yaɣili"
+	"mergearticles-apihelp-param-target": "Yuli bonti yuli gbai yaɣili",
+	"right-merge-articles": "Laɣim yaɣa"
 }
