@@ -2,11 +2,13 @@
 
 namespace MergeArticles\Api;
 
-use MergeArticles\Api\MergeBase;
-
 class MergeExistingPage extends MergeBase {
 	protected $editFlag = 2;
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'targetID' => [
@@ -25,7 +27,7 @@ class MergeExistingPage extends MergeBase {
 	}
 
 	protected function verifyTarget() {
-		if( $this->targetTitle->exists() === false ) {
+		if ( $this->targetTitle->exists() === false ) {
 			$this->status = \Status::newFatal( 'target-does-not-exist' );
 			return false;
 		}
