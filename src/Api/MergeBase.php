@@ -10,7 +10,6 @@ class MergeBase extends \ApiBase {
 
 	protected $editFlag = 1;
 
-
 	/** @var bool  */
 	protected $skipFile = false;
 
@@ -18,21 +17,24 @@ class MergeBase extends \ApiBase {
 		$this->status = \Status::newGood();
 
 		$this->readInParameters();
-		if( !$this->verifyOrigin() ) {
+		if ( !$this->verifyOrigin() ) {
 			return $this->returnResults();
 		}
-		if( !$this->verifyTarget() ) {
+		if ( !$this->verifyTarget() ) {
 			return $this->returnResults();
 		}
 		$this->verifyPermissions();
-		if( !$this->merge() ) {
+		if ( !$this->merge() ) {
 			return $this->returnResults();
 		}
 		$this->removeOrigin();
 		$this->returnResults();
-
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return [
 			'pageID' => [
@@ -63,7 +65,7 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function verifyOrigin() {
-		if( ! $this->originTitle instanceof \Title || ! $this->originTitle->exists() ) {
+		if ( !$this->originTitle instanceof \Title || !$this->originTitle->exists() ) {
 			$this->status = \Status::newFatal( 'invalid-origin' );
 			return false;
 		}
@@ -71,7 +73,7 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function verifyTarget() {
-		if( $this->targetTitle instanceof \Title === false ) {
+		if ( $this->targetTitle instanceof \Title === false ) {
 			$this->status = \Status::newFatal( 'target-invalid' );
 			return false;
 		}
@@ -79,7 +81,7 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function merge() {
-		if( $this->isFile() && $this->shouldMergeFile() ) {
+		if ( $this->isFile() && $this->shouldMergeFile() ) {
 			$this->mergeFile();
 		}
 
@@ -92,7 +94,7 @@ class MergeBase extends \ApiBase {
 			false,
 			$this->getUser()
 		);
-		if( $status->isOK() === false ) {
+		if ( $status->isOK() === false ) {
 			$this->status = $status;
 			return false;
 		}
@@ -100,7 +102,7 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function isFile() {
-		if( $this->originTitle->getNamespace() === NS_FILE ) {
+		if ( $this->originTitle->getNamespace() === NS_FILE ) {
 			return true;
 		}
 		return false;
@@ -108,7 +110,7 @@ class MergeBase extends \ApiBase {
 
 	protected function mergeFile() {
 		$file = wfFindFile( $this->originTitle );
-		if( !$file ) {
+		if ( !$file ) {
 			$this->status = \Status::newFatal( 'invalid-file' );
 			return false;
 		}
@@ -116,6 +118,11 @@ class MergeBase extends \ApiBase {
 		return $this->uploadFile( $file );
 	}
 
+	/**
+	 *
+	 * @param \LocalFile $file
+	 * @return bool
+	 */
 	protected function uploadFile( \LocalFile $file ) {
 		$localFileRepo = \RepoGroup::singleton()->getLocalRepo();
 
@@ -123,18 +130,23 @@ class MergeBase extends \ApiBase {
 		$uploadFile = $uploadStash->stashFile( $file->getLocalRefPath(), "file" );
 		$targetFileName = $this->targetTitle->getDBkey();
 
-		if ( $uploadFile === false) {
+		if ( $uploadFile === false ) {
 			$this->status = \Status::newFatal( 'upload-file-creation-error' );
 			return false;
 		}
 
 		$uploadFromStash = new \UploadFromStash( $this->getUser(), $uploadStash, $localFileRepo );
 		$uploadFromStash->initialize( $uploadFile->getFileKey(), $targetFileName );
-		$status = $uploadFromStash->performUpload( 'Merge articles upload', $this->text, true, $this->getUser() );
+		$status = $uploadFromStash->performUpload(
+			'Merge articles upload',
+			$this->text,
+			true,
+			$this->getUser()
+		);
 		$uploadFromStash->cleanupTempFile();
 
 		$newFile = $localFileRepo->newFile( $targetFileName );
-		if ( !$status->isGood() ){
+		if ( !$status->isGood() ) {
 			$errors = $status->getErrors();
 			if ( !empty( $errors ) && $errors[0]['message'] === 'fileexists-no-change' ) {
 				return true;
@@ -157,17 +169,17 @@ class MergeBase extends \ApiBase {
 	protected function returnResults() {
 		$result = $this->getResult();
 
-		if( $this->status->isGood() ) {
+		if ( $this->status->isGood() ) {
 			$targetPage = [
 				'text' => $this->targetTitle->getPrefixedText(),
 				'url' => $this->targetTitle->getLocalURL()
 			];
 
-			$result->addValue( null , 'success', 1 );
-			$result->addValue( null , 'targetPage', $targetPage );
+			$result->addValue( null, 'success', 1 );
+			$result->addValue( null, 'targetPage', $targetPage );
 		} else {
-			$result->addValue( null , 'success', 0 );
-			$result->addValue( null , 'error', $this->status->getMessage() );
+			$result->addValue( null, 'success', 0 );
+			$result->addValue( null, 'error', $this->status->getMessage() );
 		}
 	}
 

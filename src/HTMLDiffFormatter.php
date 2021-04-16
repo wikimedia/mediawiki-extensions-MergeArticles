@@ -2,6 +2,8 @@
 
 namespace MergeArticles;
 
+use DiffOp;
+
 class HTMLDiffFormatter extends \DiffFormatter {
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
 	protected $arrayData = [];
@@ -28,14 +30,14 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		foreach ( $diff->getEdits() as $edit ) {
 			switch ( $edit->getType() ) {
 				case 'add':
-					if( $block ) {
+					if ( $block ) {
 						$this->blockAdd( $edit );
 					} else {
 						$this->lineByLineAdd( $edit );
 					}
 					break;
 				case 'delete':
-					if( $block ) {
+					if ( $block ) {
 						$this->blockDelete( $edit );
 					} else {
 						$this->lineByLineDelete( $edit );
@@ -43,7 +45,7 @@ class HTMLDiffFormatter extends \DiffFormatter {
 					break;
 				case 'change':
 					list( $orig, $closing ) = $this->conflateChange( $edit );
-					if( $block ) {
+					if ( $block ) {
 						$this->blockChange( $orig, $closing );
 					} else {
 						$this->lineByLineChange( $orig, $closing );
@@ -59,18 +61,26 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		return $this->html;
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	public function getArrayData() {
 		return $this->arrayData;
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	public function getChangeCount() {
 		$changeCount = [ 'add' => 0, 'delete' => 0 ];
-		foreach( $this->arrayData as $changeId => $change ) {
-			if( $change[ 'type' ] === 'add' ) {
+		foreach ( $this->arrayData as $changeId => $change ) {
+			if ( $change[ 'type' ] === 'add' ) {
 				$changeCount[ 'add' ]++;
-			} else if( $change[ 'type' ] === 'delete' ) {
+			} elseif ( $change[ 'type' ] === 'delete' ) {
 				$changeCount[ 'delete' ]++;
-			} else if( $change[ 'type' ] === 'change' ) {
+			} elseif ( $change[ 'type' ] === 'change' ) {
 				$changeCount[ 'add' ]++;
 				$changeCount[ 'delete' ]++;
 			}
@@ -78,18 +88,25 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		return $changeCount;
 	}
 
+	/**
+	 *
+	 * @param string $diff
+	 * @param string $type
+	 * @param bool|true $counter
+	 * @return string
+	 */
 	protected function getDiffHTML( $diff, $type, $counter = true ) {
 		$attrs = [
 			'class' => "ma-diff-$type",
 			'data-diff' => $type
 		];
-		if( $counter ) {
+		if ( $counter ) {
 			$attrs['data-diff-id'] = $this->idCounter;
 		}
 
 		$html = \Html::openElement( 'p', $attrs );
-		foreach( explode( "\n", $diff ) as $ln ) {
-			if( empty( $ln ) ) {
+		foreach ( explode( "\n", $diff ) as $ln ) {
+			if ( empty( $ln ) ) {
 				$html .= \Html::element( 'span', [ 'class' => 'empty-line' ], $ln );
 			} else {
 				$html .= \Html::element( 'span', [], $ln );
@@ -99,22 +116,33 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		return $html;
 	}
 
-	protected function conflateChange( \DiffOp $edit ) {
+	/**
+	 *
+	 * @param DiffOp $edit
+	 * @return array
+	 */
+	protected function conflateChange( DiffOp $edit ) {
 		$orig = $edit->getOrig();
 		$closing = $edit->getClosing();
 
 		if ( count( $orig ) > count( $closing ) ) {
 			return array_reverse( $this->mergeUneven( $closing, $orig ) );
-		} else if ( count( $closing ) > count( $orig ) ) {
+		} elseif ( count( $closing ) > count( $orig ) ) {
 			return $this->mergeUneven( $orig, $closing );
 		}
 		return [ $orig, $closing ];
 	}
 
+	/**
+	 *
+	 * @param array $ar1
+	 * @param array $ar2
+	 * @return array
+	 */
 	protected function mergeUneven( $ar1, $ar2 ) {
 		$i = 0;
 		$res = [];
-		while( $i < count( $ar1 ) - 1 ) {
+		while ( $i < count( $ar1 ) - 1 ) {
 			$i++;
 			$res[] = $ar2[$i];
 		}
@@ -122,6 +150,10 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		return [ $ar1, $res ];
 	}
 
+	/**
+	 *
+	 * @param DiffOp $edit
+	 */
 	protected function blockAdd( $edit ) {
 		$closingAll = implode( "\n", $edit->getClosing() );
 		$this->idCounter++;
@@ -132,6 +164,10 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		];
 	}
 
+	/**
+	 *
+	 * @param DiffOp $edit
+	 */
 	protected function lineByLineAdd( $edit ) {
 		foreach ( $edit->getClosing() as $line ) {
 			$this->idCounter++;
@@ -143,6 +179,10 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		}
 	}
 
+	/**
+	 *
+	 * @param DiffOp $edit
+	 */
 	protected function blockDelete( $edit ) {
 		$origAll = implode( "\n", $edit->getOrig() );
 		$this->idCounter++;
@@ -153,6 +193,10 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		];
 	}
 
+	/**
+	 *
+	 * @param DiffOp $edit
+	 */
 	protected function lineByLineDelete( $edit ) {
 		foreach ( $edit->getOrig() as $line ) {
 			$this->idCounter++;
@@ -164,6 +208,11 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		}
 	}
 
+	/**
+	 *
+	 * @param array $orig
+	 * @param array $closing
+	 */
 	protected function blockChange( $orig, $closing ) {
 		$origAll = implode( "\n", $orig );
 		$closingAll = implode( "\n", $closing );
@@ -183,6 +232,11 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		];
 	}
 
+	/**
+	 *
+	 * @param array $orig
+	 * @param array $closing
+	 */
 	protected function lineByLineChange( $orig, $closing ) {
 		foreach ( $orig as $key => $line ) {
 			$this->idCounter++;
@@ -202,6 +256,10 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		}
 	}
 
+	/**
+	 *
+	 * @param DiffOp $edit
+	 */
 	protected function blockCopy( $edit ) {
 		$text = implode( "\n", $edit->getOrig() );
 		$this->idCounter++;

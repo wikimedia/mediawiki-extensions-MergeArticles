@@ -8,15 +8,18 @@ class DiscardDraft extends MergeBase {
 		$this->status = \Status::newGood();
 
 		$this->readInParameters();
-		if( !$this->verifyOrigin() ) {
+		if ( !$this->verifyOrigin() ) {
 			return $this->returnResults();
 		}
 		$this->verifyPermissions();
 		$this->removeOrigin();
 		$this->returnResults();
-
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return [
 			'pageID' => [
@@ -34,12 +37,12 @@ class DiscardDraft extends MergeBase {
 
 	protected function returnResults() {
 		$result = $this->getResult();
-		if( $this->status->isGood() ) {
-			$result->addValue( null , 'success', 1 );
+		if ( $this->status->isGood() ) {
+			$result->addValue( null, 'success', 1 );
 			$result->addValue( null, 'title', $this->originTitle->getPrefixedText() );
 		} else {
-			$result->addValue( null , 'success', 0 );
-			$result->addValue( null , 'error', $this->status->getMessage() );
+			$result->addValue( null, 'success', 0 );
+			$result->addValue( null, 'error', $this->status->getMessage() );
 		}
 	}
 }

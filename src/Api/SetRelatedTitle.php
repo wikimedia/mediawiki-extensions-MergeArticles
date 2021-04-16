@@ -12,9 +12,12 @@ class SetRelatedTitle extends \ApiBase {
 		$this->readInParameters();
 		$this->setPageProps();
 		$this->returnResults();
-		
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return [
 			'pageID' => [
@@ -38,28 +41,28 @@ class SetRelatedTitle extends \ApiBase {
 	}
 
 	protected function setPageProps() {
-		if( !$this->targetTitle instanceof \Title || ! $this->targetTitle->exists() ) {
+		if ( !$this->targetTitle instanceof \Title || !$this->targetTitle->exists() ) {
 			$this->status = \Status::newFatal( 'invalid-origin' );
 			return false;
 		}
-		if( !$this->targetTitle->userCan( 'merge-articles' ) ) {
+		if ( !$this->targetTitle->userCan( 'merge-articles' ) ) {
 			$this->status = \Status::newFatal( 'permissiondenied' );
 			return false;
 		}
 		$relatedTitle = \Title::newFromID( $this->relatedTo );
-		if( !$this->relatedTitle instanceof \Title || ! $this->relatedTitle->exists() ) {
+		if ( !$this->relatedTitle instanceof \Title || !$this->relatedTitle->exists() ) {
 			$this->status = \Status::newFatal( 'invalid-related-title' );
 			return false;
 		}
 		$db = $this->getDB();
-		if( $db->selectRow(
+		if ( $db->selectRow(
 			'pageprops', [ '*' ],
 			[
 				'pp_page' => $this->targetTitle->getArticleID(),
 				'pp_propname' => 'relatedto'
 			]
 		) ) {
-			if( !$db->update( 'pageprops', [
+			if ( !$db->update( 'pageprops', [
 				'pp_page' => $this->targetTitle->getArticleID(),
 				'pp_propname' => 'relatedto',
 				'pp_value' => $relatedTitle->getArticleID()
@@ -71,7 +74,7 @@ class SetRelatedTitle extends \ApiBase {
 				return false;
 			}
 		} else {
-			if( !$db->insert( 'pageprops', [
+			if ( !$db->insert( 'pageprops', [
 				'pp_page' => $this->targetTitle->getArticleID(),
 				'pp_propname' => 'relatedto',
 				'pp_value' => $relatedTitle->getArticleID()
@@ -86,11 +89,11 @@ class SetRelatedTitle extends \ApiBase {
 	protected function returnResults() {
 		$result = $this->getResult();
 
-		if( $this->status->isGood() ) {
-			$result->addValue( null , 'success', 1 );
+		if ( $this->status->isGood() ) {
+			$result->addValue( null, 'success', 1 );
 		} else {
-			$result->addValue( null , 'success', 0 );
-			$result->addValue( null , 'error', $this->status->getMessage() );
+			$result->addValue( null, 'success', 0 );
+			$result->addValue( null, 'error', $this->status->getMessage() );
 		}
 	}
 }

@@ -2,10 +2,12 @@
 
 namespace MergeArticles\Api;
 
-use MergeArticles\Api\MergeBase;
-
 class MergeNewPage extends MergeBase {
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'target' => [
@@ -29,26 +31,26 @@ class MergeNewPage extends MergeBase {
 	 * This might be an overkill, because we have target from the params,
 	 * and we calculate it here
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function verifyTarget() {
-		if( $this->originTitle->getNamespace() === NS_DRAFT ) {
+		if ( $this->originTitle->getNamespace() === NS_DRAFT ) {
 			$target = \Title::newFromText( $this->originTitle->getDBkey() );
-		} else if( $this->originTitle->getNamespace() === NS_FILE ) {
+		} elseif ( $this->originTitle->getNamespace() === NS_FILE ) {
 			$draftFilePrefix = $this->getConfig()->get( 'MADraftFilePrefix' );
 			$stripped = str_replace( $draftFilePrefix, '', $this->originTitle->getDBkey() );
 			$target = \Title::makeTitle( NS_FILE, $stripped );
 		}
 
-		if( !$target instanceof \Title || ! $this->targetTitle instanceof \Title ) {
+		if ( !$target instanceof \Title || !$this->targetTitle instanceof \Title ) {
 			$this->status = \Status::newFatal( 'invalid-target' );
 			return false;
 		}
-		if( $this->targetTitle->equals( $target ) === false ) {
+		if ( $this->targetTitle->equals( $target ) === false ) {
 			$this->status = \Status::newFatal( 'target-mismatch' );
 			return false;
 		}
-		if( $this->targetTitle->exists() ) {
+		if ( $this->targetTitle->exists() ) {
 			$this->status = \Status::newFatal( 'target-exists' );
 			return false;
 		}
@@ -56,7 +58,7 @@ class MergeNewPage extends MergeBase {
 	}
 
 	protected function mergeFile() {
-		if( wfFindFile( $this->targetTitle ) ) {
+		if ( wfFindFile( $this->targetTitle ) ) {
 			$this->status = \Status::newFatal( 'target-file-exists' );
 			return false;
 		}
