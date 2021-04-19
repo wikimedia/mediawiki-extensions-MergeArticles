@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Georg101"
+			"Georg101",
+			"Matěj Suchánek"
 		]
 	},
 	"mergearticles": "Sloučit články",
@@ -23,7 +24,7 @@
 	"mergearticles-file-layout-label": "Soubor",
 	"mergearticles-file-info-name": "Název: $1",
 	"mergearticles-file-info-extension": "Rozšíření: $1",
-	"mergearticles-file-info-size": "Velikost:",
+	"mergearticles-file-info-size": "Velikost: $1",
 	"mergearticles-diff-action-accept": "Schválit",
 	"mergearticles-diff-action-refuse": "Odmítnout",
 	"mergearticles-diff-accepted": "Schváleno",
