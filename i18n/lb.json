@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"mergearticles-type-article": "Säit",
+	"mergearticles-type-template": "Schabloun",
+	"mergearticles-type-category": "Kategorie",
+	"mergearticles-do-merge-label": "Fusionéieren",
+	"mergearticles-file-layout-label": "Fichier",
+	"mergearticles-file-info-name": "Numm: $1",
+	"mergearticles-file-info-extension": "Erweiderung: $1",
+	"mergearticles-review-header": "Text vun der neier Säit"
+}
