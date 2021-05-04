@@ -2,6 +2,8 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\MediaWikiServices;
+
 class MergeBase extends \ApiBase {
 	protected $originTitle;
 	protected $targetTitle;
@@ -124,7 +126,13 @@ class MergeBase extends \ApiBase {
 	 * @return bool
 	 */
 	protected function uploadFile( \LocalFile $file ) {
-		$localFileRepo = \RepoGroup::singleton()->getLocalRepo();
+		$services = MediaWikiServices::getInstance();
+		if ( method_exists( $services, 'getRepoGroup' ) ) {
+			// MW 1.34+
+			$localFileRepo = $services->getRepoGroup()->getLocalRepo();
+		} else {
+			$localFileRepo = \RepoGroup::singleton()->getLocalRepo();
+		}
 
 		$uploadStash = new \UploadStash( $localFileRepo, $this->getUser() );
 		$uploadFile = $uploadStash->stashFile( $file->getLocalRefPath(), "file" );
