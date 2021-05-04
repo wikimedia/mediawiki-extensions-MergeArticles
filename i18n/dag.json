@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Adam Tuferu",
+			"Amire80",
 			"Chirifo",
 			"Munkaila Sulemana"
 		]
@@ -55,7 +56,7 @@
 	"apihelp-ma-merge-page-new-summary": "N-laɣim sabbu ŋan na bi jahi n-niŋ yaɣ'palli",
 	"apihelp-ma-merge-page-existing-summary": "N-laɣim sabbu din na bi jahi ni yaɣili din' pun biɛni",
 	"apihelp-ma-discard-draft-summary": "Yim' tuuli sabbu yaɣ' shɛli ŋan na bɔri mali-niŋ la yɛla ni",
-	"mergearticles-apihelp-param-skipfile": "Bool. sagiti diyi niŋ ka kuligu tu kpahiyaɣi",
+	"mergearticles-apihelp-param-skipfile": "Bool. Sagiti diyi niŋ ka kuligu tu kpahiyaɣi",
 	"mergearticles-apihelp-param-target": "Yuli bonti yuli gbai yaɣili",
 	"right-merge-articles": "Laɣim yaɣa"
 }
