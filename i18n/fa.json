@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeeputer"
+		]
+	},
+	"mergearticles-type-article": "صفحه",
+	"mergearticles-type-template": "الگو",
+	"mergearticles-type-category": "رده",
+	"mergearticles-action-unknown": "عمل نامشخص",
+	"mergearticles-request-invalid": "درخواست نامعتبر",
+	"mergearticles-sp-compare": "ادغام صفحه‌ها - مقایسه و ادغام",
+	"mergearticles-do-merge-label": "ادغام",
+	"mergearticles-merge-success-header": "ادغام صفحه موفق بود!",
+	"mergearticles-back-to-overview": "بازگشت به بررسی اجمالی",
+	"mergearticles-file-layout-label": "پرونده",
+	"mergearticles-diff-action-accept": "پذیرفتن",
+	"mergearticles-diff-action-refuse": "رد کردن",
+	"mergearticles-diff-header": "تغییرات در متن",
+	"mergearticles-diff-item-undo": "واگردانی",
+	"mergearticles-final-text-header-label": "متن نهایی",
+	"mergearticles-file-origin-header": "پیش‌نویس (تازه)",
+	"mergearticles-review-header": "متن صفحهٔ تازه",
+	"action-merge-articles": "ادغام این مقاله",
+	"right-merge-articles": "ادغام صفحه‌ها"
+}
