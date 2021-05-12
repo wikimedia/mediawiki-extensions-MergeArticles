@@ -73,5 +73,6 @@
 	"mergearticles-apihelp-param-target": "Title of the target page",
 	"mergearticles-apihelp-param-relatedto": "Integer. ID of the page, the given page should be set as related to",
 	"action-merge-articles": "merge this article",
-	"right-merge-articles": "Merge pages"
+	"right-merge-articles": "Merge pages",
+	"mergearticles-term-filter-label": "Page name"
 }

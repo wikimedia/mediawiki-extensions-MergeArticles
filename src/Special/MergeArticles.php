@@ -2,6 +2,9 @@
 
 namespace MergeArticles\Special;
 
+use MediaWiki\MediaWikiServices;
+use MergeArticles\IPageFilter;
+use MergeArticles\PageFilterFactory;
 use Title;
 
 class MergeArticles extends \SpecialPage {
@@ -46,6 +49,13 @@ class MergeArticles extends \SpecialPage {
 	protected function addOverview() {
 		$this->getOutput()->addModules( 'ext.mergearticles.overview' );
 		$this->getOutput()->addJsConfigVars( 'maAvailablePages', $this->getAvailablePages() );
+
+		/** @var PageFilterFactory $filterFactory */
+		$filterFactory = MediaWikiServices::getInstance()->getService(
+			'MergeArticlesPageFilterFactory'
+		);
+		$this->getOutput()->addModules( $filterFactory->getRLModules() );
+		$this->getOutput()->addJsConfigVars( 'maFilters', $filterFactory->getFiltersForClient() );
 		$this->getOutput()->addHTML( \Html::element( 'div', [ 'id' => 'merge-articles-overview' ] ) );
 	}
 
@@ -401,20 +411,9 @@ class MergeArticles extends \SpecialPage {
 					break;
 			}
 
-			$availablePages[ $type ][] = [
-				'origin' => [
-					'id' => $draftTitle->getArticleID(),
-					'text' => $draftTitle->getPrefixedText(),
-					'url' => $draftTitle->getLocalURL()
-				],
-				'target' => [
-					'id' => $title->getArticleID(),
-					'exists' => $title->exists(),
-					'text' => $title->getPrefixedText(),
-					'url' => $title->getLocalURL()
-				],
-				'type' => $type
-			];
+			$data = $this->getItemData( $draftTitle, $title );
+			$data['type'] = $type;
+			$availablePages[$type][] = $data;
 		}
 	}
 
@@ -446,21 +445,47 @@ class MergeArticles extends \SpecialPage {
 				continue;
 			}
 
-			$availablePages[ static::TYPE_FILE ][] = [
-				'origin' => [
-					'id' => $draftTitle->getArticleID(),
-					'text' => $draftTitle->getPrefixedText(),
-					'url' => $draftTitle->getLocalURL()
-				],
-				'target' => [
-					'id' => $title->getArticleID(),
-					'exists' => $title->exists(),
-					'text' => $title->getPrefixedText(),
-					'url' => $title->getLocalURL()
-				],
-				'type' => static::TYPE_FILE
-			];
+			$data = $this->getItemData( $draftTitle, $title );
+			$data['type'] = static::TYPE_FILE;
+			$availablePages[static::TYPE_FILE][] = $data;
 		}
+	}
+
+	/**
+	 * Get client-side data for the page
+	 *
+	 * @param Title $draftTitle
+	 * @param Title $title
+	 * @return array
+	 */
+	private function getItemData( $draftTitle, $title ) {
+		/** @var PageFilterFactory $filterFactory */
+		$filterFactory = MediaWikiServices::getInstance()->getService(
+			'MergeArticlesPageFilterFactory'
+		);
+		$originData = [
+			'id' => $draftTitle->getArticleID(),
+			'text' => $draftTitle->getPrefixedText(),
+			'url' => $draftTitle->getLocalURL()
+		];
+		/**
+		 * @var string $name
+		 * @var IPageFilter $filter
+		 */
+		foreach ( $filterFactory->getFilters() as $name => $filter ) {
+			$originData = array_merge(
+				$filter->getFilterableData( $draftTitle ), $originData
+			);
+		}
+		return [
+			'origin' => $originData,
+			'target' => [
+				'id' => $title->getArticleID(),
+				'exists' => $title->exists(),
+				'text' => $title->getPrefixedText(),
+				'url' => $title->getLocalURL()
+			]
+		];
 	}
 
 	/**
