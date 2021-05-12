@@ -73,5 +73,6 @@
 	"mergearticles-apihelp-param-target": "{{doc-apihelp-param|ma-merge-page-new|target}}",
 	"mergearticles-apihelp-param-relatedto": "{{doc-apihelp-param|ma-merge-page-new|relatedTo}}",
 	"action-merge-articles": "{{doc-action|merge-articles}}",
-	"right-merge-articles": "{{doc-right|merge-articles}}"
+	"right-merge-articles": "{{doc-right|merge-articles}}",
+	"mergearticles-term-filter-label": "Label for the client-side filter for page name"
 }
