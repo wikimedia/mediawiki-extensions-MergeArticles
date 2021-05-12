@@ -21,6 +21,11 @@
 					"roles": [ "admin" ]
 				}
 			}
+		},
+		"MergeArticles": {
+			"PageFilters": {
+				"term": "\\MergeArticles\\PageFilter\\Term::factory"
+			}
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -30,6 +35,9 @@
 	"SpecialPages": {
 		"MergeArticles": "\\MergeArticles\\Special\\MergeArticles"
 	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
 	"APIModules": {
 		"ma-merge-page-new": "\\MergeArticles\\Api\\MergeNewPage",
 		"ma-merge-page-existing": "\\MergeArticles\\Api\\MergeExistingPage",
@@ -162,6 +170,16 @@
 				"mergearticles-diff-action-accept-both",
 				"mergearticles-diff-accepted-both",
 				"mergearticles-diff-refused-both"
+			]
+		},
+		"ext.mergearticles.filters": {
+			"scripts": [
+				"pageFilters/Filter.js",
+				"pageFilters/Term.js"
+			],
+			"dependencies": [
+				"oojs",
+				"oojs-ui"
 			]
 		}
 	},

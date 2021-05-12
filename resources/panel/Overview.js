@@ -5,18 +5,18 @@
 		this.$element = $( '<div>' );
 		this.$element.addClass( 'merge-articles-overview' );
 
+		this.filters = cfg.filters || {};
+
 		this.pages = cfg.pages || {};
 		this.selectedTypes = [];
 		this.currentlyDisplayed = 0;
 
 		this.makeTypeLayout();
-		this.makeFilterLayout();
 
 		this.criteriaLayout = new OO.ui.HorizontalLayout( {
 			items: [
 				this.typeLayout,
-				this.filterLayout
-			]
+			].concat( this.makeFilterLayout() )
 		} );
 		this.criteriaLayout.$element.addClass( 'merge-articles-criterial-layout' );
 
@@ -42,25 +42,25 @@
 			label: mw.message( 'mergearticles-type-article' ).text()
 		} );
 		this.articlesTypeButton.on( 'click', function() {
-			this.onTypeChange( 'article', this.articlesTypeButton.getValue() )
+			this.onTypeChange( 'article', this.articlesTypeButton.getValue() );
 		}.bind( this ) );
 		this.categoriesTypeButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.message( 'mergearticles-type-category' ).text()
 		} );
 		this.categoriesTypeButton.on( 'click', function() {
-			this.onTypeChange( 'category', this.categoriesTypeButton.getValue() )
+			this.onTypeChange( 'category', this.categoriesTypeButton.getValue() );
 		}.bind( this ) );
 		this.templatesTypeButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.message( 'mergearticles-type-template' ).text()
 		} );
 		this.templatesTypeButton.on( 'click', function() {
-			this.onTypeChange( 'template', this.templatesTypeButton.getValue() )
+			this.onTypeChange( 'template', this.templatesTypeButton.getValue() );
 		}.bind( this ) );
 		this.filesTypeButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.message( 'mergearticles-type-file' ).text()
 		} );
 		this.filesTypeButton.on( 'click', function() {
-			this.onTypeChange( 'file', this.filesTypeButton.getValue() )
+			this.onTypeChange( 'file', this.filesTypeButton.getValue() );
 		}.bind( this ) );
 
 		this.typePicker = new OO.ui.ButtonGroupWidget( {
@@ -83,15 +83,28 @@
 	};
 
 	mergeArticles.panel.Overview.prototype.makeFilterLayout = function() {
-		this.filterInput = new OO.ui.TextInputWidget( {
-			icon: 'search'
-		} );
-		this.filterInput.on( 'change', this.onFilter.bind( this ) );
+		var instances = {}, layouts = [];
+		for ( var name in this.filters ) {
+			if ( !this.filters.hasOwnProperty( name ) ) {
+				continue;
+			}
+			var filter = this.filters[name],
+				widgetClass = this.stringToCallback( filter.widgetClass ),
+				widget = new widgetClass( $.extend( {}, true, {
+					id: filter.id,
+				}, filter.widgetData || {} ) ),
+				layout = new OO.ui.FieldLayout( widget.getWidget(), {
+					align: 'top',
+					label: filter.displayName
+				} );
+			widget.connect( this, { change: 'onFilter' } );
+			layouts.push( layout );
+			instances[name] = widget;
+		}
 
-		this.filterLayout = new OO.ui.FieldLayout( this.filterInput, {
-			align: 'top',
-			label: 'Filter'
-		} );
+		this.filters = instances;
+
+		return layouts;
 	};
 
 	mergeArticles.panel.Overview.prototype.onTypeChange = function( type, value ) {
@@ -155,21 +168,14 @@
 	};
 
 	mergeArticles.panel.Overview.prototype.applyFilter = function( pages ) {
-		var value = this.filterInput.getValue().toLowerCase();
-		if( value === '' ) {
-			return pages;
-		}
-
-		var filteredPages = [];
-		for( var idx in pages ) {
-			var page = pages[ idx ];
-
-			var target = page.target.text.toLowerCase();
-			if( !target.includes( value ) ) {
+		var filteredPages = pages;
+		for ( var name in this.filters ) {
+			if ( !this.filters.hasOwnProperty( name ) ) {
 				continue;
 			}
-			filteredPages.push( page );
+			filteredPages = this.filters[name].filter( filteredPages );
 		}
+
 		return filteredPages;
 	};
 
@@ -187,5 +193,15 @@
 		} else {
 			this.hideNoPages();
 		}
+	};
+
+	mergeArticles.panel.Overview.prototype.stringToCallback = function ( cls ) {
+		var parts = cls.split( '.' );
+		var func = window[parts[0]];
+		for( var i = 1; i < parts.length; i++ ) {
+			func = func[parts[i]];
+		}
+
+		return func;
 	};
 } ) ( mediaWiki, jQuery );
