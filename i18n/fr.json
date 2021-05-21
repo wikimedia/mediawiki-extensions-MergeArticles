@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Gomoko",
 			"Verdy p"
 		]
 	},
@@ -72,5 +73,6 @@
 	"mergearticles-apihelp-param-target": "Titre de la page cible",
 	"mergearticles-apihelp-param-relatedto": "Entier : ID de la page vers laquelle la page donnée devrait être marquée comme liée",
 	"action-merge-articles": "fusionner cet article",
-	"right-merge-articles": "Fusionner des pages"
+	"right-merge-articles": "Fusionner des pages",
+	"mergearticles-term-filter-label": "Nom de la page"
 }

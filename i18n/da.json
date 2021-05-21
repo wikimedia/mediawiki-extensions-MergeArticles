@@ -15,5 +15,6 @@
 	"mergearticles-file-info-name": "Navn: $1",
 	"mergearticles-file-info-size": "Størrelse: $1",
 	"mergearticles-diff-refused": "Afvist",
-	"mergearticles-file-diff-header": "Fil"
+	"mergearticles-file-diff-header": "Fil",
+	"mergearticles-term-filter-label": "Sidenavn"
 }
