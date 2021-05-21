@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"FF-11"
+		]
 	},
 	"mergearticles-extension-desc": "Ermöglicht das Zusammenführen von Vergleichen und Zusammenführen von Artikeln",
 	"mergearticles": "Artikel zusammenführen",
@@ -58,5 +60,6 @@
 	"mergearticles-diff-action-refuse-both": "Beide ablehnen",
 	"mergearticles-diff-action-accept-both": "Beide akzeptieren",
 	"mergearticles-diff-accepted-both": "Beide behalten",
-	"mergearticles-diff-refused-both": "Beide entfernt"
+	"mergearticles-diff-refused-both": "Beide entfernt",
+	"mergearticles-term-filter-label": "Seitenname"
 }

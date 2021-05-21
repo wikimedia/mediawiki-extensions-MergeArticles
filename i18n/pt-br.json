@@ -60,5 +60,6 @@
 	"mergearticles-apihelp-param-text": "Conteúdo de texto de uma página",
 	"mergearticles-apihelp-param-skipfile": "Bool. Defina se os arquivos devem ser ignorados",
 	"mergearticles-apihelp-param-target": "Título da página de destino",
-	"right-merge-articles": "Mesclar páginas"
+	"right-merge-articles": "Mesclar páginas",
+	"mergearticles-term-filter-label": "Nome da página"
 }
