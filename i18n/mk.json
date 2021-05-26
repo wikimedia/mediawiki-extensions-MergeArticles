@@ -72,5 +72,6 @@
 	"mergearticles-apihelp-param-target": "Наслов на целната страница",
 	"mergearticles-apihelp-param-relatedto": "Целобројно. Назнака на страницата, дадената страница треба да се укаже како врзана со",
 	"action-merge-articles": "спој ја статијава",
-	"right-merge-articles": "Спој страници"
+	"right-merge-articles": "Спој страници",
+	"mergearticles-term-filter-label": "Име на страницата"
 }
