@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hedda"
+			"Hedda",
+			"Mim.saitkilic"
 		]
 	},
 	"mergearticles-extension-desc": "Maddelerin karşılaştırılmasına ve birleştirilmesine izin verir",
@@ -72,5 +73,6 @@
 	"mergearticles-apihelp-param-target": "Hedef sayfanın başlığı",
 	"mergearticles-apihelp-param-relatedto": "Tamsayı. Sayfanın kimliği, verilen sayfa ile ilişkili olarak ayarlanmalıdır",
 	"action-merge-articles": "bu maddeyi birleştir",
-	"right-merge-articles": "Sayfaları birleştir"
+	"right-merge-articles": "Sayfaları birleştir",
+	"mergearticles-term-filter-label": "Sayfa ismi"
 }
