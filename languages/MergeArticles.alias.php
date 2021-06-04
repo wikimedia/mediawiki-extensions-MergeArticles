@@ -18,5 +18,5 @@ $specialPageAliases['en'] = [
  * @author Patric Wirth
  */
 $specialPageAliases['de'] = [
-	'MergeArticles' => [ 'Artikel zusammenführen ' ],
+	'MergeArticles' => [ 'Artikel zusammenführen' ],
 ];
