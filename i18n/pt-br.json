@@ -58,6 +58,7 @@
 	"mergearticles-diff-accepted-both": "Ambos mantiveram",
 	"mergearticles-diff-refused-both": "Ambos removidos",
 	"apihelp-ma-merge-page-new-summary": "Mescla uma versão de rascunho em uma nova página",
+	"apihelp-ma-merge-page-existing-summary": "Mescla uma versão de rascunho em uma página existente",
 	"apihelp-ma-set-related-titles-summary": "Relaciona uma página a uma versão de rascunho da página",
 	"apihelp-ma-discard-draft-summary": "Descartar a versão de rascunho existente de uma página",
 	"mergearticles-apihelp-param-pageid": "ID da página",
@@ -65,6 +66,7 @@
 	"mergearticles-apihelp-param-text": "Conteúdo de texto de uma página",
 	"mergearticles-apihelp-param-skipfile": "Bool. Defina se os arquivos devem ser ignorados",
 	"mergearticles-apihelp-param-target": "Título da página de destino",
+	"mergearticles-apihelp-param-relatedto": "Inteiro. ID da página, a página fornecida deve ser definida como relacionada a",
 	"action-merge-articles": "mesclar este artigo",
 	"right-merge-articles": "Mesclar páginas",
 	"mergearticles-term-filter-label": "Nome da página"
