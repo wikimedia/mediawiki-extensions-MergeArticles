@@ -29,6 +29,7 @@
 	"mergearticles-file-info-extension": "Extensão: $1",
 	"mergearticles-file-info-mime": "Tipo MIME: $1",
 	"mergearticles-file-info-size": "Tamanho: $1",
+	"mergearticles-merge-existing-help": "Página \"$1\" já existe! Por favor, compare as alterações abaixo.",
 	"mergearticles-diff-action-accept": "Aprovar",
 	"mergearticles-diff-action-refuse": "Recusar",
 	"mergearticles-diff-accepted": "Aprovado",
