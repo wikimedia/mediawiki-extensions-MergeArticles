@@ -104,7 +104,10 @@
 
 		this.filters = instances;
 
-		return layouts;
+		return new OO.ui.HorizontalLayout( {
+			items: layouts,
+			classes: [ 'ma-filter-layout' ]
+		} );
 	};
 
 	mergeArticles.panel.Overview.prototype.onTypeChange = function( type, value ) {
