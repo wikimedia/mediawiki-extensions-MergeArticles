@@ -52,7 +52,7 @@
 			"merge-articles": false
 		},
 		"sysop": {
-			"merge-articles": false
+			"merge-articles": true
 		}
 	},
 	"AutoloadNamespaces": {
