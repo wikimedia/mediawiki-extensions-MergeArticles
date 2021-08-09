@@ -70,5 +70,8 @@
 	"mergearticles-apihelp-param-text": "Текстовий вміст сторінки",
 	"mergearticles-apihelp-param-skipfile": "Встановіть, чи потрібно пропускати файли",
 	"mergearticles-apihelp-param-target": "Назва цільової сторінки",
-	"mergearticles-apihelp-param-relatedto": "Ціле число. Ідентифікатор сторінки, дану сторінку слід встановити як пов'язану з"
+	"mergearticles-apihelp-param-relatedto": "Ціле число. Ідентифікатор сторінки, дану сторінку слід встановити як пов'язану з",
+	"action-merge-articles": "об'єднати цю сторінку",
+	"right-merge-articles": "Об'єднання сторінок",
+	"mergearticles-term-filter-label": "Назва сторінки"
 }
