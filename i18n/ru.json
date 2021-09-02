@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Okras"
 		]
 	},
 	"mergearticles-target-new-label": "Новая страница",
@@ -16,5 +17,7 @@
 	"mergearticles-diff-action-refuse": "Отклонить",
 	"mergearticles-diff-refused": "Отклонено",
 	"mergearticles-diff-item-undo": "Отменить",
-	"mergearticles-file-diff-header": "Файл"
+	"mergearticles-discard-draft": "Удалить этот черновик",
+	"mergearticles-file-diff-header": "Файл",
+	"mergearticles-file-origin-header": "Черновик (новый)"
 }
