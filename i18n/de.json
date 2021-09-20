@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"FF-11"
+			"FF-11",
+			"Umlaut"
 		]
 	},
 	"mergearticles-extension-desc": "Ermöglicht das Zusammenführen von Vergleichen und Zusammenführen von Artikeln",
@@ -61,5 +62,7 @@
 	"mergearticles-diff-action-accept-both": "Beide akzeptieren",
 	"mergearticles-diff-accepted-both": "Beide behalten",
 	"mergearticles-diff-refused-both": "Beide entfernt",
+	"mergearticles-apihelp-param-pageid": "ID einer Seite",
+	"mergearticles-apihelp-param-targetid": "ID einer Seite",
 	"mergearticles-term-filter-label": "Seitenname"
 }
