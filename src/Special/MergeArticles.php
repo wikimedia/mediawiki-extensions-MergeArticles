@@ -581,7 +581,7 @@ class MergeArticles extends \SpecialPage {
 		if ( !$content instanceof \TextContent ) {
 			return '';
 		}
-		return $content->getText();
+		return $content->getNativeData();
 	}
 
 	protected function verifyTitles() {
