@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"FF-11",
+			"Umherirrender",
 			"Umlaut"
 		]
 	},
@@ -43,7 +44,7 @@
 	"mergearticles-diff-option-accept-all-label": "Alle genehmigen",
 	"mergearticles-diff-item-undo": "Rückgängig",
 	"mergearticles-show-final-text-button-label": "Endgültigen Text anzeigen",
-	"mergearticles-show-final-text-label": "Alle Zusammenführungskonflikte wurden aufgelöst, der endgültige Text kann nun eingesehen und ggf. vor der Zusammenführung korrigiert werden. Hinweis: Nach diesem Punkt kann der Zusammenführungskonflikt  nicht mehr geändert werden!",
+	"mergearticles-show-final-text-label": "Alle Zusammenführungskonflikte wurden aufgelöst, der endgültige Text kann nun eingesehen und ggf. vor der Zusammenführung korrigiert werden. Hinweis: Nach diesem Punkt kann der Zusammenführungskonflikt nicht mehr geändert werden!",
 	"mergearticles-final-text-header-label": "Endgültiger Text",
 	"mergearticles-final-text-header-note": "(kann geändert werden)",
 	"mergearticles-discard-draft": "Diesen Entwurf verwerfen",
