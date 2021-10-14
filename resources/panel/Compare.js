@@ -284,7 +284,7 @@
 		}
 
 		var accepted = e.data.accepted || false,
-			applyToBoth = e.data.applyToBoth || false
+			applyToBoth = e.data.applyToBoth || false;
 
 		var diff = this.diffData[ e.data.diffID ];
 		diff.accepted = accepted;
@@ -300,7 +300,10 @@
 			.parent();
 		if ( applyToBoth ) {
 			$diffWrapper.addClass( 'ma-diff-both' );
+		} else {
+			$diffWrapper.removeClass( 'ma-diff-both' );
 		}
+
 		$diffWrapper.addClass( accepted ? 'ma-diff-accepted' : 'ma-diff-refused' );
 
 		var buttonContainer = $diffWrapper.find( '.ma-diff-item-action' );
