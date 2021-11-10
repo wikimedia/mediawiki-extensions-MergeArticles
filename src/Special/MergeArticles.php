@@ -590,7 +590,11 @@ class MergeArticles extends \SpecialPage {
 	 */
 	protected function getPageContentText( $title ) {
 		$wikipage = \WikiPage::factory( $title );
+		/** @var \TextContent $content */
 		$content = $wikipage->getContent();
+		if ( !$content instanceof \TextContent ) {
+			return '';
+		}
 		return $content->getNativeData();
 	}
 

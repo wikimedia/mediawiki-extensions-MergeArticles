@@ -92,7 +92,7 @@ class HTMLDiffFormatter extends \DiffFormatter {
 	 *
 	 * @param string $diff
 	 * @param string $type
-	 * @param bool|true $counter
+	 * @param bool|false $counter
 	 * @return string
 	 */
 	protected function getDiffHTML( $diff, $type, $counter = true ) {
@@ -118,10 +118,10 @@ class HTMLDiffFormatter extends \DiffFormatter {
 
 	/**
 	 *
-	 * @param DiffOp $edit
+	 * @param \DiffOp $edit
 	 * @return array
 	 */
-	protected function conflateChange( DiffOp $edit ) {
+	protected function conflateChange( \DiffOp $edit ) {
 		$orig = $edit->getOrig();
 		$closing = $edit->getClosing();
 
