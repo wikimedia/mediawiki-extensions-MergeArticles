@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maria zaos"
+		]
+	},
+	"mergearticles": "Fusiona artigos",
+	"mergearticles-target-exists-label": "Fusionar destino: $1",
+	"mergearticles-target-new-label": "Páxina nova",
+	"mergearticles-page-item-action-compare": "Compara & Fusiona",
+	"mergearticles-page-item-action-review": "Revisa e fusiona",
+	"mergearticles-type-file": "Ficheiro",
+	"mergearticles-type-article": "Páxina",
+	"mergearticles-type-template": "Modelo",
+	"mergearticles-type-category": "Categoría",
+	"mergearticles-no-pages-available": "Non hai imaxes que amosar.",
+	"mergearticles-action-unknown": "Acción descoñecida",
+	"mergearticles-request-invalid": "Solicitude non válida"
+}
