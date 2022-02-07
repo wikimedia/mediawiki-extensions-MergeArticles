@@ -47,7 +47,7 @@
 	"mergearticles-final-text-header-label": "Texte final",
 	"mergearticles-final-text-header-note": "(peut être modifié)",
 	"mergearticles-discard-draft": "Jeter ce brouillon",
-	"mergearticles-discard-draft-help": "Cette action supprimera cette page brouillon. Êtes-vous sûr{{GENDER||e}} de vouloir le faire ?",
+	"mergearticles-discard-draft-help": "Cette action supprimera cette page brouillon. Êtes-vous sûr{{GENDER:||e}} de vouloir le faire ?",
 	"mergearticles-no-diff-message": "Il n’y a aucune différence de texte entre le brouillon et la page cible !",
 	"mergearticles-draft-discard-fail-header": "Le brouillon ne peut pas être jeté !",
 	"mergearticles-draft-discard-success-header": "Brouillon jeté !",
