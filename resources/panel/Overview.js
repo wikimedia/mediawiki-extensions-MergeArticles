@@ -6,6 +6,7 @@
 		this.$element.addClass( 'merge-articles-overview' );
 
 		this.filters = cfg.filters || {};
+		this.filterModules = cfg.filterModules || [];
 
 		this.pages = cfg.pages || {};
 		this.selectedTypes = [];
@@ -13,12 +14,17 @@
 
 		this.makeTypeLayout();
 
-		this.criteriaLayout = new OO.ui.HorizontalLayout( {
-			items: [
-				this.typeLayout,
-			].concat( this.makeFilterLayout() )
-		} );
-		this.criteriaLayout.$element.addClass( 'merge-articles-criterial-layout' );
+		this.makeFilterLayout().done( function( item ) {
+			this.criteriaLayout = new OO.ui.HorizontalLayout( {
+				items: [ this.typeLayout, item ]
+			} );
+			this.criteriaLayout.$element.addClass( 'merge-articles-criterial-layout' );
+			this.$element.prepend( this.criteriaLayout.$element );
+
+			// Select Articles by default
+			this.articlesTypeButton.emit( 'click' );
+		}.bind( this ) );
+
 
 		this.noPagesMessage = new OO.ui.LabelWidget( {
 			label: mw.message( 'mergearticles-no-pages-available' ).text()
@@ -29,10 +35,9 @@
 		} );
 		this.pageLayout.$element.addClass( 'merge-articles-page-layout' );
 
-		// Select Articles by default
-		this.articlesTypeButton.emit( 'click' );
 
-		this.$element.append( this.criteriaLayout.$element, this.pageLayout.$element );
+
+		this.$element.append( this.pageLayout.$element );
 	};
 
 	OO.initClass( mergeArticles.panel.Overview );
@@ -83,31 +88,37 @@
 	};
 
 	mergeArticles.panel.Overview.prototype.makeFilterLayout = function() {
-		var instances = {}, layouts = [];
-		for ( var name in this.filters ) {
-			if ( !this.filters.hasOwnProperty( name ) ) {
-				continue;
+		var dfd = $.Deferred();
+		mw.loader.using( [ 'ext.mergearticles.filters' ].concat( this.filterModules ), function() {
+			var instances = {}, layouts = [];
+			var keys = Object.keys( this.filters );
+			for ( var i = 0; i < keys.length; i++ ) {
+				var filter = this.filters[keys[i]];
+				if ( !filter.hasOwnProperty( 'id' ) ) {
+					continue;
+				}
+				var widgetClass = this.stringToCallback( filter.widgetClass ),
+					widget = new widgetClass( $.extend( {}, true, {
+						id: filter.id,
+					}, filter.widgetData || {} ) ),
+					layout = new OO.ui.FieldLayout( widget.getWidget(), {
+						align: 'top',
+						label: filter.displayName
+					} );
+				widget.connect( this, { change: 'onFilter' } );
+				layouts.push( layout );
+				instances[keys[i]] = widget;
 			}
-			var filter = this.filters[name],
-				widgetClass = this.stringToCallback( filter.widgetClass ),
-				widget = new widgetClass( $.extend( {}, true, {
-					id: filter.id,
-				}, filter.widgetData || {} ) ),
-				layout = new OO.ui.FieldLayout( widget.getWidget(), {
-					align: 'top',
-					label: filter.displayName
-				} );
-			widget.connect( this, { change: 'onFilter' } );
-			layouts.push( layout );
-			instances[name] = widget;
-		}
 
-		this.filters = instances;
+			this.filters = instances;
 
-		return new OO.ui.HorizontalLayout( {
-			items: layouts,
-			classes: [ 'ma-filter-layout' ]
-		} );
+			dfd.resolve( new OO.ui.HorizontalLayout( {
+				items: layouts,
+				classes: [ 'ma-filter-layout' ]
+			} ) );
+		}.bind( this ) );
+
+		return dfd.promise();
 	};
 
 	mergeArticles.panel.Overview.prototype.onTypeChange = function( type, value ) {

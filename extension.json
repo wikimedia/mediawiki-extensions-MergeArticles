@@ -175,8 +175,8 @@
 				"pageFilters/Term.js"
 			],
 			"dependencies": [
-				"oojs",
-				"oojs-ui"
+				"oojs-ui",
+				"mediawiki.Title"
 			]
 		}
 	},
