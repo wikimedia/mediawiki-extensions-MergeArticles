@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Dejan Savuljesku",
-			"Patric Wirth"
+			"Patric Wirth",
+			"Verdy p"
 		]
 	},
 	"mergearticles-extension-desc": "{{desc|name=MergeArticles}}",
@@ -27,7 +28,7 @@
 	"mergearticles-back-to-overview": "Label for button, that sends the user back to the overview page",
 	"mergearticles-merge-new-help": "Help message for when the target page does not exist yet. The user should be informed, that the user is able to check and modify the content before merge.\n* $1 - Name of the Page, the content will be merged into",
 	"mergearticles-file-layout-label": "Section hedline for merging files.\n{{Identical|File}}",
-	"mergearticles-file-info-name": "Label in the file info section that displays the files name.\n{{Identical|Name: $1}}\n* $1 - Name of the file",
+	"mergearticles-file-info-name": "Label in the file info section that displays the files name.\n{{Identical|Name}}\n* $1 - Name of the file",
 	"mergearticles-file-info-extension": "Label in the file info section that displays the files extension.\n{{Identical|Extension: $1}}\n* $1 - Extension of the file",
 	"mergearticles-file-info-mime": "Label in the file info section that displays the files mime type.\n{{Identical|Mime type: $1}}\n* $1 - Mine type of the file",
 	"mergearticles-file-info-size": "Label in the file info section that displays the files size.\n{{Identical|Size: $1}}\n* $1 - Size of the file",
