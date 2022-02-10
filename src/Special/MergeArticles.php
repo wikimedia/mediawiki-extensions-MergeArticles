@@ -54,7 +54,7 @@ class MergeArticles extends \SpecialPage {
 		$filterFactory = MediaWikiServices::getInstance()->getService(
 			'MergeArticlesPageFilterFactory'
 		);
-		$this->getOutput()->addModules( $filterFactory->getRLModules() );
+		$this->getOutput()->addJsConfigVars( 'maFilterModules', $filterFactory->getRLModules() );
 		$this->getOutput()->addJsConfigVars( 'maFilters', $filterFactory->getFiltersForClient() );
 		$this->getOutput()->addHTML( \Html::element( 'div', [ 'id' => 'merge-articles-overview' ] ) );
 	}
