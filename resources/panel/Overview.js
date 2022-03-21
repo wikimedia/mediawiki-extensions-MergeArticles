@@ -159,22 +159,16 @@
 	};
 
 	mergeArticles.panel.Overview.prototype.onPageAction = function( data ) {
-		var target = mw.config.get( 'maBaseURL' );
-		target += '/' + data.action;
-
-		var form = $( '<form>' ).attr( 'method', 'GET' ).attr( 'action', target );
-		form.css( 'display', 'none' ).append(
-			$( '<input>' ).attr( 'name', 'originID' ).val( data.origin.id ),
-			$( '<input>' ).attr( 'name', 'targetText' ).val( data.target.text )
-		);
-		if( data.action === 'compare' ) {
-			form.append(
-				$( '<input>' ).attr( 'name', 'targetID' ).val( data.target.id )
-			);
+		var params = {
+			originID: data.origin.id,
+			targetText: data.target.text
+		};
+		if ( data.action === 'compare' ) {
+			params.targetID = data.target.id;
 		}
-
-		$( 'body' ).append( form );
-		form.submit();
+		window.location.href = mw.util.getUrl(
+			'Special:MergeArticles/' + data.action, params
+		);
 	};
 
 	mergeArticles.panel.Overview.prototype.onFilter = function() {
