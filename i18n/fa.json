@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beginneruser",
 			"Jeeputer"
 		]
 	},
-	"mergearticles": "ارغام مقاله‌ها",
+	"mergearticles": "ادغام مقاله‌ها",
 	"mergearticles-target-exists-label": "هدف ادغام: $1",
 	"mergearticles-target-new-label": "صفحهٔ تازه",
 	"mergearticles-page-item-action-compare": "مقایسه و ادغام",
