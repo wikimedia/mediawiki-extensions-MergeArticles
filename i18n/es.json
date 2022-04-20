@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DiegoAmbrocio",
 			"Juan t2905"
 		]
 	},
@@ -72,5 +73,6 @@
 	"mergearticles-apihelp-param-target": "Título de la página de destino",
 	"mergearticles-apihelp-param-relatedto": "Entero. ID de la página, la página dada debe establecerse como relacionada con",
 	"action-merge-articles": "Fusionar este artículo",
-	"right-merge-articles": "Fusionar páginas"
+	"right-merge-articles": "Fusionar páginas",
+	"mergearticles-term-filter-label": "Nombre de la página"
 }
