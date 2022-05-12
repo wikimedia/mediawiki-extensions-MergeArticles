@@ -36,10 +36,19 @@
 		"includes/ServiceWiring.php"
 	],
 	"APIModules": {
-		"ma-merge-page-new": "\\MergeArticles\\Api\\MergeNewPage",
-		"ma-merge-page-existing": "\\MergeArticles\\Api\\MergeExistingPage",
+		"ma-merge-page-new": {
+			"class": "\\MergeArticles\\Api\\MergeNewPage",
+			"services": [ "HookContainer" ]
+		},
+		"ma-merge-page-existing": {
+			"class": "\\MergeArticles\\Api\\MergeExistingPage",
+			"services": [ "HookContainer" ]
+		},
 		"ma-set-related-titles": "\\MergeArticles\\Api\\SetRelatedTitle",
-		"ma-discard-draft": "\\MergeArticles\\Api\\DiscardDraft"
+		"ma-discard-draft": {
+			"class": "\\MergeArticles\\Api\\DiscardDraft",
+			"services": [ "HookContainer" ]
+		}
 	},
 	"AvailableRights": [
 		"merge-articles"
