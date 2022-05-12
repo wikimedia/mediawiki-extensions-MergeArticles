@@ -2,6 +2,8 @@
 
 namespace MergeArticles\Api;
 
+use ApiMain;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 
 class MergeBase extends \ApiBase {
@@ -15,6 +17,21 @@ class MergeBase extends \ApiBase {
 	/** @var bool */
 	protected $skipFile = false;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param HookContainer $hookContainer
+	 */
+	public function __construct(
+		ApiMain $mainModule, $moduleName, HookContainer $hookContainer
+	) {
+		parent::__construct( $mainModule, $moduleName, '' );
+		$this->hookContainer = $hookContainer;
+	}
+
 	public function execute() {
 		$this->status = \Status::newGood();
 
@@ -26,6 +43,7 @@ class MergeBase extends \ApiBase {
 			return $this->returnResults();
 		}
 		$this->verifyPermissions();
+
 		if ( !$this->merge() ) {
 			return $this->returnResults();
 		}
@@ -87,8 +105,15 @@ class MergeBase extends \ApiBase {
 			$this->mergeFile();
 		}
 
-		$content = \ContentHandler::makeContent( $this->text, $this->targetTitle );
-		$wikipage = \WikiPage::factory( $this->targetTitle );
+		$text = $this->text;
+		$targetTitle = $this->targetTitle;
+		$this->hookContainer->run( 'MergeArticlesBeforeMergePage', [
+			&$text,
+			&$targetTitle,
+			$this->originTitle
+		] );
+		$content = \ContentHandler::makeContent( $text, $targetTitle );
+		$wikipage = \WikiPage::factory( $targetTitle );
 		$status = $wikipage->doEditContent(
 			$content,
 			"Merge articles",
@@ -100,6 +125,10 @@ class MergeBase extends \ApiBase {
 			$this->status = $status;
 			return false;
 		}
+		$this->hookContainer->run( 'MergeArticlesAfterMergePage', [
+			$targetTitle,
+			$this->originTitle
+		] );
 		return true;
 	}
 
