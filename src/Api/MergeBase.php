@@ -113,7 +113,12 @@ class MergeBase extends \ApiBase {
 			$this->originTitle
 		] );
 		$content = \ContentHandler::makeContent( $text, $targetTitle );
-		$wikipage = \WikiPage::factory( $targetTitle );
+		if ( method_exists( MediaWikiServices::class, 'getWikiPageFactory' ) ) {
+			// MW 1.36+
+			$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $targetTitle );
+		} else {
+			$wikipage = \WikiPage::factory( $targetTitle );
+		}
 		$status = $wikipage->doEditContent(
 			$content,
 			"Merge articles",
