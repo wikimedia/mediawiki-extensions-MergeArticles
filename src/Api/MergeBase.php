@@ -140,7 +140,12 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function mergeFile() {
-		$file = wfFindFile( $this->originTitle );
+		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+			// MediaWiki 1.34+
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->originTitle );
+		} else {
+			$file = wfFindFile( $this->originTitle );
+		}
 		if ( !$file ) {
 			$this->status = \Status::newFatal( 'invalid-file' );
 			return false;
@@ -192,7 +197,12 @@ class MergeBase extends \ApiBase {
 	protected function removeOrigin() {
 		$article = \Article::newFromTitle( $this->originTitle, $this->getContext() );
 		if ( $this->isFile() ) {
-			$file = wfFindFile( $this->originTitle );
+			if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+				// MediaWiki 1.34+
+				$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->originTitle );
+			} else {
+				$file = wfFindFile( $this->originTitle );
+			}
 			$file->delete( 'Article merge' );
 		}
 		return $article->doDeleteArticle( 'Article merged' );

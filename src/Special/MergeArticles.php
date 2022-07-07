@@ -508,12 +508,18 @@ class MergeArticles extends \SpecialPage {
 	}
 
 	protected function isValidFile() {
-		$file = wfFindFile( $this->originTitle );
+		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+			// MediaWiki 1.34+
+			$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
+		} else {
+			$fileRepo = \RepoGroup::singleton();
+		}
+		$file = $fileRepo->findFile( $this->originTitle );
 		if ( !$file ) {
 			return false;
 		}
 		if ( $this->targetTitle instanceof \Title && $this->targetTitle->exists() ) {
-			$file = wfFindFile( $this->targetTitle );
+			$file = $fileRepo->findFile( $this->targetTitle );
 			if ( !$file ) {
 				return false;
 			}
@@ -526,7 +532,13 @@ class MergeArticles extends \SpecialPage {
 	 * @return array
 	 */
 	protected function getFileInfo() {
-		$file = wfFindFile( $this->originTitle );
+		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+			// MediaWiki 1.34+
+			$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
+		} else {
+			$fileRepo = \RepoGroup::singleton();
+		}
+		$file = $fileRepo->findFile( $this->originTitle );
 
 		$fileInfo = [
 			'origin' => [
@@ -539,7 +551,7 @@ class MergeArticles extends \SpecialPage {
 			]
 		];
 		if ( $this->targetTitle instanceof \Title && $this->targetTitle->exists() ) {
-			$targetFile = wfFindFile( $this->targetTitle );
+			$targetFile = $fileRepo->findFile( $this->targetTitle );
 			$fileInfo[ 'target' ] = [
 				'name' => $targetFile->getName(),
 				'url' => $targetFile->getUrl(),
