@@ -2,7 +2,7 @@
 	"name": "MergeArticles",
 	"author": "Dejan Savuljesku <savuljesku@hallowelt.com>",
 	"license-name": "GPL-3.0-only",
-	"version": "1.0.0",
+	"version": "1.0",
 	"descriptionmsg": "mergearticles-extension-desc",
 	"MessagesDirs": {
 		"MergeArticles": "i18n"
