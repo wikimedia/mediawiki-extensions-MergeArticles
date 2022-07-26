@@ -10,5 +10,8 @@
 	"mergearticles-file-layout-label": "Teâttõs",
 	"mergearticles-file-diff-header": "Teâttõs",
 	"mergearticles-file-origin-header": "Häämas (ođđ)",
-	"mergearticles-term-filter-label": "Seiddnõmm"
+	"mergearticles-term-filter-label": "Seiddnõmm",
+	"mergearticles-type-template": "Mall",
+	"mergearticles-file-info-size": "Šorradvuõtt: $1",
+	"mergearticles-diff-action-accept": "Priim"
 }
