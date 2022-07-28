@@ -13,5 +13,6 @@
 	"mergearticles-term-filter-label": "Seiddnõmm",
 	"mergearticles-type-template": "Mall",
 	"mergearticles-file-info-size": "Šorradvuõtt: $1",
-	"mergearticles-diff-action-accept": "Priim"
+	"mergearticles-diff-action-accept": "Priim",
+	"mergearticles-diff-item-undo": "Kååʹmet"
 }
