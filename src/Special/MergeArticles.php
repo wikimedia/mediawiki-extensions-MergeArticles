@@ -65,15 +65,18 @@ class MergeArticles extends \SpecialPage {
 		$originID = $this->getRequest()->getInt( 'originID', 0 );
 		$targetText = $this->getRequest()->getText( 'targetText', '' );
 		if ( !$originID || !$targetText ) {
-			return $this->displayInvalid();
+			$this->displayInvalid();
+			return;
 		}
 		$this->originTitle = \Title::newFromID( $originID );
 		$this->targetTitle = \Title::newFromText( $targetText );
 		if ( $this->verifyTitles() === false ) {
-			return $this->displayInvalid();
+			$this->displayInvalid();
+			return;
 		}
 		if ( $this->isFile() && !$this->isValidFile() ) {
-			return $this->displayInvalid();
+			$this->displayInvalid();
+			return;
 		}
 
 		$reviewData = [
@@ -112,17 +115,20 @@ class MergeArticles extends \SpecialPage {
 		$originID = $this->getRequest()->getInt( 'originID', 0 );
 		$targetID = $this->getRequest()->getInt( 'targetID', 0 );
 		if ( !$originID || !$targetID ) {
-			return $this->displayInvalid();
+			$this->displayInvalid();
+			return;
 		}
 
 		$this->originTitle = \Title::newFromID( $originID );
 		$this->targetTitle = \Title::newFromID( $targetID );
 		if ( $this->verifyTitles() === false ) {
-			return $this->displayInvalid();
+			$this->displayInvalid();
+			return;
 		}
 
 		if ( $this->isFile() && !$this->isValidFile() ) {
-			return $this->displayInvalid();
+			$this->displayInvalid();
+			return;
 		}
 
 		$this->getOutput()->addHTML( \Html::openElement( 'div', [
