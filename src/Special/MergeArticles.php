@@ -620,7 +620,7 @@ class MergeArticles extends \SpecialPage {
 	protected function displayInvalid() {
 		$html = \Html::element( 'h3', [], wfMessage( 'mergearticles-request-invalid' )->plain() );
 		$html .= \Html::element( 'a', [
-			'href' => $this->getTitle()->getLocalURL()
+			'href' => $this->getPageTitle()->getLocalURL()
 		], wfMessage( 'mergearticles-back-to-overview' )->escaped() );
 		$this->getOutput()->addHTML( $html );
 	}
@@ -628,7 +628,7 @@ class MergeArticles extends \SpecialPage {
 	protected function displayUnknownAction() {
 		$html = \Html::element( 'h3', [], wfMessage( 'mergearticles-action-unknown' )->plain() );
 		$html .= \Html::element( 'a', [
-			'href' => $this->getTitle()->getLocalURL()
+			'href' => $this->getPageTitle()->getLocalURL()
 		], wfMessage( 'mergearticles-back-to-overview' )->escaped() );
 
 		$this->getOutput()->addHTML( $html );
