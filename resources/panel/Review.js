@@ -75,8 +75,8 @@
 		}).done( function( response ) {
 			if( response.success ) {
 				var msg = mw.message( 'mergearticles-merge-success-page-label' ).text();
-				var anchor = "<a href='" + response.targetPage.url + "'>" + response.targetPage.text + "</a>";
-				msg = msg.replace( '$1', anchor );
+				var $anchor =  $( '<a>' ).attr(  'href', response.targetPage.url ).text( response.targetPage.text );
+				msg = msg.replace( '$1', $( '<div>' ).append( $anchor ).html() );
 
 				this.showActionResult(
 					true,
