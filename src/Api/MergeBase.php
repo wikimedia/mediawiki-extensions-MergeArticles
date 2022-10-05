@@ -37,15 +37,18 @@ class MergeBase extends \ApiBase {
 
 		$this->readInParameters();
 		if ( !$this->verifyOrigin() ) {
-			return $this->returnResults();
+			$this->returnResults();
+			return;
 		}
 		if ( !$this->verifyTarget() ) {
-			return $this->returnResults();
+			$this->returnResults();
+			return;
 		}
 		$this->verifyPermissions();
 
 		if ( !$this->merge() ) {
-			return $this->returnResults();
+			$this->returnResults();
+			return;
 		}
 		$this->removeOrigin();
 		$this->returnResults();
