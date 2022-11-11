@@ -4,5 +4,6 @@
 			"Eleassar"
 		]
 	},
-	"mergearticles-file-info-name": "Ime: $1"
+	"mergearticles-file-info-name": "Ime: $1",
+	"mergearticles-diff-item-undo": "Razveljavi"
 }
