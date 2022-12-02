@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"mergearticles-target-new-label": "דף חדש",
+	"mergearticles-type-file": "קובץ",
+	"mergearticles-type-article": "דף",
+	"mergearticles-type-template": "תבנית",
+	"mergearticles-type-category": "קטגוריה",
+	"mergearticles-no-pages-available": "אין מה להראות!",
+	"mergearticles-action-unknown": "פעולה לא ידועה",
+	"mergearticles-request-invalid": "בקשה בלתי־תקינה",
+	"mergearticles-do-merge-label": "מיזוג",
+	"mergearticles-diff-action-accept": "אישור",
+	"mergearticles-diff-action-refuse": "דחייה",
+	"mergearticles-diff-accepted": "אושר",
+	"mergearticles-diff-refused": "נדחה",
+	"mergearticles-diff-option-accept-all-label": "לאשר הכול",
+	"mergearticles-diff-item-undo": "ביטול",
+	"mergearticles-file-diff-header": "קובץ"
+}
