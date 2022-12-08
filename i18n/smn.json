@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seipinne"
+			"Seipinne",
+			"Yupik"
 		]
 	},
-	"mergearticles-type-template": "Myenster"
+	"mergearticles-type-template": "Myenster",
+	"mergearticles-target-new-label": "Uđđâ sijđo"
 }
