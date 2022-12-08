@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"MITO"
+			"MITO",
+			"Yupik"
 		]
 	},
-	"mergearticles-term-filter-label": "Sivun nimi"
+	"mergearticles-term-filter-label": "Sivun nimi",
+	"mergearticles-target-new-label": "Uusi sivu"
 }
