@@ -4,6 +4,7 @@
 			"Eleassar"
 		]
 	},
+	"mergearticles-merge-fail-header": "Združevanje ni uspelo!",
 	"mergearticles-file-info-name": "Ime: $1",
 	"mergearticles-diff-item-undo": "Razveljavi"
 }
