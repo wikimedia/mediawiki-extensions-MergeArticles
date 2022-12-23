@@ -5,5 +5,6 @@
 		]
 	},
 	"mergearticles-file-info-name": "Ime: $1",
-	"mergearticles-diff-item-undo": "Razveljavi"
+	"mergearticles-diff-item-undo": "Razveljavi",
+	"mergearticles-merge-fail-header": "Združevanje ni uspelo!"
 }
