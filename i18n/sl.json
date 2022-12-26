@@ -6,5 +6,6 @@
 	},
 	"mergearticles-file-info-name": "Ime: $1",
 	"mergearticles-diff-item-undo": "Razveljavi",
-	"mergearticles-merge-fail-header": "Združevanje ni uspelo!"
+	"mergearticles-merge-fail-header": "Združevanje ni uspelo!",
+	"mergearticles-merge-success-page-label": "Ciljna stran: $1"
 }
