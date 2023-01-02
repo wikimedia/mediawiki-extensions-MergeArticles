@@ -19,5 +19,7 @@
 	"mergearticles-diff-refused": "נדחה",
 	"mergearticles-diff-option-accept-all-label": "לאשר הכול",
 	"mergearticles-diff-item-undo": "ביטול",
-	"mergearticles-file-diff-header": "קובץ"
+	"mergearticles-file-diff-header": "קובץ",
+	"mergearticles-file-info-name": "שם: $1",
+	"mergearticles-term-filter-label": "שם הדף"
 }
