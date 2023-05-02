@@ -74,5 +74,5 @@
 	"mergearticles-apihelp-param-relatedto": "Entier : identifiant de la page vers laquelle la page donnée devrait être marquée comme liée",
 	"action-merge-articles": "fusionner cet article",
 	"right-merge-articles": "Fusionner des pages",
-	"mergearticles-term-filter-label": "Nom de la page"
+	"mergearticles-term-filter-label": "Nom de page"
 }
