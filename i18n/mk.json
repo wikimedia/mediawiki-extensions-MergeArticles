@@ -42,7 +42,7 @@
 	"mergearticles-diff-option-accept-all-label": "Одобри ги сите",
 	"mergearticles-diff-item-undo": "Врати",
 	"mergearticles-show-final-text-button-label": "Прикажи конечен текст",
-	"mergearticles-show-final-text-label": "Сите спротиставености во спојувањето се решени. Сега може да се прегледа конечниот текст и, по потреба, да се исправи пред спојување. Напомена: По ова, спротиставеноста во спојувањето повеќе не може да се еменува!",
+	"mergearticles-show-final-text-label": "Сите спротивставености во спојувањето се решени. Сега може да се прегледа конечниот текст и, по потреба, да се исправи пред спојување. Напомена: По ова, спротивставеноста во спојувањето повеќе не може да се менува!",
 	"mergearticles-final-text-header-label": "Конечен текст",
 	"mergearticles-final-text-header-note": "(може да се менува)",
 	"mergearticles-discard-draft": "Отфрли го нацртов",
