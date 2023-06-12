@@ -22,5 +22,6 @@
 	"mergearticles-file-diff-header": "קובץ",
 	"mergearticles-file-info-name": "שם: $1",
 	"mergearticles-term-filter-label": "שם הדף",
-	"mergearticles-diff-action-accept-both": "לקבל את שניהם"
+	"mergearticles-diff-action-accept-both": "לקבל את שניהם",
+	"mergearticles-apihelp-param-targetid": "מזהה דף"
 }
