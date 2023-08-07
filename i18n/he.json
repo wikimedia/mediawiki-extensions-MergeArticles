@@ -23,5 +23,9 @@
 	"mergearticles-file-info-name": "שם: $1",
 	"mergearticles-term-filter-label": "שם הדף",
 	"mergearticles-diff-action-accept-both": "לקבל את שניהם",
-	"mergearticles-apihelp-param-targetid": "מזהה דף"
+	"mergearticles-apihelp-param-targetid": "מזהה דף",
+	"mergearticles-file-layout-label": "קובץ",
+	"mergearticles-file-info-extension": "הרחבה: $1",
+	"mergearticles-file-info-mime": "סוג MIME‏: $1",
+	"mergearticles-file-info-size": "גודל: $1"
 }
