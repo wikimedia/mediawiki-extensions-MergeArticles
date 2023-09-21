@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"AYZ04"
+			"AYZ04",
+			"LittlePaw365"
 		]
 	},
 	"mergearticles": "合并文章",
@@ -22,7 +23,7 @@
 	"mergearticles-file-info-size": "尺寸：$1",
 	"mergearticles-merge-existing-help": "页面“$1”已经存在！请比较下面的更改。",
 	"mergearticles-diff-action-accept": "批准",
-	"mergearticles-diff-accepted": "已批准",
+	"mergearticles-diff-accepted": "已核准",
 	"mergearticles-diff-refused": "已拒绝",
 	"mergearticles-diff-option-accept-all-label": "全部批准",
 	"mergearticles-show-final-text-button-label": "显示最终文字",
