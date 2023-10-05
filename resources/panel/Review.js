@@ -137,7 +137,11 @@
 			label: mw.message( 'mergearticles-discard-draft' ).text()
 		} );
 		discardButton.on( 'click', function() {
-			OO.ui.confirm( mw.message( 'mergearticles-discard-draft-help' ).text() )
+			var action = OO.ui.MessageDialog.static.actions[0];
+			action.flags = [ 'primary', 'progressive' ];
+			OO.ui.confirm( mw.message( 'mergearticles-discard-draft-help' ).text(), {
+				actions: [ action, OO.ui.MessageDialog.static.actions[1] ]
+			} )
 				.done( function( confirmed ) {
 					if( !confirmed ) {
 						return;
