@@ -19,10 +19,10 @@
         if ( !pages ) {
             return pages;
         }
-        var filtered = [], value = this.widget.getValue();
+        var filtered = [], value = this.widget.getValue().toLowerCase().replace( ' ', '_' );
         for( var i = 0; i < pages.length; i++ ) {
             var page = pages[i];
-            var target = page.target.text.toLowerCase();
+            var target = page.target.text.toLowerCase().replace( ' ', '_' );
             if( !target.includes( value ) ) {
                 continue;
             }
