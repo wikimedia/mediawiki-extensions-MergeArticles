@@ -3,8 +3,13 @@
 namespace MergeArticles\Api;
 
 use ApiMain;
+use CommentStoreComment;
+use ContentHandler;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
+use Status;
+use Throwable;
 
 class MergeBase extends \ApiBase {
 	protected $originTitle;
@@ -33,7 +38,7 @@ class MergeBase extends \ApiBase {
 	}
 
 	public function execute() {
-		$this->status = \Status::newGood();
+		$this->status = Status::newGood();
 
 		$this->readInParameters();
 		if ( !$this->verifyOrigin() ) {
@@ -89,7 +94,7 @@ class MergeBase extends \ApiBase {
 
 	protected function verifyOrigin() {
 		if ( !$this->originTitle instanceof \Title || !$this->originTitle->exists() ) {
-			$this->status = \Status::newFatal( 'invalid-origin' );
+			$this->status = Status::newFatal( 'invalid-origin' );
 			return false;
 		}
 		return true;
@@ -97,7 +102,7 @@ class MergeBase extends \ApiBase {
 
 	protected function verifyTarget() {
 		if ( $this->targetTitle instanceof \Title === false ) {
-			$this->status = \Status::newFatal( 'target-invalid' );
+			$this->status = Status::newFatal( 'target-invalid' );
 			return false;
 		}
 		return true;
@@ -115,24 +120,23 @@ class MergeBase extends \ApiBase {
 			&$targetTitle,
 			$this->originTitle
 		] );
-		$content = \ContentHandler::makeContent( $text, $targetTitle );
-		if ( method_exists( MediaWikiServices::class, 'getWikiPageFactory' ) ) {
-			// MW 1.36+
+		$content = ContentHandler::makeContent( $text, $targetTitle );
+		try {
 			$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $targetTitle );
-		} else {
-			$wikipage = \WikiPage::factory( $targetTitle );
+			$updater = $wikipage->newPageUpdater( $this->getUser() );
+			$updater->setContent( SlotRecord::MAIN, $content );
+			$rev = $updater->saveRevision(
+				CommentStoreComment::newUnsavedComment( 'Merge articles' ), $this->editFlag
+			);
+			$status = $updater->getStatus();
+		} catch ( Throwable $ex ) {
+			$rev = null;
 		}
-		$status = $wikipage->doEditContent(
-			$content,
-			"Merge articles",
-			$this->editFlag,
-			false,
-			$this->getUser()
-		);
-		if ( $status->isOK() === false ) {
-			$this->status = $status;
+		if ( !$rev ) {
+			$this->status = $status ?? Status::newFatal( 'mergearticles-merge-fail-header' );
 			return false;
 		}
+
 		$this->hookContainer->run( 'MergeArticlesAfterMergePage', [
 			$targetTitle,
 			$this->originTitle
@@ -148,14 +152,9 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function mergeFile() {
-		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
-			// MediaWiki 1.34+
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->originTitle );
-		} else {
-			$file = wfFindFile( $this->originTitle );
-		}
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->originTitle );
 		if ( !$file ) {
-			$this->status = \Status::newFatal( 'invalid-file' );
+			$this->status = Status::newFatal( 'invalid-file' );
 			return false;
 		}
 
@@ -169,19 +168,14 @@ class MergeBase extends \ApiBase {
 	 */
 	protected function uploadFile( \LocalFile $file ) {
 		$services = MediaWikiServices::getInstance();
-		if ( method_exists( $services, 'getRepoGroup' ) ) {
-			// MW 1.34+
-			$localFileRepo = $services->getRepoGroup()->getLocalRepo();
-		} else {
-			$localFileRepo = \RepoGroup::singleton()->getLocalRepo();
-		}
+		$localFileRepo = $services->getRepoGroup()->getLocalRepo();
 
 		$uploadStash = new \UploadStash( $localFileRepo, $this->getUser() );
 		$uploadFile = $uploadStash->stashFile( $file->getLocalRefPath(), "file" );
 		$targetFileName = $this->targetTitle->getDBkey();
 
 		if ( $uploadFile === false ) {
-			$this->status = \Status::newFatal( 'upload-file-creation-error' );
+			$this->status = Status::newFatal( 'upload-file-creation-error' );
 			return false;
 		}
 
@@ -196,24 +190,28 @@ class MergeBase extends \ApiBase {
 			if ( !empty( $errors ) && $errors[0]['message'] === 'fileexists-no-change' ) {
 				return true;
 			}
-			$this->status = \Status::newFatal( 'upload-error' );
+			$this->status = Status::newFatal( 'upload-error' );
 			return false;
 		}
 		return true;
 	}
 
 	protected function removeOrigin() {
-		$article = \Article::newFromTitle( $this->originTitle, $this->getContext() );
 		if ( $this->isFile() ) {
-			if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
-				// MediaWiki 1.34+
-				$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->originTitle );
-			} else {
-				$file = wfFindFile( $this->originTitle );
-			}
-			$file->delete( 'Article merge' );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->originTitle );
+			$file->deleteFile( 'Article merge', $this->getUser() );
 		}
-		return $article->doDeleteArticle( 'Article merged' );
+
+		$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->originTitle );
+		$deletePage = MediaWikiServices::getInstance()->getDeletePageFactory()->newDeletePage(
+			$wikipage,
+			$this->getUser()
+		);
+
+		return $deletePage
+			->setSuppress( true )
+			->keepLegacyHookErrorsSeparate()
+			->deleteUnsafe( 'Article merge' );
 	}
 
 	protected function returnResults() {
