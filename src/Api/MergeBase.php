@@ -121,6 +121,7 @@ class MergeBase extends \ApiBase {
 			$this->originTitle
 		] );
 		$content = ContentHandler::makeContent( $text, $targetTitle );
+		$status = null;
 		try {
 			$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $targetTitle );
 			$updater = $wikipage->newPageUpdater( $this->getUser() );
@@ -133,6 +134,13 @@ class MergeBase extends \ApiBase {
 			$rev = null;
 		}
 		if ( !$rev ) {
+			if ( $status ) {
+				$errors = $status->getErrors();
+				if ( $errors && isset( $errors[0]['message'] ) && $errors[0]['message'] === 'edit-no-change' ) {
+					$this->status = Status::newGood();
+					return true;
+				}
+			}
 			$this->status = $status ?? Status::newFatal( 'mergearticles-merge-fail-header' );
 			return false;
 		}
