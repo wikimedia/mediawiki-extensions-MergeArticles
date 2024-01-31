@@ -149,7 +149,8 @@
 				"ext.mergearticles.action.less"
 			],
 			"dependencies": [
-				"ext.mergearticles"
+				"ext.mergearticles",
+				"oojs-ui.styles.icons-moderation"
 			],
 			"messages": [
 				"mergearticles-do-merge-label",
