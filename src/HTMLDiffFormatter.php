@@ -44,7 +44,7 @@ class HTMLDiffFormatter extends \DiffFormatter {
 					}
 					break;
 				case 'change':
-					list( $orig, $closing ) = $this->conflateChange( $edit );
+					[ $orig, $closing ] = $this->conflateChange( $edit );
 					if ( $block ) {
 						$this->blockChange( $orig, $closing );
 					} else {
