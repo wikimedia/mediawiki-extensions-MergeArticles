@@ -3,6 +3,7 @@
 namespace MergeArticles\Api;
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class MergeNewPage extends MergeBase {
 
@@ -13,8 +14,8 @@ class MergeNewPage extends MergeBase {
 	protected function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'target' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-target',
 			],
 		];
