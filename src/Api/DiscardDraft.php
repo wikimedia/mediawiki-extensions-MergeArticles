@@ -2,6 +2,8 @@
 
 namespace MergeArticles\Api;
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 class DiscardDraft extends MergeBase {
 
 	public function execute() {
@@ -23,8 +25,8 @@ class DiscardDraft extends MergeBase {
 	protected function getAllowedParams() {
 		return [
 			'pageID' => [
-				static::PARAM_TYPE => 'integer',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-pageid',
 			]
 		];

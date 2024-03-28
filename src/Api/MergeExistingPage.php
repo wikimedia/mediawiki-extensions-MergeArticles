@@ -2,6 +2,8 @@
 
 namespace MergeArticles\Api;
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 class MergeExistingPage extends MergeBase {
 	protected $editFlag = 2;
 
@@ -12,8 +14,8 @@ class MergeExistingPage extends MergeBase {
 	protected function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'targetID' => [
-				static::PARAM_TYPE => 'integer',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'mergearticles-apihelp-param-targetid',
 			],
 		];
