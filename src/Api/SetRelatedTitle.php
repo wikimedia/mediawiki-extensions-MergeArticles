@@ -2,14 +2,18 @@
 
 namespace MergeArticles\Api;
 
+use Status;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class SetRelatedTitle extends \ApiBase {
 	protected $targetTitle;
 	protected $relatedTo;
 
+	/** @var Status */
+	protected $status;
+
 	public function execute() {
-		$this->status = \Status::newGood();
+		$this->status = Status::newGood();
 
 		$this->readInParameters();
 		$this->setPageProps();
@@ -44,16 +48,16 @@ class SetRelatedTitle extends \ApiBase {
 
 	protected function setPageProps() {
 		if ( !$this->targetTitle instanceof \Title || !$this->targetTitle->exists() ) {
-			$this->status = \Status::newFatal( 'invalid-origin' );
+			$this->status = Status::newFatal( 'invalid-origin' );
 			return false;
 		}
 		if ( !$this->targetTitle->userCan( 'merge-articles' ) ) {
-			$this->status = \Status::newFatal( 'permissiondenied' );
+			$this->status = Status::newFatal( 'permissiondenied' );
 			return false;
 		}
 		$relatedTitle = \Title::newFromID( $this->relatedTo );
-		if ( !$this->relatedTitle instanceof \Title || !$this->relatedTitle->exists() ) {
-			$this->status = \Status::newFatal( 'invalid-related-title' );
+		if ( !$relatedTitle instanceof \Title || !$relatedTitle->exists() ) {
+			$this->status = Status::newFatal( 'invalid-related-title' );
 			return false;
 		}
 		$db = $this->getDB();
@@ -72,7 +76,7 @@ class SetRelatedTitle extends \ApiBase {
 				'pp_page' => $this->targetTitle->getArticleID(),
 				'pp_propname' => 'relatedto'
 			] ) ) {
-				$this->status = \Status::newFatal( 'db-error' );
+				$this->status = Status::newFatal( 'db-error' );
 				return false;
 			}
 		} else {
@@ -81,7 +85,7 @@ class SetRelatedTitle extends \ApiBase {
 				'pp_propname' => 'relatedto',
 				'pp_value' => $relatedTitle->getArticleID()
 			] ) ) {
-				$this->status = \Status::newFatal( 'db-error' );
+				$this->status = Status::newFatal( 'db-error' );
 				return false;
 			}
 		}
