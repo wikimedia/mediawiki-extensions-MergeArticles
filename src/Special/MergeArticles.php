@@ -514,12 +514,7 @@ class MergeArticles extends \SpecialPage {
 	}
 
 	protected function isValidFile() {
-		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
-			// MediaWiki 1.34+
-			$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
-		} else {
-			$fileRepo = \RepoGroup::singleton();
-		}
+		$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
 		$file = $fileRepo->findFile( $this->originTitle );
 		if ( !$file ) {
 			return false;
@@ -538,12 +533,7 @@ class MergeArticles extends \SpecialPage {
 	 * @return array
 	 */
 	protected function getFileInfo() {
-		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
-			// MediaWiki 1.34+
-			$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
-		} else {
-			$fileRepo = \RepoGroup::singleton();
-		}
+		$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
 		$file = $fileRepo->findFile( $this->originTitle );
 
 		$fileInfo = [
