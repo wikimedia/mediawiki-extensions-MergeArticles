@@ -5,6 +5,7 @@ namespace MergeArticles\Special;
 use MediaWiki\MediaWikiServices;
 use MergeArticles\IPageFilter;
 use MergeArticles\PageFilterFactory;
+use TextContent;
 use Title;
 
 class MergeArticles extends \SpecialPage {
@@ -585,12 +586,8 @@ class MergeArticles extends \SpecialPage {
 	 */
 	protected function getPageContentText( $title ) {
 		$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-		/** @var \TextContent $content */
 		$content = $wikipage->getContent();
-		if ( !$content instanceof \TextContent ) {
-			return '';
-		}
-		return $content->getNativeData();
+		return ( $content instanceof TextContent ) ? $content->getText() : '';
 	}
 
 	protected function verifyTitles() {
