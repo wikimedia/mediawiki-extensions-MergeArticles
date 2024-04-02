@@ -60,12 +60,7 @@ class MergeNewPage extends MergeBase {
 	}
 
 	protected function mergeFile() {
-		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
-			// MediaWiki 1.34+
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->targetTitle );
-		} else {
-			$file = wfFindFile( $this->targetTitle );
-		}
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->targetTitle );
 		if ( $file ) {
 			$this->status = \Status::newFatal( 'target-file-exists' );
 			return false;
