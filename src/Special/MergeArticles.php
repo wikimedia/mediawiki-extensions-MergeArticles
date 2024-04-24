@@ -583,12 +583,7 @@ class MergeArticles extends \SpecialPage {
 	 * @return string
 	 */
 	protected function getPageContentText( $title ) {
-		if ( method_exists( MediaWikiServices::class, 'getWikiPageFactory' ) ) {
-			// MW 1.36+
-			$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-		} else {
-			$wikipage = \WikiPage::factory( $title );
-		}
+		$wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 		/** @var \TextContent $content */
 		$content = $wikipage->getContent();
 		if ( !$content instanceof \TextContent ) {
