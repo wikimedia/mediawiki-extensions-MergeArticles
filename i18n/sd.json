@@ -7,5 +7,6 @@
 	"mergearticles-type-article": "صفحو",
 	"mergearticles-merge-success-page-label": "گهربل صفحو: $1",
 	"mergearticles-diff-item-undo": "اڻڪريو",
-	"mergearticles-term-filter-label": "صفحي جو نالو"
+	"mergearticles-term-filter-label": "صفحي جو نالو",
+	"mergearticles-type-category": "زمرو"
 }
