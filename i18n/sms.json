@@ -10,6 +10,7 @@
 	"mergearticles-type-template": "Mall",
 	"mergearticles-type-category": "Kategoria",
 	"mergearticles-file-layout-label": "Teâttõs",
+	"mergearticles-file-info-name": "Nõmm: $1",
 	"mergearticles-file-info-size": "Šorradvuõtt: $1",
 	"mergearticles-diff-action-accept": "Priim",
 	"mergearticles-diff-item-undo": "Kååʹmet",
