@@ -153,7 +153,7 @@ class MergeBase extends \ApiBase {
 		return true;
 	}
 
-	protected function isFile() {
+	protected function isFile(): bool {
 		if ( $this->originTitle->getNamespace() === NS_FILE ) {
 			return true;
 		}

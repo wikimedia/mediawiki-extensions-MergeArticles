@@ -505,7 +505,7 @@ class MergeArticles extends \SpecialPage {
 		return $diff;
 	}
 
-	protected function isFile() {
+	protected function isFile(): bool {
 		if ( $this->originTitle->getNamespace() !== NS_FILE ) {
 			return false;
 		}
@@ -515,7 +515,7 @@ class MergeArticles extends \SpecialPage {
 		return true;
 	}
 
-	protected function isValidFile() {
+	protected function isValidFile(): bool {
 		$fileRepo = MediaWikiServices::getInstance()->getRepoGroup();
 		$file = $fileRepo->findFile( $this->originTitle );
 		if ( !$file ) {
