@@ -8,5 +8,6 @@
 	"mergearticles-type-file": "Fiila",
 	"mergearticles-file-layout-label": "Fiila",
 	"mergearticles-file-diff-header": "Fiila",
-	"mergearticles-term-filter-label": "Siidonamma"
+	"mergearticles-term-filter-label": "Siidonamma",
+	"mergearticles-file-info-name": "Namma: $1"
 }
