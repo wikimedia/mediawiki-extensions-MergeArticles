@@ -7,11 +7,11 @@
 		]
 	},
 	"mergearticles-target-new-label": "Uusi sivu",
-	"mergearticles-term-filter-label": "Sivun nimi",
 	"mergearticles-type-file": "Tiedosto",
 	"mergearticles-type-article": "Sivu",
 	"mergearticles-type-template": "Malline",
 	"mergearticles-type-category": "Luokka",
 	"mergearticles-file-layout-label": "Tiedosto",
-	"mergearticles-file-info-name": "Nimi: $1"
+	"mergearticles-file-info-name": "Nimi: $1",
+	"mergearticles-term-filter-label": "Sivun nimi"
 }
