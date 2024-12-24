@@ -4,6 +4,7 @@
 			"Cabal"
 		]
 	},
+	"mergearticles-type-template": "ਫਰਮਾ",
 	"mergearticles-discard-draft": "ਇਸ ਖਰੜੇ ਨੂੰ ਰੱਦ ਕਰੋ",
 	"mergearticles-draft-discard-success-header": "ਖਰੜਾ ਰੱਦ ਕੀਤਾ ਗਿਆ!",
 	"mergearticles-file-origin-header": "ਖਰੜਾ (ਨਵਾਂ)"
