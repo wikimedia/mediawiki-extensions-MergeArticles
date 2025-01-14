@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Alshamiri1",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Meno25"
 		]
 	},
+	"mergearticles-extension-desc": "يسمح بدمج المقالات المقارنة ودمجها",
 	"mergearticles": "دمج المقالات",
 	"mergearticles-target-exists-label": "هدف الدمج: $1",
 	"mergearticles-target-new-label": "صفحة جديدة",
@@ -28,6 +30,7 @@
 	"mergearticles-file-layout-label": "ملف",
 	"mergearticles-file-info-name": "الاسم: $1",
 	"mergearticles-file-info-extension": "الامتداد:$1",
+	"mergearticles-file-info-mime": "نوع MIME: $1",
 	"mergearticles-file-info-size": "الحجم: $1",
 	"mergearticles-merge-existing-help": "الصفحة \" $1 \" موجودة بالفعل! الرجاء مقارنة التغييرات أدناه.",
 	"mergearticles-diff-action-accept": "موافقة",
@@ -37,6 +40,7 @@
 	"mergearticles-diff-header": "التغييرات في النص",
 	"mergearticles-resolution-counter": "(تم الحل $2 من $1 )",
 	"mergearticles-same-block-label": "{{PLURAL:$1| كتلة متطابقة $1 | $1 كتل متطابقة}} مخفية",
+	"mergearticles-diff-option-hide-identical-blocks-label": "إخفاء الكتل المتطابقة",
 	"mergearticles-diff-option-accept-all-label": "الموافقة على الكل",
 	"mergearticles-diff-item-undo": "رجوع",
 	"mergearticles-show-final-text-button-label": "إظهار النص النهائي",
@@ -61,6 +65,7 @@
 	"mergearticles-diff-refused-both": "تم إزالة كلاهما",
 	"apihelp-ma-merge-page-new-summary": "يدمج نسخة مسودة في صفحة جديدة",
 	"apihelp-ma-merge-page-existing-summary": "يدمج نسخة مسودة في صفحة موجودة",
+	"apihelp-ma-set-related-titles-summary": "يربط الصفحة بإصدار مسودة للصفحة",
 	"apihelp-ma-discard-draft-summary": "تجاهل نسخة المسودة الحالية من الصفحة",
 	"mergearticles-apihelp-param-pageid": "معرف الصفحة",
 	"mergearticles-apihelp-param-targetid": "معرف الصفحة",
