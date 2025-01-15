@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alshamiri1",
+			"Meno25",
 			"محمد أحمد عبد الفتاح"
 		]
 	},
@@ -70,5 +71,9 @@
 	"mergearticles-apihelp-param-target": "عنوان الصفحة المستهدفة .",
 	"mergearticles-apihelp-param-relatedto": "عدد صحيح. معرّف الصفحة ، يجب تعيين الصفحة المحددة على أنها مرتبطة بـ",
 	"action-merge-articles": "دمج هذا المقال",
-	"mergearticles-term-filter-label": "اسم الصفحة"
+	"mergearticles-term-filter-label": "اسم الصفحة",
+	"mergearticles-extension-desc": "يسمح بدمج المقالات المقارنة ودمجها",
+	"mergearticles-file-info-mime": "نوع MIME: $1",
+	"mergearticles-diff-option-hide-identical-blocks-label": "إخفاء الكتل المتطابقة",
+	"apihelp-ma-set-related-titles-summary": "يربط الصفحة بإصدار مسودة للصفحة"
 }
