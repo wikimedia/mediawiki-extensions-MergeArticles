@@ -2,7 +2,7 @@
 
 namespace MergeArticles;
 
-use Title;
+use MediaWiki\Title\Title;
 
 interface IPageFilter {
 	/**

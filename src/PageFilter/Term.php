@@ -3,8 +3,8 @@
 namespace MergeArticles\PageFilter;
 
 use IContextSource;
+use MediaWiki\Title\Title;
 use MergeArticles\IPageFilter;
-use Title;
 
 class Term implements IPageFilter {
 	/** @var IContextSource */

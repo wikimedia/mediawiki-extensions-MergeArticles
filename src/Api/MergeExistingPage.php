@@ -2,6 +2,7 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class MergeExistingPage extends MergeBase {
@@ -25,7 +26,7 @@ class MergeExistingPage extends MergeBase {
 		parent::readInParameters();
 
 		$targetID = $this->getParameter( 'targetID' );
-		$this->targetTitle = \Title::newFromID( $targetID );
+		$this->targetTitle = Title::newFromID( $targetID );
 	}
 
 	protected function verifyTarget() {
