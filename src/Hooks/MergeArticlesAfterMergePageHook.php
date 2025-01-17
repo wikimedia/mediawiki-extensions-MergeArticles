@@ -2,7 +2,7 @@
 
 namespace MergeArticles\Hooks;
 
-use Title;
+use MediaWiki\Title\Title;
 
 interface MergeArticlesAfterMergePageHook {
 

@@ -2,6 +2,7 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Title\Title;
 use Status;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -41,13 +42,13 @@ class SetRelatedTitle extends \ApiBase {
 
 	protected function readInParameters() {
 		$pageID = $this->getParameter( 'pageID' );
-		$this->targetTitle = \Title::newFromID( $pageID );
+		$this->targetTitle = Title::newFromID( $pageID );
 
 		$this->relatedTo = $this->getParameter( 'relatedTo' );
 	}
 
 	protected function setPageProps() {
-		if ( !$this->targetTitle instanceof \Title || !$this->targetTitle->exists() ) {
+		if ( !$this->targetTitle instanceof Title || !$this->targetTitle->exists() ) {
 			$this->status = Status::newFatal( 'invalid-origin' );
 			return false;
 		}
@@ -55,8 +56,8 @@ class SetRelatedTitle extends \ApiBase {
 			$this->status = Status::newFatal( 'permissiondenied' );
 			return false;
 		}
-		$relatedTitle = \Title::newFromID( $this->relatedTo );
-		if ( !$relatedTitle instanceof \Title || !$relatedTitle->exists() ) {
+		$relatedTitle = Title::newFromID( $this->relatedTo );
+		if ( !$relatedTitle instanceof Title || !$relatedTitle->exists() ) {
 			$this->status = Status::newFatal( 'invalid-related-title' );
 			return false;
 		}

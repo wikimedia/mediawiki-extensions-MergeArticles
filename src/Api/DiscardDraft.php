@@ -2,6 +2,7 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class DiscardDraft extends MergeBase {
@@ -34,7 +35,7 @@ class DiscardDraft extends MergeBase {
 
 	protected function readInParameters() {
 		$pageID = $this->getParameter( 'pageID' );
-		$this->originTitle = \Title::newFromID( $pageID );
+		$this->originTitle = Title::newFromID( $pageID );
 	}
 
 	protected function returnResults() {

@@ -8,6 +8,7 @@ use ContentHandler;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use Status;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -87,14 +88,14 @@ class MergeBase extends \ApiBase {
 
 	protected function readInParameters() {
 		$pageID = $this->getParameter( 'pageID' );
-		$this->originTitle = \Title::newFromID( $pageID );
+		$this->originTitle = Title::newFromID( $pageID );
 
 		$this->text = $this->getParameter( 'text' );
 		$this->skipFile = $this->getParameter( 'skipFile' );
 	}
 
 	protected function verifyOrigin() {
-		if ( !$this->originTitle instanceof \Title || !$this->originTitle->exists() ) {
+		if ( !$this->originTitle instanceof Title || !$this->originTitle->exists() ) {
 			$this->status = Status::newFatal( 'invalid-origin' );
 			return false;
 		}
@@ -102,7 +103,7 @@ class MergeBase extends \ApiBase {
 	}
 
 	protected function verifyTarget() {
-		if ( $this->targetTitle instanceof \Title === false ) {
+		if ( $this->targetTitle instanceof Title === false ) {
 			$this->status = Status::newFatal( 'target-invalid' );
 			return false;
 		}

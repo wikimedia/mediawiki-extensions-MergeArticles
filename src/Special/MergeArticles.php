@@ -3,10 +3,10 @@
 namespace MergeArticles\Special;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MergeArticles\IPageFilter;
 use MergeArticles\PageFilterFactory;
 use TextContent;
-use Title;
 
 class MergeArticles extends \SpecialPage {
 	protected const TYPE_ARTICLE = 'article';
@@ -69,8 +69,7 @@ class MergeArticles extends \SpecialPage {
 			$this->displayInvalid();
 			return;
 		}
-		$this->originTitle = \Title::newFromID( $originID );
-		$this->targetTitle = \Title::newFromText( $targetText );
+		$this->targetTitle = Title::newFromText( $targetText );
 		if ( $this->verifyTitles() === false ) {
 			$this->displayInvalid();
 			return;
@@ -116,8 +115,8 @@ class MergeArticles extends \SpecialPage {
 			return;
 		}
 
-		$this->originTitle = \Title::newFromID( $originID );
-		$this->targetTitle = \Title::newFromID( $targetID );
+		$this->originTitle = Title::newFromID( $originID );
+		$this->targetTitle = Title::newFromID( $targetID );
 		if ( $this->verifyTitles() === false ) {
 			$this->displayInvalid();
 			return;
@@ -396,10 +395,10 @@ class MergeArticles extends \SpecialPage {
 		);
 
 		foreach ( $res as $row ) {
-			$draftTitle = \Title::makeTitle( NS_DRAFT, $row->page_title );
-			$title = \Title::newFromText( $row->page_title );
+			$draftTitle = Title::makeTitle( NS_DRAFT, $row->page_title );
+			$title = Title::newFromText( $row->page_title );
 
-			if ( $title instanceof \Title === false ) {
+			if ( $title instanceof Title === false ) {
 				continue;
 			}
 
@@ -439,11 +438,11 @@ class MergeArticles extends \SpecialPage {
 		);
 
 		foreach ( $res as $row ) {
-			$draftTitle = \Title::makeTitle( NS_FILE, $row->page_title );
+			$draftTitle = Title::makeTitle( NS_FILE, $row->page_title );
 			$stripped = str_replace( $draftFilePrefix, '', $row->page_title );
-			$title = \Title::makeTitle( NS_FILE, $stripped );
+			$title = Title::makeTitle( NS_FILE, $stripped );
 
-			if ( $title instanceof \Title === false ) {
+			if ( $title instanceof Title === false ) {
 				continue;
 			}
 
@@ -521,7 +520,7 @@ class MergeArticles extends \SpecialPage {
 		if ( !$file ) {
 			return false;
 		}
-		if ( $this->targetTitle instanceof \Title && $this->targetTitle->exists() ) {
+		if ( $this->targetTitle instanceof Title && $this->targetTitle->exists() ) {
 			$file = $fileRepo->findFile( $this->targetTitle );
 			if ( !$file ) {
 				return false;
@@ -548,7 +547,7 @@ class MergeArticles extends \SpecialPage {
 				'sha1' => $file->getSha1()
 			]
 		];
-		if ( $this->targetTitle instanceof \Title && $this->targetTitle->exists() ) {
+		if ( $this->targetTitle instanceof Title && $this->targetTitle->exists() ) {
 			$targetFile = $fileRepo->findFile( $this->targetTitle );
 			$fileInfo[ 'target' ] = [
 				'name' => $targetFile->getName(),
@@ -591,10 +590,10 @@ class MergeArticles extends \SpecialPage {
 	}
 
 	protected function verifyTitles() {
-		if ( !$this->originTitle instanceof \Title ) {
+		if ( !$this->originTitle instanceof Title ) {
 			return false;
 		}
-		if ( !$this->targetTitle instanceof \Title ) {
+		if ( !$this->targetTitle instanceof Title ) {
 			return false;
 		}
 		return true;

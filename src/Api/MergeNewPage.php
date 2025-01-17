@@ -3,6 +3,7 @@
 namespace MergeArticles\Api;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class MergeNewPage extends MergeBase {
@@ -25,7 +26,7 @@ class MergeNewPage extends MergeBase {
 		parent::readInParameters();
 
 		$targetText = $this->getParameter( 'target' );
-		$this->targetTitle = \Title::newFromText( $targetText );
+		$this->targetTitle = Title::newFromText( $targetText );
 		// Cannot skip file on new page
 		$this->skipFile = false;
 	}
@@ -38,14 +39,14 @@ class MergeNewPage extends MergeBase {
 	 */
 	protected function verifyTarget() {
 		if ( $this->originTitle->getNamespace() === NS_DRAFT ) {
-			$target = \Title::newFromText( $this->originTitle->getDBkey() );
+			$target = Title::newFromText( $this->originTitle->getDBkey() );
 		} elseif ( $this->originTitle->getNamespace() === NS_FILE ) {
 			$draftFilePrefix = $this->getConfig()->get( 'MADraftFilePrefix' );
 			$stripped = str_replace( $draftFilePrefix, '', $this->originTitle->getDBkey() );
-			$target = \Title::makeTitle( NS_FILE, $stripped );
+			$target = Title::makeTitle( NS_FILE, $stripped );
 		}
 
-		if ( !$target instanceof \Title || !$this->targetTitle instanceof \Title ) {
+		if ( !$target instanceof Title || !$this->targetTitle instanceof Title ) {
 			$this->status = \Status::newFatal( 'invalid-target' );
 			return false;
 		}
