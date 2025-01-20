@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"mergearticles-extension-desc": "Erlaabt et Artikelen ze vergläichen an ze fusionéieren",
@@ -16,7 +17,7 @@
 	"mergearticles-type-category": "Kategorie",
 	"mergearticles-no-pages-available": "Näischt ze weisen!",
 	"mergearticles-action-unknown": "Onbekannt Aktioun",
-	"mergearticles-request-invalid": "Net-valabel Ufro",
+	"mergearticles-request-invalid": "Ongülteg Ufro",
 	"mergearticles-sp-review": "Säite fusionéieren - nokucken a fusionéieren",
 	"mergearticles-sp-compare": "Säite fusionéieren - vergläichen a fusionéieren",
 	"mergearticles-do-merge-label": "Fusionéieren",
