@@ -7,6 +7,7 @@ use CommentStoreComment;
 use ContentHandler;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Status;
@@ -248,7 +249,7 @@ class MergeBase extends \ApiBase {
 	protected function verifyPermissions() {
 		if ( !$this->getUser()->isAllowed( 'merge-articles' ) ) {
 			$this->dieWithError(
-				\Message::newFromKey( 'apierror-permissiondenied' )
+				Message::newFromKey( 'apierror-permissiondenied' )
 					->params( 'merge-articles' )
 			);
 		}
