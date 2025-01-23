@@ -2,7 +2,7 @@
 
 namespace MergeArticles\PageFilter;
 
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
 use MergeArticles\IPageFilter;
 

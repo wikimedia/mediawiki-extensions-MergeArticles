@@ -2,7 +2,7 @@
 
 namespace MergeArticles;
 
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 class PageFilterFactory {
 	/** @var array */
