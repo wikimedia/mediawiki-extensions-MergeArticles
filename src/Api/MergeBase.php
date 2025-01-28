@@ -2,10 +2,10 @@
 
 namespace MergeArticles\Api;
 
-use ApiMain;
 use CommentStoreComment;
 use ContentHandler;
 use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
