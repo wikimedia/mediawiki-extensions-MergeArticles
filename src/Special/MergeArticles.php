@@ -3,12 +3,13 @@
 namespace MergeArticles\Special;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MergeArticles\IPageFilter;
 use MergeArticles\PageFilterFactory;
 use TextContent;
 
-class MergeArticles extends \SpecialPage {
+class MergeArticles extends SpecialPage {
 	protected const TYPE_ARTICLE = 'article';
 	protected const TYPE_CATEGORY = 'category';
 	protected const TYPE_TEMPLATE = 'template';
