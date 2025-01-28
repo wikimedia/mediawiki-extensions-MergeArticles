@@ -5,6 +5,7 @@ namespace MergeArticles\Api;
 use ApiMain;
 use CommentStoreComment;
 use ContentHandler;
+use MediaWiki\Api\ApiBase;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -14,7 +15,7 @@ use MediaWiki\Title\Title;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 
-class MergeBase extends \ApiBase {
+class MergeBase extends ApiBase {
 	protected $originTitle;
 	protected $targetTitle;
 	protected $text;
