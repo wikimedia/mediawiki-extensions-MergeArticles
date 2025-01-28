@@ -3,6 +3,7 @@
 namespace MergeArticles;
 
 use DiffOp;
+use MediaWiki\Html\Html;
 
 class HTMLDiffFormatter extends \DiffFormatter {
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
@@ -20,7 +21,7 @@ class HTMLDiffFormatter extends \DiffFormatter {
 	public function format( $diff, $block = true ) {
 		$this->html = '';
 
-		$this->html = \Html::openElement( 'div', [
+		$this->html = Html::openElement( 'div', [
 			'class' => 'ma-diff',
 			'id' => 'ma-diff'
 		] );
@@ -57,7 +58,7 @@ class HTMLDiffFormatter extends \DiffFormatter {
 			}
 		}
 
-		$this->html .= \Html::closeElement( 'div' );
+		$this->html .= Html::closeElement( 'div' );
 		return $this->html;
 	}
 
@@ -104,15 +105,15 @@ class HTMLDiffFormatter extends \DiffFormatter {
 			$attrs['data-diff-id'] = $this->idCounter;
 		}
 
-		$html = \Html::openElement( 'p', $attrs );
+		$html = Html::openElement( 'p', $attrs );
 		foreach ( explode( "\n", $diff ) as $ln ) {
 			if ( empty( $ln ) ) {
-				$html .= \Html::element( 'span', [ 'class' => 'empty-line' ], $ln );
+				$html .= Html::element( 'span', [ 'class' => 'empty-line' ], $ln );
 			} else {
-				$html .= \Html::element( 'span', [], $ln );
+				$html .= Html::element( 'span', [], $ln );
 			}
 		}
-		$html .= \Html::closeElement( 'p' );
+		$html .= Html::closeElement( 'p' );
 		return $html;
 	}
 
@@ -217,14 +218,14 @@ class HTMLDiffFormatter extends \DiffFormatter {
 		$origAll = implode( "\n", $orig );
 		$closingAll = implode( "\n", $closing );
 		$this->idCounter++;
-		$this->html .= \Html::openElement( 'div', [
+		$this->html .= Html::openElement( 'div', [
 			'class' => 'ma-diff-change',
 			'data-diff' => 'change',
 			'data-diff-id' => $this->idCounter
 		] );
 		$this->html .= $this->getDiffHTML( $origAll, 'delete', false );
 		$this->html .= $this->getDiffHTML( $closingAll, 'add', false );
-		$this->html .= \Html::closeElement( 'div' );
+		$this->html .= Html::closeElement( 'div' );
 		$this->arrayData[ $this->idCounter ] = [
 			'type' => 'change',
 			'old' => $origAll,
@@ -240,14 +241,14 @@ class HTMLDiffFormatter extends \DiffFormatter {
 	protected function lineByLineChange( $orig, $closing ) {
 		foreach ( $orig as $key => $line ) {
 			$this->idCounter++;
-			$this->html .= \Html::openElement( 'div', [
+			$this->html .= Html::openElement( 'div', [
 				'class' => 'ma-diff-change',
 				'data-diff' => 'change',
 				'data-diff-id' => $this->idCounter
 			] );
 			$this->html .= $this->getDiffHTML( $line, 'delete', false );
 			$this->html .= $this->getDiffHTML( $closing[$key], 'add', false );
-			$this->html .= \Html::closeElement( 'div' );
+			$this->html .= Html::closeElement( 'div' );
 			$this->arrayData[ $this->idCounter ] = [
 				'type' => 'change',
 				'old' => $line,
