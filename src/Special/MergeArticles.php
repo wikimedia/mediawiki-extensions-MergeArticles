@@ -2,6 +2,7 @@
 
 namespace MergeArticles\Special;
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -58,7 +59,7 @@ class MergeArticles extends SpecialPage {
 		);
 		$this->getOutput()->addJsConfigVars( 'maFilterModules', $filterFactory->getRLModules() );
 		$this->getOutput()->addJsConfigVars( 'maFilters', $filterFactory->getFiltersForClient() );
-		$this->getOutput()->addHTML( \Html::element( 'div', [ 'id' => 'merge-articles-overview' ] ) );
+		$this->getOutput()->addHTML( Html::element( 'div', [ 'id' => 'merge-articles-overview' ] ) );
 	}
 
 	protected function addReview() {
@@ -86,7 +87,7 @@ class MergeArticles extends SpecialPage {
 			'originContent' => $this->getPageContentText( $this->originTitle )
 		];
 
-		$this->getOutput()->addHTML( \Html::openElement( 'div', [
+		$this->getOutput()->addHTML( Html::openElement( 'div', [
 			'id' => 'merge-articles-review',
 			'class' => 'merge-articles'
 		] ) );
@@ -99,7 +100,7 @@ class MergeArticles extends SpecialPage {
 			$this->getOutput()->addHTML( $this->getFileReviewHTML() );
 		}
 		$this->getOutput()->addHTML( $this->getReviewHeader() );
-		$this->getOutput()->addHTML( \Html::closeElement( 'div' ) );
+		$this->getOutput()->addHTML( Html::closeElement( 'div' ) );
 
 		$this->getOutput()->addModules( 'ext.mergearticles.review' );
 
@@ -128,7 +129,7 @@ class MergeArticles extends SpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addHTML( \Html::openElement( 'div', [
+		$this->getOutput()->addHTML( Html::openElement( 'div', [
 			'id' => 'merge-articles-compare',
 			'class' => 'merge-articles'
 		] ) );
@@ -160,7 +161,7 @@ class MergeArticles extends SpecialPage {
 		$this->getOutput()->addJsConfigVars(
 			'maEnableBeta', $this->getConfig()->get( 'MAEnableBetaFeatures' )
 		);
-		$this->getOutput()->addHTML( \Html::closeElement( 'div' ) );
+		$this->getOutput()->addHTML( Html::closeElement( 'div' ) );
 		$this->getOutput()->addJsConfigVars( 'maCompareData', $compareData );
 	}
 
@@ -178,12 +179,12 @@ class MergeArticles extends SpecialPage {
 		$icon = new \OOUI\IconWidget( [
 			'icon' => 'next'
 		] );
-		$pageNames = \Html::openElement( 'div', [ 'class' => 'ma-page-names' ] );
+		$pageNames = Html::openElement( 'div', [ 'class' => 'ma-page-names' ] );
 		$pageNames .= $this->getOverviewButton();
 		$pageNames .= $origin;
 		$pageNames .= $icon;
 		$pageNames .= $target;
-		$pageNames .= \Html::closeElement( 'div' );
+		$pageNames .= Html::closeElement( 'div' );
 
 		return $pageNames;
 	}
@@ -224,10 +225,10 @@ class MergeArticles extends SpecialPage {
 			'label' => wfMessage( $labelKey, $targetPage )->plain()
 		] );
 
-		$help = \Html::openElement( 'div', [ 'class' => 'ma-merge-help' ] );
+		$help = Html::openElement( 'div', [ 'class' => 'ma-merge-help' ] );
 		$help .= $icon;
 		$help .= $label;
-		$help .= \Html::closeElement( 'div' );
+		$help .= Html::closeElement( 'div' );
 
 		return $help;
 	}
@@ -238,19 +239,19 @@ class MergeArticles extends SpecialPage {
 	 * @return string
 	 */
 	protected function getDiffHeader( $stats ) {
-		$header = \Html::openElement( 'div', [ 'class' => 'ma-diff-header' ] );
-		$header .= \Html::element( 'span', [
+		$header = Html::openElement( 'div', [ 'class' => 'ma-diff-header' ] );
+		$header .= Html::element( 'span', [
 			'class' => 'ma-diff-header-label'
 		], wfMessage( 'mergearticles-diff-header' )->escaped() );
-		$header .= \Html::openElement( 'span', [ 'class' => 'ma-diff-header-stats' ] );
-		$header .= \Html::element( 'span', [
+		$header .= Html::openElement( 'span', [ 'class' => 'ma-diff-header-stats' ] );
+		$header .= Html::element( 'span', [
 			'class' => 'ma-diff-header-added'
 		], $stats[ 'add' ] );
-		$header .= \Html::element( 'span', [
+		$header .= Html::element( 'span', [
 			'class' => 'ma-diff-header-deleted'
 		], $stats[ 'delete' ] );
-		$header .= \Html::closeElement( 'span' );
-		$header .= \Html::closeElement( 'div' );
+		$header .= Html::closeElement( 'span' );
+		$header .= Html::closeElement( 'div' );
 		return $header;
 	}
 
@@ -259,11 +260,11 @@ class MergeArticles extends SpecialPage {
 	 * @return string
 	 */
 	protected function getReviewHeader() {
-		$header = \Html::openElement( 'div', [ 'class' => 'ma-review-header' ] );
+		$header = Html::openElement( 'div', [ 'class' => 'ma-review-header' ] );
 		$header .= new \OOUI\LabelWidget( [
 			'label' => wfMessage( 'mergearticles-review-header' )->plain()
 		] );
-		$header .= \Html::closeElement( 'div' );
+		$header .= Html::closeElement( 'div' );
 		return $header;
 	}
 
@@ -272,11 +273,11 @@ class MergeArticles extends SpecialPage {
 	 * @return string
 	 */
 	protected function getFileDiffHeader() {
-		$header = \Html::openElement( 'div', [ 'class' => 'ma-diff-header diff-file' ] );
-		$header .= \Html::element( 'span', [
+		$header = Html::openElement( 'div', [ 'class' => 'ma-diff-header diff-file' ] );
+		$header .= Html::element( 'span', [
 			'class' => 'ma-file-diff-header-label'
 		], wfMessage( 'mergearticles-file-diff-header' )->escaped() );
-		$header .= \Html::closeElement( 'div' );
+		$header .= Html::closeElement( 'div' );
 		return $header;
 	}
 
@@ -285,11 +286,11 @@ class MergeArticles extends SpecialPage {
 	 * @return string
 	 */
 	protected function getFileReviewHeader() {
-		$header = \Html::openElement( 'div', [ 'class' => 'ma-review-header review-file' ] );
+		$header = Html::openElement( 'div', [ 'class' => 'ma-review-header review-file' ] );
 		$header .= new \OOUI\LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-layout-label' )->plain()
 		] );
-		$header .= \Html::closeElement( 'div' );
+		$header .= Html::closeElement( 'div' );
 		return $header;
 	}
 
@@ -300,24 +301,24 @@ class MergeArticles extends SpecialPage {
 	protected function getFileDiffHTML() {
 		$fileInfo = $this->getFileInfo();
 
-		$html = \Html::openElement( 'div', [ 'class' => 'ma-file-diff' ] );
-		$html .= \Html::openElement( 'div', [ 'class' => 'ma-origin-file' ] );
+		$html = Html::openElement( 'div', [ 'class' => 'ma-file-diff' ] );
+		$html .= Html::openElement( 'div', [ 'class' => 'ma-origin-file' ] );
 		$originLabel = new \OOUI\LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-origin-header' )->plain()
 		] );
 		$originLabel->addClasses( [ 'ma-file-header-label' ] );
 		$html .= $originLabel;
 		$html .= $this->fileHTMLFromInfo( $fileInfo[ 'origin' ] );
-		$html .= \Html::closeElement( 'div' );
-		$html .= \Html::openElement( 'div', [ 'class' => 'ma-target-file' ] );
+		$html .= Html::closeElement( 'div' );
+		$html .= Html::openElement( 'div', [ 'class' => 'ma-target-file' ] );
 		$targetLabel = new \OOUI\LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-target-header' )->plain()
 		] );
 		$targetLabel->addClasses( [ 'ma-file-header-label' ] );
 		$html .= $targetLabel;
 		$html .= $this->fileHTMLFromInfo( $fileInfo[ 'target' ] );
-		$html .= \Html::closeElement( 'div' );
-		$html .= \Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
 
 		return $html;
 	}
@@ -329,11 +330,11 @@ class MergeArticles extends SpecialPage {
 	protected function getFileReviewHTML() {
 		$fileInfo = $this->getFileInfo();
 
-		$html = \Html::openElement( 'div', [ 'class' => 'ma-file-diff' ] );
-		$html .= \Html::openElement( 'div', [ 'class' => 'ma-origin-file' ] );
+		$html = Html::openElement( 'div', [ 'class' => 'ma-file-diff' ] );
+		$html .= Html::openElement( 'div', [ 'class' => 'ma-origin-file' ] );
 		$html .= $this->fileHTMLFromInfo( $fileInfo[ 'origin' ] );
-		$html .= \Html::closeElement( 'div' );
-		$html .= \Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
 
 		return $html;
 	}
@@ -344,8 +345,8 @@ class MergeArticles extends SpecialPage {
 	 * @return string
 	 */
 	protected function fileHTMLFromInfo( $info ) {
-		$html = \Html::openElement( 'div', [ 'class' => 'ma-file-layout' ] );
-		$html .= \Html::openElement( 'div', [ 'class' => 'ma-review-file-info' ] );
+		$html = Html::openElement( 'div', [ 'class' => 'ma-file-layout' ] );
+		$html .= Html::openElement( 'div', [ 'class' => 'ma-review-file-info' ] );
 		$html .= new \OOUI\LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-info-name', $info[ 'name' ] )->plain()
 		] );
@@ -358,14 +359,14 @@ class MergeArticles extends SpecialPage {
 		$html .= new \OOUI\LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-info-size', $info[ 'size' ] )->plain()
 		] );
-		$html .= \Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
 		if ( strpos( $info[ 'mime_type' ], 'image' ) !== false ) {
-			$html .= \Html::element( 'div', [
+			$html .= Html::element( 'div', [
 				'class' => 'ma-file-preview-image',
 				'style' => 'background-image: url( ' . $info[ 'url' ] . ' )'
 			] );
 		}
-		$html .= \Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
 		return $html;
 	}
 
@@ -601,16 +602,16 @@ class MergeArticles extends SpecialPage {
 	}
 
 	protected function displayInvalid() {
-		$html = \Html::element( 'h3', [], wfMessage( 'mergearticles-request-invalid' )->plain() );
-		$html .= \Html::element( 'a', [
+		$html = Html::element( 'h3', [], wfMessage( 'mergearticles-request-invalid' )->plain() );
+		$html .= Html::element( 'a', [
 			'href' => $this->getPageTitle()->getLocalURL()
 		], wfMessage( 'mergearticles-back-to-overview' )->escaped() );
 		$this->getOutput()->addHTML( $html );
 	}
 
 	protected function displayUnknownAction() {
-		$html = \Html::element( 'h3', [], wfMessage( 'mergearticles-action-unknown' )->plain() );
-		$html .= \Html::element( 'a', [
+		$html = Html::element( 'h3', [], wfMessage( 'mergearticles-action-unknown' )->plain() );
+		$html .= Html::element( 'a', [
 			'href' => $this->getPageTitle()->getLocalURL()
 		], wfMessage( 'mergearticles-back-to-overview' )->escaped() );
 
