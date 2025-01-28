@@ -2,6 +2,7 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -31,7 +32,7 @@ class MergeExistingPage extends MergeBase {
 
 	protected function verifyTarget() {
 		if ( $this->targetTitle->exists() === false ) {
-			$this->status = \Status::newFatal( 'target-does-not-exist' );
+			$this->status = Status::newFatal( 'target-does-not-exist' );
 			return false;
 		}
 		return true;

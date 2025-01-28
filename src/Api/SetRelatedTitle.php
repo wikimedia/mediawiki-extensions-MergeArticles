@@ -2,8 +2,8 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Status;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class SetRelatedTitle extends \ApiBase {

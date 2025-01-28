@@ -3,6 +3,7 @@
 namespace MergeArticles\Api;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -47,15 +48,15 @@ class MergeNewPage extends MergeBase {
 		}
 
 		if ( !$target instanceof Title || !$this->targetTitle instanceof Title ) {
-			$this->status = \Status::newFatal( 'invalid-target' );
+			$this->status = Status::newFatal( 'invalid-target' );
 			return false;
 		}
 		if ( $this->targetTitle->equals( $target ) === false ) {
-			$this->status = \Status::newFatal( 'target-mismatch' );
+			$this->status = Status::newFatal( 'target-mismatch' );
 			return false;
 		}
 		if ( $this->targetTitle->exists() ) {
-			$this->status = \Status::newFatal( 'target-exists' );
+			$this->status = Status::newFatal( 'target-exists' );
 			return false;
 		}
 		return true;
@@ -64,7 +65,7 @@ class MergeNewPage extends MergeBase {
 	protected function mergeFile() {
 		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->targetTitle );
 		if ( $file ) {
-			$this->status = \Status::newFatal( 'target-file-exists' );
+			$this->status = Status::newFatal( 'target-file-exists' );
 			return false;
 		}
 
