@@ -2,13 +2,14 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class DiscardDraft extends MergeBase {
 
 	public function execute() {
-		$this->status = \Status::newGood();
+		$this->status = Status::newGood();
 
 		$this->readInParameters();
 		if ( !$this->verifyOrigin() ) {

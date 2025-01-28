@@ -9,8 +9,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Status;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 
