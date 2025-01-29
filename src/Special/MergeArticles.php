@@ -2,13 +2,13 @@
 
 namespace MergeArticles\Special;
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MergeArticles\IPageFilter;
 use MergeArticles\PageFilterFactory;
-use TextContent;
 
 class MergeArticles extends SpecialPage {
 	protected const TYPE_ARTICLE = 'article';
