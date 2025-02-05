@@ -53,7 +53,7 @@ class SetRelatedTitle extends ApiBase {
 			$this->status = Status::newFatal( 'invalid-origin' );
 			return false;
 		}
-		if ( !$this->targetTitle->userCan( 'merge-articles' ) ) {
+		if ( !$this->getUser()->isAllowed( 'merge-articles' ) ) {
 			$this->status = Status::newFatal( 'permissiondenied' );
 			return false;
 		}

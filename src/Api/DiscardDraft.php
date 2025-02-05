@@ -2,18 +2,23 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class DiscardDraft extends MergeBase {
 
+	/**
+	 * @return void
+	 */
 	public function execute() {
 		$this->status = Status::newGood();
 
 		$this->readInParameters();
 		if ( !$this->verifyOrigin() ) {
-			return $this->returnResults();
+			$this->returnResults();
+			return;
 		}
 		$this->verifyPermissions();
 		$this->removeOrigin();
@@ -34,11 +39,18 @@ class DiscardDraft extends MergeBase {
 		];
 	}
 
+	/**
+	 * @return void
+	 * @throws ApiUsageException
+	 */
 	protected function readInParameters() {
 		$pageID = $this->getParameter( 'pageID' );
 		$this->originTitle = Title::newFromID( $pageID );
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function returnResults() {
 		$result = $this->getResult();
 		if ( $this->status->isGood() ) {

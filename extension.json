@@ -36,7 +36,10 @@
 		"remoteExtPath": "MergeArticles/resources"
 	},
 	"SpecialPages": {
-		"MergeArticles": "\\MergeArticles\\Special\\MergeArticles"
+		"MergeArticles": {
+			"class": "\\MergeArticles\\Special\\MergeArticles",
+			"services": [ "TitleFactory", "DBLoadBalancer" ]
+		}
 	},
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
@@ -44,16 +47,16 @@
 	"APIModules": {
 		"ma-merge-page-new": {
 			"class": "\\MergeArticles\\Api\\MergeNewPage",
-			"services": [ "HookContainer" ]
+			"services": [ "HookContainer", "WikiPageFactory", "RepoGroup", "DeletePageFactory" ]
 		},
 		"ma-merge-page-existing": {
 			"class": "\\MergeArticles\\Api\\MergeExistingPage",
-			"services": [ "HookContainer" ]
+			"services": [ "HookContainer", "WikiPageFactory", "RepoGroup", "DeletePageFactory" ]
 		},
 		"ma-set-related-titles": "\\MergeArticles\\Api\\SetRelatedTitle",
 		"ma-discard-draft": {
 			"class": "\\MergeArticles\\Api\\DiscardDraft",
-			"services": [ "HookContainer" ]
+			"services": [ "HookContainer", "WikiPageFactory", "RepoGroup", "DeletePageFactory" ]
 		}
 	},
 	"AvailableRights": [

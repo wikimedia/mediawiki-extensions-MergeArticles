@@ -7,8 +7,13 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use MergeArticles\IPageFilter;
 use MergeArticles\PageFilterFactory;
+use OOUI\ButtonWidget;
+use OOUI\IconWidget;
+use OOUI\LabelWidget;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class MergeArticles extends SpecialPage {
 	protected const TYPE_ARTICLE = 'article';
@@ -19,30 +24,33 @@ class MergeArticles extends SpecialPage {
 	protected const ACTION_REVIEW = 'review';
 	protected const ACTION_COMPARE = 'compare';
 
-	protected $originTitle;
-	protected $targetTitle;
+	/** @var Title|null */
+	protected ?Title $originTitle = null;
+	/** @var Title|null */
+	protected ?Title $targetTitle = null;
 
-	protected $dbr;
-
-	public function __construct() {
+	public function __construct(
+		private readonly TitleFactory $titleFactory,
+		private readonly ILoadBalancer $lb
+	) {
 		parent::__construct( "MergeArticles", "merge-articles" );
 	}
 
 	/**
 	 *
-	 * @param string $action
+	 * @param string $subPage
 	 */
-	public function execute( $action ) {
-		parent::execute( $action );
+	public function execute( $subPage ) {
+		parent::execute( $subPage );
 
 		$this->getOutput()->enableOOUI();
 		$this->getOutput()->addJsConfigVars( 'maBaseURL', $this->getPageTitle()->getLocalURL() );
 
-		if ( !$action ) {
+		if ( !$subPage ) {
 			$this->addOverview();
-		} elseif ( $action === static::ACTION_REVIEW ) {
+		} elseif ( $subPage === static::ACTION_REVIEW ) {
 			$this->addReview();
-		} elseif ( $action === static::ACTION_COMPARE ) {
+		} elseif ( $subPage === static::ACTION_COMPARE ) {
 			$this->addComparison();
 		} else {
 			$this->displayUnknownAction();
@@ -65,13 +73,14 @@ class MergeArticles extends SpecialPage {
 	protected function addReview() {
 		$this->getOutput()->setPageTitle( wfMessage( 'mergearticles-sp-review' )->plain() );
 
-		$originID = $this->getRequest()->getInt( 'originID', 0 );
-		$targetText = $this->getRequest()->getText( 'targetText', '' );
+		$originID = $this->getRequest()->getInt( 'originID' );
+		$targetText = $this->getRequest()->getText( 'targetText' );
 		if ( !$originID || !$targetText ) {
 			$this->displayInvalid();
 			return;
 		}
-		$this->targetTitle = Title::newFromText( $targetText );
+		$this->targetTitle = $this->titleFactory->newFromText( $targetText );
+		$this->originTitle = $this->titleFactory->newFromID( $originID );
 		if ( $this->verifyTitles() === false ) {
 			$this->displayInvalid();
 			return;
@@ -117,8 +126,8 @@ class MergeArticles extends SpecialPage {
 			return;
 		}
 
-		$this->originTitle = Title::newFromID( $originID );
-		$this->targetTitle = Title::newFromID( $targetID );
+		$this->originTitle = $this->titleFactory->newFromID( $originID );
+		$this->targetTitle = $this->titleFactory->newFromID( $targetID );
 		if ( $this->verifyTitles() === false ) {
 			$this->displayInvalid();
 			return;
@@ -170,13 +179,13 @@ class MergeArticles extends SpecialPage {
 	 * @return string
 	 */
 	protected function getPageNamesHTML() {
-		$origin = new \OOUI\LabelWidget( [
+		$origin = new LabelWidget( [
 			'label' => $this->originTitle->getPrefixedText()
 		] );
-		$target = new \OOUI\LabelWidget( [
+		$target = new LabelWidget( [
 			'label' => $this->targetTitle->getPrefixedText()
 		] );
-		$icon = new \OOUI\IconWidget( [
+		$icon = new IconWidget( [
 			'icon' => 'next'
 		] );
 		$pageNames = Html::openElement( 'div', [ 'class' => 'ma-page-names' ] );
@@ -191,10 +200,10 @@ class MergeArticles extends SpecialPage {
 
 	/**
 	 *
-	 * @return \OOUI\ButtonWidget
+	 * @return ButtonWidget
 	 */
 	protected function getOverviewButton() {
-		$button = new \OOUI\ButtonWidget( [
+		$button = new ButtonWidget( [
 			'infusable' => true,
 			'framed' => false,
 			'icon' => 'previous',
@@ -214,14 +223,14 @@ class MergeArticles extends SpecialPage {
 	 */
 	protected function getHelpHTML( $exists = false ) {
 		$targetPage = $this->targetTitle->getPrefixedText();
-		$icon = new \OOUI\IconWidget( [
+		$icon = new IconWidget( [
 			'icon' => 'info'
 		] );
 		$labelKey = 'mergearticles-merge-new-help';
 		if ( $exists ) {
 			$labelKey = 'mergearticles-merge-existing-help';
 		}
-		$label = new \OOUI\LabelWidget( [
+		$label = new LabelWidget( [
 			'label' => wfMessage( $labelKey, $targetPage )->plain()
 		] );
 
@@ -261,7 +270,7 @@ class MergeArticles extends SpecialPage {
 	 */
 	protected function getReviewHeader() {
 		$header = Html::openElement( 'div', [ 'class' => 'ma-review-header' ] );
-		$header .= new \OOUI\LabelWidget( [
+		$header .= new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-review-header' )->plain()
 		] );
 		$header .= Html::closeElement( 'div' );
@@ -287,7 +296,7 @@ class MergeArticles extends SpecialPage {
 	 */
 	protected function getFileReviewHeader() {
 		$header = Html::openElement( 'div', [ 'class' => 'ma-review-header review-file' ] );
-		$header .= new \OOUI\LabelWidget( [
+		$header .= new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-layout-label' )->plain()
 		] );
 		$header .= Html::closeElement( 'div' );
@@ -303,7 +312,7 @@ class MergeArticles extends SpecialPage {
 
 		$html = Html::openElement( 'div', [ 'class' => 'ma-file-diff' ] );
 		$html .= Html::openElement( 'div', [ 'class' => 'ma-origin-file' ] );
-		$originLabel = new \OOUI\LabelWidget( [
+		$originLabel = new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-origin-header' )->plain()
 		] );
 		$originLabel->addClasses( [ 'ma-file-header-label' ] );
@@ -311,7 +320,7 @@ class MergeArticles extends SpecialPage {
 		$html .= $this->fileHTMLFromInfo( $fileInfo[ 'origin' ] );
 		$html .= Html::closeElement( 'div' );
 		$html .= Html::openElement( 'div', [ 'class' => 'ma-target-file' ] );
-		$targetLabel = new \OOUI\LabelWidget( [
+		$targetLabel = new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-target-header' )->plain()
 		] );
 		$targetLabel->addClasses( [ 'ma-file-header-label' ] );
@@ -347,16 +356,16 @@ class MergeArticles extends SpecialPage {
 	protected function fileHTMLFromInfo( $info ) {
 		$html = Html::openElement( 'div', [ 'class' => 'ma-file-layout' ] );
 		$html .= Html::openElement( 'div', [ 'class' => 'ma-review-file-info' ] );
-		$html .= new \OOUI\LabelWidget( [
+		$html .= new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-info-name', $info[ 'name' ] )->plain()
 		] );
-		$html .= new \OOUI\LabelWidget( [
+		$html .= new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-info-extension', $info[ 'extension' ] )->plain()
 		] );
-		$html .= new \OOUI\LabelWidget( [
+		$html .= new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-info-mime', $info[ 'mime_type' ] )->plain()
 		] );
-		$html .= new \OOUI\LabelWidget( [
+		$html .= new LabelWidget( [
 			'label' => wfMessage( 'mergearticles-file-info-size', $info[ 'size' ] )->plain()
 		] );
 		$html .= Html::closeElement( 'div' );
@@ -375,9 +384,6 @@ class MergeArticles extends SpecialPage {
 	 * @return array
 	 */
 	protected function getAvailablePages() {
-		$this->dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()
-			->getConnection( DB_REPLICA );
-
 		$availablePages = [];
 		$this->getPages( $availablePages );
 		$this->getFiles( $availablePages );
@@ -390,16 +396,16 @@ class MergeArticles extends SpecialPage {
 	 * @param array &$availablePages
 	 */
 	protected function getPages( &$availablePages ) {
-		$res = $this->dbr->select(
-			'page',
-			[ 'page_title' ],
-			[ 'page_namespace' => NS_DRAFT ]
-		);
+		$res = $this->lb->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->from( 'page' )
+			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+			->where( [ 'page_namespace' => NS_DRAFT ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
-			$draftTitle = Title::makeTitle( NS_DRAFT, $row->page_title );
-			$title = Title::newFromText( $row->page_title );
-
+			$draftTitle = $this->titleFactory->newFromRow( $row );
+			$title = $this->titleFactory->newFromText( $draftTitle->getDBkey() );
 			if ( $title instanceof Title === false ) {
 				continue;
 			}
@@ -427,26 +433,23 @@ class MergeArticles extends SpecialPage {
 	protected function getFiles( &$availablePages ) {
 		$draftFilePrefix = $this->getConfig()->get( 'MADraftFilePrefix' );
 
-		$res = $this->dbr->select(
-			'page',
-			[ 'page_id', 'page_title' ],
-			[
-				"page_namespace" => NS_FILE,
-				"page_title " . $this->dbr->buildLike(
+		$res = $this->lb->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->from( 'page' )
+			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+			->where( [
+				'page_namespace' => NS_FILE,
+				"page_title " . $this->lb->getConnection( DB_REPLICA )->buildLike(
 					$draftFilePrefix,
-					$this->dbr->anyString()
+					$this->lb->getConnection( DB_REPLICA )->anyString()
 				)
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
-			$draftTitle = Title::makeTitle( NS_FILE, $row->page_title );
+			$draftTitle = $this->titleFactory->newFromRow( $row );
 			$stripped = str_replace( $draftFilePrefix, '', $row->page_title );
-			$title = Title::makeTitle( NS_FILE, $stripped );
-
-			if ( $title instanceof Title === false ) {
-				continue;
-			}
+			$title = $this->titleFactory->makeTitle( NS_FILE, $stripped );
 
 			$data = $this->getItemData( $draftTitle, $title );
 			$data['type'] = static::TYPE_FILE;
