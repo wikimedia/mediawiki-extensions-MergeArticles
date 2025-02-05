@@ -2,6 +2,7 @@
 
 namespace MergeArticles\Api;
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -23,6 +24,10 @@ class MergeNewPage extends MergeBase {
 		];
 	}
 
+	/**
+	 * @return void
+	 * @throws ApiUsageException
+	 */
 	protected function readInParameters() {
 		parent::readInParameters();
 
@@ -62,6 +67,9 @@ class MergeNewPage extends MergeBase {
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function mergeFile() {
 		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->targetTitle );
 		if ( $file ) {

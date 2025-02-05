@@ -60,7 +60,7 @@ class PageFilterFactory {
 		}
 
 		$modules = [];
-		foreach ( $this->filters as $name => $instance ) {
+		foreach ( $this->filters as $instance ) {
 			$modules[] = $instance->getRLModule();
 		}
 
