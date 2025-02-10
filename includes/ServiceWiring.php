@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MergeArticles\PageFilterFactory;
 
 return [
