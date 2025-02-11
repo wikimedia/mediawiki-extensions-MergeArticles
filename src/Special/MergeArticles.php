@@ -13,6 +13,7 @@ use MergeArticles\PageFilterFactory;
 use OOUI\ButtonWidget;
 use OOUI\IconWidget;
 use OOUI\LabelWidget;
+use Wikimedia\Diff\Diff;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class MergeArticles extends SpecialPage {
@@ -496,13 +497,13 @@ class MergeArticles extends SpecialPage {
 
 	/**
 	 * Utility functions
-	 * @return \Diff
+	 * @return Diff
 	 */
 	protected function getDiff() {
 		$originContent = $this->getPageContentText( $this->originTitle );
 		$targetContent = $this->getPageContentText( $this->targetTitle );
 
-		$diff = new \Diff(
+		$diff = new Diff(
 			explode( "\n", $targetContent ),
 			explode( "\n", $originContent )
 		);

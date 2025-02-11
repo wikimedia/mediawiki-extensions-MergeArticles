@@ -4,6 +4,7 @@ namespace MergeArticles;
 
 use DiffOp;
 use MediaWiki\Html\Html;
+use Wikimedia\Diff\Diff;
 
 class HTMLDiffFormatter extends \DiffFormatter {
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
@@ -14,7 +15,7 @@ class HTMLDiffFormatter extends \DiffFormatter {
 	/**
 	 * Parses diff to HTML
 	 *
-	 * @param \Diff $diff
+	 * @param Diff $diff
 	 * @param bool $block If true, every line will be its own block
 	 * @return string
 	 */
