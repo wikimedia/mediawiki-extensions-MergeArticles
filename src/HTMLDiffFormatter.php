@@ -2,10 +2,10 @@
 
 namespace MergeArticles;
 
-use DiffOp;
 use MediaWiki\Html\Html;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\DiffFormatter;
+use Wikimedia\Diff\DiffOp;
 
 class HTMLDiffFormatter extends DiffFormatter {
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
@@ -121,10 +121,10 @@ class HTMLDiffFormatter extends DiffFormatter {
 
 	/**
 	 *
-	 * @param \DiffOp $edit
+	 * @param DiffOp $edit
 	 * @return array
 	 */
-	protected function conflateChange( \DiffOp $edit ) {
+	protected function conflateChange( DiffOp $edit ) {
 		$orig = $edit->getOrig();
 		$closing = $edit->getClosing();
 
