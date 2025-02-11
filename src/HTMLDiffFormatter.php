@@ -5,8 +5,9 @@ namespace MergeArticles;
 use DiffOp;
 use MediaWiki\Html\Html;
 use Wikimedia\Diff\Diff;
+use Wikimedia\Diff\DiffFormatter;
 
-class HTMLDiffFormatter extends \DiffFormatter {
+class HTMLDiffFormatter extends DiffFormatter {
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
 	protected $arrayData = [];
 	protected $idCounter = 0;
