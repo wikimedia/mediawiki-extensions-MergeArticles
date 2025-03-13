@@ -1,7 +1,7 @@
-( function( mw, $ ) {
-	$( function() {
-		var data = mw.config.get( 'maReviewData' );
-		var review = new mergeArticles.panel.Review( {
+( function ( mw, $ ) {
+	$( () => {
+		const data = mw.config.get( 'maReviewData' );
+		const review = new mergeArticles.panel.Review( { // eslint-disable-line no-unused-vars
 			originID: data.originID,
 			originContent: data.originContent,
 			targetText: data.targetText,
@@ -9,4 +9,4 @@
 			$element: $( '#merge-articles-review' )
 		} );
 	} );
-} ) ( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );

@@ -1,5 +1,5 @@
-( function( mw, $ ) {
-	mergeArticles.panel.Compare = function( cfg ) {
+( function ( mw, $ ) {
+	mergeArticles.panel.Compare = function ( cfg ) {
 		cfg = cfg || {};
 
 		this.originID = cfg.originID;
@@ -14,7 +14,7 @@
 		this.enableBeta = mw.config.get( 'maEnableBeta' );
 		this.conflicts = { total: 0, resolved: 0 };
 
-		if( !$.isEmptyObject( this.fileData ) ) {
+		if ( !$.isEmptyObject( this.fileData ) ) {
 			if ( !this.diffInFile() ) {
 				this.fileData.accepted = true;
 				this.displayNoFileDiff();
@@ -22,7 +22,7 @@
 				this.makeFileDiff();
 			}
 		}
-		if( $.isEmptyObject( this.diffData ) ) {
+		if ( $.isEmptyObject( this.diffData ) ) {
 			this.displayNoTextDiff();
 		} else {
 			this.makeDiff();
@@ -32,9 +32,9 @@
 
 	OO.inheritClass( mergeArticles.panel.Compare, mergeArticles.panel.Review );
 
-	mergeArticles.panel.Compare.prototype.makeFileDiff = function() {
+	mergeArticles.panel.Compare.prototype.makeFileDiff = function () {
 
-		var fileReject = new OO.ui.ButtonWidget( {
+		const fileReject = new OO.ui.ButtonWidget( {
 			icon: 'close',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-refuse' ).text(),
@@ -44,7 +44,7 @@
 			]
 		} );
 
-		var fileApprove = new OO.ui.ButtonWidget( {
+		const fileApprove = new OO.ui.ButtonWidget( {
 			icon: 'check',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-accept' ).text(),
@@ -54,71 +54,71 @@
 			]
 		} );
 
-		var $actions = $( '<div>' ).addClass( 'diff-file-action' ).append( fileReject.$element, fileApprove.$element );
+		const $actions = $( '<div>' ).addClass( 'diff-file-action' ).append( fileReject.$element, fileApprove.$element );
 		$( '.ma-diff-header.diff-file' ).children( '.diff-file-action' ).remove();
 		$( '.ma-diff-header.diff-file' ).append( $actions );
 
-		fileApprove.on( 'click', function() {
+		fileApprove.on( 'click', () => {
 			this.resolveFileChange( true, $actions );
-		}.bind( this ) );
-		fileReject.on( 'click', function() {
+		} );
+		fileReject.on( 'click', () => {
 			this.resolveFileChange( false, $actions );
-		}.bind( this ) );
+		} );
 	};
 
-	mergeArticles.panel.Compare.prototype.resolveFileChange = function( outcome, $container ) {
+	mergeArticles.panel.Compare.prototype.resolveFileChange = function ( outcome, $container ) {
 		this.fileData.accepted = outcome;
-		var label = new OO.ui.LabelWidget( {
+		const label = new OO.ui.LabelWidget( {
 			classes: outcome ? [ 'approve' ] : [ 'reject' ],
-			label: outcome ? mw.message( "mergearticles-diff-accepted" ).text() : mw.message( "mergearticles-diff-refused" ).text()
+			label: outcome ? mw.message( 'mergearticles-diff-accepted' ).text() : mw.message( 'mergearticles-diff-refused' ).text()
 		} );
-		var undoButton = new OO.ui.ButtonWidget( {
+		const undoButton = new OO.ui.ButtonWidget( {
 			icon: 'undo',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-item-undo' ).text()
 		} );
 		undoButton.connect( this, { click: 'undoFileResolve' } );
 		$container.empty().append( label.$element, undoButton.$element );
-		if( $.isEmptyObject( this.diffData ) ) {
+		if ( $.isEmptyObject( this.diffData ) ) {
 			// If no text diff - merge right away
 			this.$element.append( this.getButtons() );
-		} else if( this.diffResolved() ) {
+		} else if ( this.diffResolved() ) {
 			// If there is text diff but its resolved - show final text
 			this.compareDone( true );
 		}
 	};
 
-	mergeArticles.panel.Compare.prototype.undoFileResolve = function() {
-		delete( this.fileData.accepted );
+	mergeArticles.panel.Compare.prototype.undoFileResolve = function () {
+		delete ( this.fileData.accepted );
 		this.makeFileDiff();
 		this.$element.children( '.ma-review-buttons' ).remove();
 		this.compareDone( false );
 	};
 
-	mergeArticles.panel.Compare.prototype.makeDiff = function() {
-		$.each( this.$diffContainer.children(), function( k, diffEl ) {
-			var $diffEl = $( diffEl );
-			var diffType = $diffEl.data( 'diff' );
-			var $wrapper = $( '<div>' )
+	mergeArticles.panel.Compare.prototype.makeDiff = function () {
+		$.each( this.$diffContainer.children(), ( k, diffEl ) => { // eslint-disable-line no-jquery/no-each-util
+			const $diffEl = $( diffEl );
+			const diffType = $diffEl.data( 'diff' );
+			const $wrapper = $( '<div>' )
 				.addClass( 'ma-diff-wrapper' );
-			if( diffType === 'copy' ) {
+			if ( diffType === 'copy' ) {
 				$diffEl.wrap( $wrapper );
 				return;
 			}
 			$wrapper.addClass( 'has-diff' );
-			var $actions = this.getDiffActions( $diffEl.data( 'diff-id' ) );
+			const $actions = this.getDiffActions( $diffEl.data( 'diff-id' ) );
 			$diffEl.wrap( $wrapper );
 			$actions.insertAfter( $diffEl );
 
 			this.conflicts.total++;
-		}.bind( this ) );
+		} );
 
 		this.updateResolutionCounter();
 		this.makeDiffOptions();
 	};
 
-	mergeArticles.panel.Compare.prototype.getDiffActions = function( diffID ) {
-		var buttonAccept = new OO.ui.ButtonWidget( {
+	mergeArticles.panel.Compare.prototype.getDiffActions = function ( diffID ) {
+		const buttonAccept = new OO.ui.ButtonWidget( {
 			icon: 'check',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-accept' ).text(),
@@ -127,7 +127,7 @@
 				'primary'
 			]
 		} );
-		var buttonRefuse = new OO.ui.ButtonWidget( {
+		const buttonRefuse = new OO.ui.ButtonWidget( {
 			icon: 'cancel',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-refuse' ).text(),
@@ -138,8 +138,7 @@
 		buttonAccept.$element.addClass( 'action-accept' );
 		buttonRefuse.$element.addClass( 'action-refuse' );
 
-
-		var buttonContainer = $( '<div>' ).addClass( 'ma-diff-item-action' );
+		const buttonContainer = $( '<div>' ).addClass( 'ma-diff-item-action' );
 
 		buttonAccept.$element.on( 'click', {
 			diffID: diffID,
@@ -153,7 +152,7 @@
 		buttonContainer.append( buttonAccept.$element, buttonRefuse.$element );
 
 		if ( this.enableBeta ) {
-			var buttonAcceptBoth = new OO.ui.ButtonWidget( {
+			const buttonAcceptBoth = new OO.ui.ButtonWidget( {
 				icon: 'checkAll',
 				framed: false,
 				title: mw.message( 'mergearticles-diff-action-accept-both' ).text(),
@@ -166,9 +165,9 @@
 				diffID: diffID,
 				accepted: true,
 				applyToBoth: true
-			}, this.resolveChange.bind( this ));
+			}, this.resolveChange.bind( this ) );
 
-			var buttonRejectBoth = new OO.ui.ButtonWidget( {
+			const buttonRejectBoth = new OO.ui.ButtonWidget( {
 				icon: 'block',
 				framed: false,
 				title: mw.message( 'mergearticles-diff-action-refuse-both' ).text(),
@@ -180,7 +179,7 @@
 				diffID: diffID,
 				accepted: false,
 				applyToBoth: true
-			}, this.resolveChange.bind( this ));
+			}, this.resolveChange.bind( this ) );
 
 			buttonContainer.append( buttonAcceptBoth.$element, buttonRejectBoth.$element );
 		}
@@ -188,40 +187,40 @@
 		return buttonContainer;
 	};
 
-	mergeArticles.panel.Compare.prototype.updateResolutionCounter = function() {
-		if( !this.resolutionCounter ) {
+	mergeArticles.panel.Compare.prototype.updateResolutionCounter = function () {
+		if ( !this.resolutionCounter ) {
 			this.resolutionCounter = new OO.ui.LabelWidget();
 			this.resolutionCounter.$element.insertAfter( $( 'span.ma-diff-header-label' ) );
 		}
-		this.resolutionCounter.setLabel(  mw.message(
-				'mergearticles-resolution-counter',
-				this.conflicts.total,
-				this.conflicts.resolved
-			).text()
+		this.resolutionCounter.setLabel( mw.message(
+			'mergearticles-resolution-counter',
+			this.conflicts.total,
+			this.conflicts.resolved
+		).text()
 		);
 
-		if( this.diffResolved() && this.fileResolved() ) {
+		if ( this.diffResolved() && this.fileResolved() ) {
 			this.compareDone( true );
 		} else {
 			this.compareDone( false );
 		}
 	};
 
-	mergeArticles.panel.Compare.prototype.makeDiffOptions = function( e, data ) {
-		var hideNoDiffCheckbox = new OO.ui.CheckboxInputWidget( {
+	mergeArticles.panel.Compare.prototype.makeDiffOptions = function ( e, data ) { // eslint-disable-line no-unused-vars
+		const hideNoDiffCheckbox = new OO.ui.CheckboxInputWidget( {
 			selected: false
 		} );
-		hideNoDiffCheckbox.on( 'change', function( value ) {
+		hideNoDiffCheckbox.on( 'change', ( value ) => {
 			this.hideMatchingBlocks( value );
-		}.bind( this ) );
-		var hideNoDiffLabel = new OO.ui.LabelWidget( {
+		} );
+		const hideNoDiffLabel = new OO.ui.LabelWidget( {
 			label: mw.message( 'mergearticles-diff-option-hide-identical-blocks-label' ).text(),
 			input: hideNoDiffCheckbox
 		} );
 
-		var acceptAllButton = new OO.ui.ButtonWidget( {
+		const acceptAllButton = new OO.ui.ButtonWidget( {
 			framed: false,
-			icon: 'check', //'checkAll' in newer version
+			icon: 'check', // 'checkAll' in newer version
 			label: mw.message( 'mergearticles-diff-option-accept-all-label' ).text()
 		} );
 		acceptAllButton.$element.addClass( 'ma-diff-option-accept-all' );
@@ -237,65 +236,65 @@
 		this.diffOptionsLayout.$element.insertAfter( this.resolutionCounter.$element );
 	};
 
-	mergeArticles.panel.Compare.prototype.hideMatchingBlocks = function( hide ) {
-		var toBeHidden = [];
-		if( !hide ) {
+	mergeArticles.panel.Compare.prototype.hideMatchingBlocks = function ( hide ) {
+		let toBeHidden = [];
+		if ( !hide ) {
 			this.$diffContainer.find( '.ma-same-block' ).remove();
 			this.$diffContainer.find( '.ma-diff-wrapper:not( .has-diff )' ).show();
 			return;
 		}
 
-		$.each( this.$diffContainer.children(), function( k, diffEl ) {
-			var $diffEl = $( diffEl );
-			if( !$diffEl.hasClass( 'has-diff' ) ) {
+		$.each( this.$diffContainer.children(), ( k, diffEl ) => { // eslint-disable-line no-jquery/no-each-util
+			const $diffEl = $( diffEl );
+			if ( !$diffEl.hasClass( 'has-diff' ) ) {
 				toBeHidden.push( $diffEl.find( 'p' ).data( 'diff-id' ) );
 				$diffEl.hide();
-				if( !$diffEl.is( ":last-child" ) ) {
+				if ( !$diffEl.is( ':last-child' ) ) {
 					return;
 				}
 			}
-			if( toBeHidden.length === 0 ) {
+			if ( toBeHidden.length === 0 ) {
 				return;
 			}
 
-			var hiddenBlocksButton = new OO.ui.ButtonWidget( {
-				label: mw.message( "mergearticles-same-block-label", toBeHidden.length ).text(),
+			const hiddenBlocksButton = new OO.ui.ButtonWidget( {
+				label: mw.message( 'mergearticles-same-block-label', toBeHidden.length ).text(),
 				framed: false
 			} );
 			hiddenBlocksButton.$element.addClass( 'ma-same-block' );
 			hiddenBlocksButton.$element.on( 'click', {
 				ids: toBeHidden,
 				button: hiddenBlocksButton
-			}, function( e ) {
-				for( var idx in e.data.ids ) {
-					var id = e.data.ids[ idx ];
+			}, ( e ) => {
+				for ( const idx in e.data.ids ) {
+					const id = e.data.ids[ idx ];
 					this.$diffContainer.find( '.ma-diff-copy[data-diff-id="' + id + '"]' ).parent().show();
 				}
 				e.data.button.$element.remove();
-			}.bind( this ) );
+			} );
 			hiddenBlocksButton.$element.insertBefore( $diffEl );
 			toBeHidden = [];
-		}.bind( this ) );
+		} );
 	};
 
-	mergeArticles.panel.Compare.prototype.resolveChange = function( e ) {
-		if( !this.diffData.hasOwnProperty( e.data.diffID ) ) {
+	mergeArticles.panel.Compare.prototype.resolveChange = function ( e ) {
+		if ( !this.diffData.hasOwnProperty( e.data.diffID ) ) {
 			return;
 		}
 
-		var accepted = e.data.accepted || false,
+		const accepted = e.data.accepted || false,
 			applyToBoth = e.data.applyToBoth || false;
 
-		var diff = this.diffData[ e.data.diffID ];
+		const diff = this.diffData[ e.data.diffID ];
 		diff.accepted = accepted;
 		diff.applyToBoth = applyToBoth;
 
-		var messageKey = accepted ? 'mergearticles-diff-accepted' : 'mergearticles-diff-refused';
+		let messageKey = accepted ? 'mergearticles-diff-accepted' : 'mergearticles-diff-refused';
 		if ( applyToBoth ) {
 			messageKey += '-both';
 		}
 
-		var $diffWrapper = this.$diffContainer
+		const $diffWrapper = this.$diffContainer
 			.find( '[data-diff-id="' + e.data.diffID + '"]' )
 			.parent();
 		if ( applyToBoth ) {
@@ -306,12 +305,17 @@
 
 		$diffWrapper.addClass( accepted ? 'ma-diff-accepted' : 'ma-diff-refused' );
 
-		var buttonContainer = $diffWrapper.find( '.ma-diff-item-action' );
-		var label = new OO.ui.LabelWidget( {
+		const buttonContainer = $diffWrapper.find( '.ma-diff-item-action' );
+		const label = new OO.ui.LabelWidget( {
+			// The following messages are used here:
+			// * mergearticles-diff-accepted
+			// * mergearticles-diff-accepted-both
+			// * mergearticles-diff-refused
+			// * mergearticles-diff-refused-both
 			label: mw.message( messageKey ).text()
 		} );
 
-		var undoButton = new OO.ui.ButtonWidget( {
+		const undoButton = new OO.ui.ButtonWidget( {
 			icon: 'undo',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-item-undo' ).text()
@@ -331,8 +335,8 @@
 		this.updateResolutionCounter();
 	};
 
-	mergeArticles.panel.Compare.prototype.unResolveChange = function( e ) {
-		delete( e.data.diff.accepted );
+	mergeArticles.panel.Compare.prototype.unResolveChange = function ( e ) {
+		delete ( e.data.diff.accepted );
 
 		e.data.$wrapper.removeClass( 'ma-diff-accepted ma-diff-refused' );
 		e.data.$buttonCnt.empty();
@@ -342,27 +346,27 @@
 		this.updateResolutionCounter();
 	};
 
-	mergeArticles.panel.Compare.prototype.acceptAllChanges = function() {
+	mergeArticles.panel.Compare.prototype.acceptAllChanges = function () {
 		this.conflicts.resolved = 0;
-		 for( var diffID in this.diffData ) {
-			 var diff = this.diffData[ diffID ];
-			 if( diff.type === 'copy' ) {
-				 continue;
-			 }
-			 this.resolveChange( { data: { diffID: diffID, accepted: true } } );
+		for ( const diffID in this.diffData ) {
+			const diff = this.diffData[ diffID ];
+			if ( diff.type === 'copy' ) {
+				continue;
+			}
+			this.resolveChange( { data: { diffID: diffID, accepted: true } } );
 		}
 	};
 
-	mergeArticles.panel.Compare.prototype.compareDone = function( done ) {
-		if( !this.showFinalTextLayout ) {
-			var button = new OO.ui.ButtonWidget( {
+	mergeArticles.panel.Compare.prototype.compareDone = function ( done ) {
+		if ( !this.showFinalTextLayout ) {
+			const button = new OO.ui.ButtonWidget( {
 				label: mw.message( 'mergearticles-show-final-text-button-label' ).text()
 			} );
 			button.on( 'click', this.showComparedText.bind( this ) );
-			var icon = new OO.ui.IconWidget( {
+			const icon = new OO.ui.IconWidget( {
 				icon: 'check'
 			} );
-			var label = new OO.ui.LabelWidget( {
+			const label = new OO.ui.LabelWidget( {
 				label: mw.message( 'mergearticles-show-final-text-label' ).text()
 			} );
 			this.showFinalTextLayout = new OO.ui.HorizontalLayout( {
@@ -373,8 +377,8 @@
 			this.showFinalTextLayout.$element.addClass( 'show-final-text-layout' );
 			this.$element.append( this.showFinalTextLayout.$element );
 		}
-		if( done ) {
-			$( [document.documentElement, document.body] ).animate( {
+		if ( done ) {
+			$( [ document.documentElement, document.body ] ).animate( {
 				scrollTop: this.showFinalTextLayout.$element.show().offset().top
 			}, 1000 );
 		} else {
@@ -382,59 +386,59 @@
 		}
 	};
 
-	mergeArticles.panel.Compare.prototype.showComparedText = function() {
+	mergeArticles.panel.Compare.prototype.showComparedText = function () {
 		$( '.show-final-text-layout' ).remove();
 		this.removeDiffActions();
-		//this.collapseDiff();
+		// this.collapseDiff();
 		this.collectText();
 		this.makeFinalTextBox();
 	};
 
-	mergeArticles.panel.Compare.prototype.removeDiffActions = function() {
+	mergeArticles.panel.Compare.prototype.removeDiffActions = function () {
 		this.hideMatchingBlocks( false );
 		this.diffOptionsLayout.$element.remove();
 		$( '.ma-diff-item-action' ).children( '.diff-undo' ).remove();
 	};
 
-	mergeArticles.panel.Compare.prototype.collapseDiff = function() {
-		this.$diffContainer.slideUp( 200, function() {
-			var expandButton = new OO.ui.ButtonWidget( {
+	mergeArticles.panel.Compare.prototype.collapseDiff = function () {
+		this.$diffContainer.slideUp( 200, () => {
+			const expandButton = new OO.ui.ButtonWidget( {
 				framed: false,
 				label: mw.message( 'mergearticles-diff-header' ).plain()
 			} );
 			expandButton.$element.addClass( 'ma-diff-header-expand' );
-			expandButton.on( 'click', function() {
-				if( this.$diffContainer.is( ':visible' ) ) {
+			expandButton.on( 'click', () => {
+				if ( this.$diffContainer.is( ':visible' ) ) { // eslint-disable-line no-jquery/no-sizzle
 					this.$diffContainer.slideUp( 200 );
 				} else {
 					this.$diffContainer.slideDown( 200 );
 				}
-			}.bind( this ) );
+			} );
 			$( '.ma-diff-header-label' ).replaceWith( expandButton.$element );
-		}.bind( this ) );
+		} );
 	};
 
-	mergeArticles.panel.Compare.prototype.collectText = function() {
-		var finalText = [];
-		for( var diffID in this.diffData ) {
-			var block = false;
-			var diff = this.diffData[ diffID ];
-			switch( diff.type ) {
+	mergeArticles.panel.Compare.prototype.collectText = function () {
+		const finalText = [];
+		for ( const diffID in this.diffData ) {
+			let block = false;
+			const diff = this.diffData[ diffID ];
+			switch ( diff.type ) {
 				case 'copy':
 					block = diff.old || '';
 					break;
 				case 'add':
-					if( diff.accepted === true ) {
+					if ( diff.accepted === true ) {
 						block = diff.new || '';
 					}
 					break;
 				case 'delete':
-					if( diff.accepted === false ) {
+					if ( diff.accepted === false ) {
 						block = diff.old || '';
 					}
 					break;
 				case 'change':
-					if( diff.accepted === true ) {
+					if ( diff.accepted === true ) {
 						if ( diff.applyToBoth ) {
 							block = diff.old + '\n' + diff.new;
 						} else {
@@ -449,16 +453,16 @@
 					}
 					break;
 			}
-			if( block !== false ) {
+			if ( block !== false ) {
 				finalText.push( block );
 			}
 		}
-		this.finalText = finalText.join( "\n" );
+		this.finalText = finalText.join( '\n' );
 	};
 
-	mergeArticles.panel.Compare.prototype.makeFinalTextBox = function() {
-		var $finalTextContainer = $( '<div>' ).addClass( 'final-text-container' );
-		var $header = $( '<div>' )
+	mergeArticles.panel.Compare.prototype.makeFinalTextBox = function () {
+		const $finalTextContainer = $( '<div>' ).addClass( 'final-text-container' );
+		const $header = $( '<div>' )
 			.addClass( 'final-text-header' )
 			.append(
 				new OO.ui.LabelWidget( {
@@ -470,14 +474,14 @@
 						mw.message( 'mergearticles-final-text-header-note' ).text() +
 						'</small>'
 					)
-				} ).$element,
+				} ).$element
 			);
 		this.finalTextBox = new OO.ui.MultilineTextInputWidget( {
 			rows: 25,
 			value: this.finalText
 		} );
 
-		var $buttons = this.getButtons();
+		const $buttons = this.getButtons();
 
 		$finalTextContainer.append(
 			$header,
@@ -486,23 +490,23 @@
 		);
 
 		this.$element.append( $finalTextContainer );
-		$( [document.documentElement, document.body] ).animate( {
+		$( [ document.documentElement, document.body ] ).animate( {
 			scrollTop: $finalTextContainer.offset().top
 		}, 1000 );
 	};
 
-	mergeArticles.panel.Compare.prototype.doMerge = function() {
-		var text = this.finalTextBox !== undefined ? this.finalTextBox.getValue() : '';
+	mergeArticles.panel.Compare.prototype.doMerge = function () {
+		const text = this.finalTextBox !== undefined ? this.finalTextBox.getValue() : '';
 		this.makeApiRequest( {
 			action: 'ma-merge-page-existing',
 			pageID: this.originID,
 			targetID: this.targetID,
 			skipFile: !this.fileData.accepted,
 			text: text
-		} ).done( function( response ) {
-			if( response.success ) {
-				var msg = mw.message( 'mergearticles-merge-success-page-label' ).text();
-				var $anchor =  $( '<a>' ).attr(  'href', response.targetPage.url ).text( response.targetPage.text );
+		} ).done( ( response ) => {
+			if ( response.success ) {
+				let msg = mw.message( 'mergearticles-merge-success-page-label' ).text();
+				const $anchor = $( '<a>' ).attr( 'href', response.targetPage.url ).text( response.targetPage.text );
 				msg = msg.replace( '$1', $( '<div>' ).append( $anchor ).html() );
 
 				this.showActionResult(
@@ -517,7 +521,7 @@
 					response.error
 				);
 			}
-		}.bind( this ) ).fail( function( error, data ) {
+		} ).fail( ( error, data ) => {
 			if ( data.hasOwnProperty( 'error' ) && data.error.hasOwnProperty( 'info' ) ) {
 				error = data.error.info;
 			}
@@ -526,10 +530,10 @@
 				mw.message( 'mergearticles-merge-fail-header' ).text(),
 				error
 			);
-		}.bind( this ) );
+		} );
 	};
 
-	mergeArticles.panel.Compare.prototype.getButtons = function() {
+	mergeArticles.panel.Compare.prototype.getButtons = function () {
 		this.mergeButton = new OO.ui.ButtonWidget( {
 			label: mw.message( 'mergearticles-do-merge-label' ).plain(),
 			flags: [
@@ -539,46 +543,46 @@
 		} );
 		this.mergeButton.on( 'click', this.doMerge.bind( this ) );
 
-		var $buttons = $( '<div>' )
+		const $buttons = $( '<div>' )
 			.addClass( 'ma-review-buttons' )
 			.append( this.mergeButton.$element );
 
 		return $buttons;
 	};
 
-	mergeArticles.panel.Compare.prototype.displayNoTextDiff = function() {
+	mergeArticles.panel.Compare.prototype.displayNoTextDiff = function () {
 		this.displayNoDiff( mw.message( 'mergearticles-no-diff-message' ).text() );
 	};
 
-	mergeArticles.panel.Compare.prototype.displayNoFileDiff = function() {
+	mergeArticles.panel.Compare.prototype.displayNoFileDiff = function () {
 		this.displayNoDiff( mw.message( 'mergearticles-no-diff-file-message' ).text(), $( '.ma-diff-header.diff-file' ) );
 	};
 
-	mergeArticles.panel.Compare.prototype.displayNoDiff = function( message, $element ) {
+	mergeArticles.panel.Compare.prototype.displayNoDiff = function ( message, $element ) {
 		$element = $element || this.$element;
-		var label = new OO.ui.LabelWidget( {
+		const label = new OO.ui.LabelWidget( {
 			label: message
 		} );
 		label.$element.addClass( 'ma-no-diff-message' );
 		$element.append( label.$element );
 	};
 
-	mergeArticles.panel.Compare.prototype.fileResolved = function() {
-		if( $.isEmptyObject( this.fileData ) ) {
+	mergeArticles.panel.Compare.prototype.fileResolved = function () {
+		if ( $.isEmptyObject( this.fileData ) ) {
 			return true;
 		}
 		return this.fileData.hasOwnProperty( 'accepted' );
 	};
 
-	mergeArticles.panel.Compare.prototype.diffResolved = function() {
-		if( $.isEmptyObject( this.diffData ) ) {
+	mergeArticles.panel.Compare.prototype.diffResolved = function () {
+		if ( $.isEmptyObject( this.diffData ) ) {
 			return true;
 		}
 		return this.conflicts.total === this.conflicts.resolved;
 	};
 
-	mergeArticles.panel.Compare.prototype.diffInFile = function() {
+	mergeArticles.panel.Compare.prototype.diffInFile = function () {
 		return this.fileData.origin.sha1 !== this.fileData.target.sha1;
 	};
 
-} ) ( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );
