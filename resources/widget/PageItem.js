@@ -1,5 +1,5 @@
-( function( mw, $ ) {
-	mergeArticles.ui.PageItemWidget = function( cfg ) {
+( function ( mw, $ ) {
+	mergeArticles.ui.PageItemWidget = function ( cfg ) {
 		mergeArticles.ui.PageItemWidget.parent.call( this, cfg );
 
 		this.type = cfg.type;
@@ -15,29 +15,30 @@
 		this.makeActions();
 
 		this.$element.addClass( 'ma-page-item' );
-		this.$element.addClass( this.type );
+		this.$element.addClass( this.type ); // eslint-disable-line mediawiki/class-doc
 
 		this.$element.append( this.$dataContainer, this.$actionContainer );
 	};
 
 	OO.inheritClass( mergeArticles.ui.PageItemWidget, OO.ui.Widget );
 
-	mergeArticles.ui.PageItemWidget.prototype.makeType = function() {
-		// mergearticles-type-file
-		// mergearticles-type-article
-		// mergearticles-type-template
-		// mergearticles-type-category
-		var msgKey = 'mergearticles-type-' + this.type;
-		var typeLabel = new OO.ui.LabelWidget( {
+	mergeArticles.ui.PageItemWidget.prototype.makeType = function () {
+		const msgKey = 'mergearticles-type-' + this.type;
+		const typeLabel = new OO.ui.LabelWidget( {
+			// The following messages are used here:
+			// * mergearticles-type-file
+			// * mergearticles-type-article
+			// * mergearticles-type-template
+			// * mergearticles-type-category
 			label: mw.message( msgKey ).text()
 		} );
 		typeLabel.$element.addClass( 'ma-page-item-type-label' );
 		this.$dataContainer.append( typeLabel.$element );
 	};
 
-	mergeArticles.ui.PageItemWidget.prototype.makeOrigin = function() {
-		var $origin = $( '<div>' ).addClass( 'ma-page-item-data-origin' );
-		var $anchor = $( '<a>' )
+	mergeArticles.ui.PageItemWidget.prototype.makeOrigin = function () {
+		const $origin = $( '<div>' ).addClass( 'ma-page-item-data-origin' );
+		const $anchor = $( '<a>' )
 			.attr( 'href', this.origin.url )
 			.data( 'id', this.origin.id )
 			.append(
@@ -50,12 +51,12 @@
 		this.$dataContainer.append( $origin );
 	};
 
-	mergeArticles.ui.PageItemWidget.prototype.makeTarget = function() {
-		var $target = $( '<div>' ).addClass( 'ma-page-item-data-target' );
+	mergeArticles.ui.PageItemWidget.prototype.makeTarget = function () {
+		const $target = $( '<div>' ).addClass( 'ma-page-item-data-target' );
 
-		if( this.target.exists ) {
-			var text = mw.message( 'mergearticles-target-exists-label' ).escaped();
-			var anchor = '<a href="' + this.target.url + '">' + this.target.text + '</a>';
+		if ( this.target.exists ) {
+			let text = mw.message( 'mergearticles-target-exists-label' ).escaped();
+			const anchor = '<a href="' + this.target.url + '">' + this.target.text + '</a>';
 			text = text.replace( '$1', anchor );
 
 			$target
@@ -63,7 +64,7 @@
 				.data( 'id', this.target.id )
 				.html( text );
 		} else {
-			var text = mw.message( 'mergearticles-target-new-label' ).escaped();
+			const text = mw.message( 'mergearticles-target-new-label' ).escaped();
 			$target
 				.addClass( 'new' )
 				.html( text );
@@ -72,9 +73,9 @@
 		this.$dataContainer.append( $target );
 	};
 
-	mergeArticles.ui.PageItemWidget.prototype.makeActions = function() {
-		var labelText;
-		if( this.target.exists ) {
+	mergeArticles.ui.PageItemWidget.prototype.makeActions = function () {
+		let labelText;
+		if ( this.target.exists ) {
 			this.action = 'compare';
 			labelText = mw.message( 'mergearticles-page-item-action-compare' ).text();
 		} else {
@@ -82,7 +83,7 @@
 			labelText = mw.message( 'mergearticles-page-item-action-review' ).text();
 		}
 
-		var button = new OO.ui.ButtonWidget( {
+		const button = new OO.ui.ButtonWidget( {
 			title: labelText,
 			icon: 'next',
 			flags: [
@@ -95,7 +96,7 @@
 		this.$actionContainer.append( button.$element );
 	};
 
-	mergeArticles.ui.PageItemWidget.prototype.onAction = function() {
+	mergeArticles.ui.PageItemWidget.prototype.onAction = function () {
 		this.emit( 'actionClick', {
 			action: this.action,
 			origin: this.origin,
@@ -104,4 +105,4 @@
 	};
 
 	mergeArticles.ui.PageItemWidget.static.tagName = 'div';
-} ) ( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );

@@ -1,6 +1,6 @@
-( function( mw, $ ) {
+( function () {
 	window.mergeArticles = {
 		ui: {},
 		panel: {}
 	};
-} ) ( mediaWiki, jQuery );
+}() );

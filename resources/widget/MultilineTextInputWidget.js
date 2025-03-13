@@ -1,6 +1,6 @@
-( function() {
+( function () {
 	OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config ) {
-		config = $.extend( {
+		config = Object.assign( {
 			type: 'text'
 		}, config );
 		config.multiline = false;
@@ -48,7 +48,7 @@
 	 * @inheritdoc
 	 */
 	OO.ui.MultilineTextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = OO.ui.MultilineTextInputWidget.parent.static.gatherPreInfuseState( node, config );
+		const state = OO.ui.MultilineTextInputWidget.parent.static.gatherPreInfuseState( node, config );
 		state.scrollTop = config.$input.scrollTop();
 		return state;
 	};
@@ -101,10 +101,11 @@
 	 * This only affects multiline inputs that are {@link #autosize autosized}.
 	 *
 	 * @chainable
-	 * @fires resize
+	 * @event resize
+	 * @return {OO.ui.MultilineTextInputWidget}
 	 */
 	OO.ui.MultilineTextInputWidget.prototype.adjustSize = function () {
-		var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
+		let scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
 			idealHeight, newHeight, scrollWidth, property;
 
 		if ( this.$input.val() !== this.valCache ) {
@@ -205,4 +206,4 @@
 			this.$input.scrollTop( state.scrollTop );
 		}
 	};
-} )();
+}() );
