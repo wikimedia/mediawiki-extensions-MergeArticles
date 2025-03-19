@@ -64,11 +64,13 @@ class SetRelatedTitle extends ApiBase {
 		}
 		$db = $this->getDB();
 		if ( $db->selectRow(
-			'pageprops', [ '*' ],
+			'pageprops',
+			[ '*' ],
 			[
 				'pp_page' => $this->targetTitle->getArticleID(),
 				'pp_propname' => 'relatedto'
-			]
+			],
+			__METHOD__
 		) ) {
 			if ( !$db->update( 'pageprops', [
 				'pp_page' => $this->targetTitle->getArticleID(),
