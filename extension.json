@@ -5,10 +5,10 @@
 		"Dejan Savuljesku <savuljesku@hallowelt.com>"
 	],
 	"license-name": "GPL-3.0-only",
-	"version": "3.0.0-alpha",
+	"version": "4.0.0-alpha",
 	"descriptionmsg": "mergearticles-extension-desc",
 	"requires": {
-		"MediaWiki": ">= 1.39.0"
+		"MediaWiki": ">= 1.43.0"
 	},
 	"MessagesDirs": {
 		"MergeArticles": "i18n"
