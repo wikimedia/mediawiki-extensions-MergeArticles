@@ -17,6 +17,7 @@
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-slide": "off",
 		"no-jquery/variable-pattern": "off",
-		"no-prototype-builtins": "off"
+		"no-prototype-builtins": "off",
+		"no-jquery/no-done-fail": "warn"
 	}
 }
