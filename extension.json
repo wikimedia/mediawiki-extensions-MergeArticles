@@ -6,7 +6,7 @@
 	],
 	"url": "https://en.wiki.bluespice.com/wiki/Reference:MergeArticles",
 	"license-name": "GPL-3.0-only",
-	"version": "3.2.0-alpha",
+	"version": "3.1.0-alpha",
 	"descriptionmsg": "mergearticles-extension-desc",
 	"requires": {
 		"MediaWiki": ">= 1.43.0"
