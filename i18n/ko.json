@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"아라"
 		]
 	},
 	"mergearticles-target-new-label": "새 문서",
@@ -21,7 +22,7 @@
 	"mergearticles-file-info-extension": "확장자: $1",
 	"mergearticles-file-info-mime": "MIME 유형: $1",
 	"mergearticles-file-info-size": "크기: $1",
-	"mergearticles-merge-existing-help": "\"$1\" 문서가 이미 존재합니다! 아래의 변경 사항을 비교해 주십시오.",
+	"mergearticles-merge-existing-help": "\"$1\" 문서가 이미 존재합니다! 아래의 변경사항을 비교해 주세요.",
 	"mergearticles-diff-action-accept": "승인",
 	"mergearticles-diff-action-refuse": "거부",
 	"mergearticles-diff-accepted": "승인됨",

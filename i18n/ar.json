@@ -3,6 +3,7 @@
 		"authors": [
 			"Alshamiri1",
 			"Meno25",
+			"Mohammed Qays",
 			"محمد أحمد عبد الفتاح"
 		]
 	},
@@ -38,7 +39,7 @@
 	"mergearticles-diff-refused": "مرفوض",
 	"mergearticles-diff-header": "التغييرات في النص",
 	"mergearticles-resolution-counter": "(تم الحل $2 من $1 )",
-	"mergearticles-same-block-label": "{{PLURAL:$1| كتلة متطابقة $1 | $1 كتل متطابقة}} مخفية",
+	"mergearticles-same-block-label": "{{PLURAL:$1|$1 منع مطابق مخفي|$1 عمليات منع مطابقة مخفية}}",
 	"mergearticles-diff-option-accept-all-label": "الموافقة على الكل",
 	"mergearticles-diff-item-undo": "رجوع",
 	"mergearticles-show-final-text-button-label": "إظهار النص النهائي",
