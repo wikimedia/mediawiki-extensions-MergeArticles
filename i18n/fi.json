@@ -13,5 +13,6 @@
 	"mergearticles-type-category": "Luokka",
 	"mergearticles-file-layout-label": "Tiedosto",
 	"mergearticles-file-info-name": "Nimi: $1",
-	"mergearticles-term-filter-label": "Sivun nimi"
+	"mergearticles-term-filter-label": "Sivun nimi",
+	"mergearticles-file-info-size": "Koko: $1"
 }
