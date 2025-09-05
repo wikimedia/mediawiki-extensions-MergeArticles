@@ -75,6 +75,6 @@
 	"mergearticles-term-filter-label": "اسم الصفحة",
 	"mergearticles-extension-desc": "يسمح بدمج المقالات المقارنة ودمجها",
 	"mergearticles-file-info-mime": "نوع MIME: $1",
-	"mergearticles-diff-option-hide-identical-blocks-label": "إخفاء الكتل المتطابقة",
+	"mergearticles-diff-option-hide-identical-blocks-label": "إخفاء المنع المتطابق",
 	"apihelp-ma-set-related-titles-summary": "يربط الصفحة بإصدار مسودة للصفحة"
 }
