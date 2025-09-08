@@ -41,7 +41,7 @@
 	"mergearticles-diff-header": "التغييرات في النص",
 	"mergearticles-resolution-counter": "(تم الحل $2 من $1 )",
 	"mergearticles-same-block-label": "{{PLURAL:$1|$1 منع مطابق مخفي|$1 عمليات منع مطابقة مخفية}}",
-	"mergearticles-diff-option-hide-identical-blocks-label": "إخفاء الكتل المتطابقة",
+	"mergearticles-diff-option-hide-identical-blocks-label": "إخفاء المنع المتطابق",
 	"mergearticles-diff-option-accept-all-label": "الموافقة على الكل",
 	"mergearticles-diff-item-undo": "رجوع",
 	"mergearticles-show-final-text-button-label": "إظهار النص النهائي",

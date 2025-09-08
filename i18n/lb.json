@@ -51,6 +51,7 @@
 	"mergearticles-apihelp-param-pageid": "ID vun enger Säit",
 	"mergearticles-apihelp-param-targetid": "ID vun enger Säit",
 	"mergearticles-apihelp-param-text": "Text-Inhalt vun enger Säit",
+	"mergearticles-apihelp-param-target": "Titel vun der Zilsäit",
 	"action-merge-articles": "dësen Artikel fusionéieren",
 	"right-merge-articles": "Säite fusionéieren"
 }
