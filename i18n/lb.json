@@ -24,7 +24,7 @@
 	"mergearticles-merge-success-header": "D'Fusioun vun der Säit ass ofgeschloss!",
 	"mergearticles-merge-success-page-label": "Zilsäit: $1",
 	"mergearticles-merge-fail-header": "Fusioun huet net funktionéiert!",
-	"mergearticles-back-to-overview": "Zréck op d'Iwwersiicht",
+	"mergearticles-back-to-overview": "Zeréck op d'Iwwersiicht",
 	"mergearticles-merge-new-help": "D'Säit \"$1\" gëtt et nach net an dës Fusioun wäert se uleeën. Kuckt wgl. no a, wann néideg, ännert den Inhalt virun Fusionéieren.",
 	"mergearticles-file-layout-label": "Fichier",
 	"mergearticles-file-info-name": "Numm: $1",
@@ -38,7 +38,7 @@
 	"mergearticles-diff-header": "Ännerungen am Text",
 	"mergearticles-resolution-counter": "(geléist: $2 vu(n) $1)",
 	"mergearticles-diff-option-accept-all-label": "Allem zoustëmmen",
-	"mergearticles-diff-item-undo": "Zréck setzen",
+	"mergearticles-diff-item-undo": "Réckgängeg maachen",
 	"mergearticles-show-final-text-button-label": "Finalen Text weisen",
 	"mergearticles-final-text-header-label": "Finalen Text",
 	"mergearticles-final-text-header-note": "(ka geännert ginn)",
@@ -51,6 +51,7 @@
 	"mergearticles-apihelp-param-pageid": "ID vun enger Säit",
 	"mergearticles-apihelp-param-targetid": "ID vun enger Säit",
 	"mergearticles-apihelp-param-text": "Text-Inhalt vun enger Säit",
+	"mergearticles-apihelp-param-target": "Titel vun der Zilsäit",
 	"action-merge-articles": "dësen Artikel fusionéieren",
 	"right-merge-articles": "Säite fusionéieren"
 }
