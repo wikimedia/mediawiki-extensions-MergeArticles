@@ -23,7 +23,6 @@ class SetRelatedTitle extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {

@@ -11,7 +11,6 @@ use Wikimedia\ParamValidator\ParamValidator;
 class MergeNewPage extends MergeBase {
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {

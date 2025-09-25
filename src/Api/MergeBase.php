@@ -84,7 +84,6 @@ class MergeBase extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {
@@ -214,7 +213,6 @@ class MergeBase extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @param File $file
 	 * @return bool
 	 */

@@ -10,7 +10,6 @@ class MergeExistingPage extends MergeBase {
 	protected $editFlag = 2;
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {

@@ -38,7 +38,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param string $subPage
 	 */
 	public function execute( $subPage ) {
@@ -176,7 +175,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getPageNamesHTML() {
@@ -200,7 +198,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return ButtonWidget
 	 */
 	protected function getOverviewButton() {
@@ -218,7 +215,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param bool|false $exists
 	 * @return string
 	 */
@@ -244,7 +240,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array $stats
 	 * @return string
 	 */
@@ -266,7 +261,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getReviewHeader() {
@@ -292,7 +286,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getFileReviewHeader() {
@@ -305,7 +298,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getFileDiffHTML() {
@@ -334,7 +326,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getFileReviewHTML() {
@@ -350,7 +341,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array $info
 	 * @return string
 	 */
@@ -393,7 +383,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array &$availablePages
 	 */
 	protected function getPages( &$availablePages ) {
@@ -428,7 +417,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array &$availablePages
 	 */
 	protected function getFiles( &$availablePages ) {
@@ -536,7 +524,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getFileInfo() {
@@ -569,7 +556,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param int $size
 	 * @return string
 	 */
@@ -585,7 +571,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param Title $title
 	 * @return string
 	 */

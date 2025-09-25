@@ -26,7 +26,6 @@ class DiscardDraft extends MergeBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {
