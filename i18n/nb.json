@@ -8,6 +8,7 @@
 	"mergearticles": "Flett artikler",
 	"mergearticles-target-new-label": "Ny side",
 	"mergearticles-page-item-action-compare": "Sammenlign og flett",
+	"mergearticles-type-category": "Kategori",
 	"mergearticles-sp-review": "Flett sider – gå gjennom og flett",
 	"mergearticles-sp-compare": "Flett sider – sammenlign og flett",
 	"mergearticles-merge-fail-header": "Fletting feilet!",
@@ -15,6 +16,5 @@
 	"mergearticles-file-info-size": "Størrelse: $1",
 	"mergearticles-show-final-text-label": "Alle flettekonflikter har blitt løst, og den endelige teksten kan nå sees og, om nødvendig, rettes før flytting. Obs: Flettekonflikter kan ikke bli redigert lengre etter dette punktet.",
 	"apihelp-ma-merge-page-new-summary": "Fletter en kladd med en ny side",
-	"action-merge-articles": "flett denne artikkelen",
-	"mergearticles-type-category": "Kategori"
+	"action-merge-articles": "flett denne artikkelen"
 }
