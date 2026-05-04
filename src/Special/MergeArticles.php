@@ -34,7 +34,12 @@ class MergeArticles extends SpecialPage {
 		private readonly TitleFactory $titleFactory,
 		private readonly ILoadBalancer $lb
 	) {
-		parent::__construct( "MergeArticles", "merge-articles" );
+		parent::__construct( 'MergeArticles' );
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'merge-articles';
 	}
 
 	/**
