@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Tensama0415",
 			"Ykhwong",
 			"아라"
 		]
@@ -45,5 +46,6 @@
 	"mergearticles-diff-action-refuse-both": "둘 다 거부",
 	"mergearticles-diff-action-accept-both": "둘 다 수락",
 	"mergearticles-diff-accepted-both": "둘 다 유지",
-	"mergearticles-diff-refused-both": "둘 다 제거됨"
+	"mergearticles-diff-refused-both": "둘 다 제거됨",
+	"mergearticles-do-merge-label": "병합하기"
 }
