@@ -15,7 +15,7 @@
 		this.makeActions();
 
 		this.$element.addClass( 'ma-page-item' );
-		this.$element.addClass( this.type ); // eslint-disable-line mediawiki/class-doc
+		this.$element.addClass( this.type );
 
 		this.$element.append( this.$dataContainer, this.$actionContainer );
 	};
