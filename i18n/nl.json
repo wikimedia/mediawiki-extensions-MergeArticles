@@ -3,7 +3,8 @@
 		"authors": [
 			"Mainframe98",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"mergearticles-extension-desc": "Maakt vergelijken en samenvoegen van artikelen mogelijk",
@@ -18,7 +19,7 @@
 	"mergearticles-type-category": "Categorie",
 	"mergearticles-no-pages-available": "Niets om te laten zien!",
 	"mergearticles-action-unknown": "Onbekende handeling",
-	"mergearticles-request-invalid": "Ongeldig verzoek",
+	"mergearticles-request-invalid": "Onjuist verzoek",
 	"mergearticles-sp-review": "Pagina’s samenvoegen - beoordelen en samenvoegen",
 	"mergearticles-sp-compare": "Pagina’s samenvoegen – vergelijken en samenvoegen",
 	"mergearticles-do-merge-label": "Samenvoegen",
