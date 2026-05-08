@@ -3,7 +3,8 @@
 		"authors": [
 			"Mainframe98",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"mergearticles": "Artikelen samenvoegen",
@@ -47,7 +48,7 @@
 	"mergearticles-page-item-action-compare": "Vergelijken en samenvoegen",
 	"mergearticles-page-item-action-review": "Beoordelen en samenvoegen",
 	"mergearticles-no-pages-available": "Niets om te laten zien!",
-	"mergearticles-request-invalid": "Ongeldig verzoek",
+	"mergearticles-request-invalid": "Onjuist verzoek",
 	"mergearticles-sp-review": "Pagina’s samenvoegen - beoordelen en samenvoegen",
 	"mergearticles-sp-compare": "Pagina’s samenvoegen – vergelijken en samenvoegen",
 	"mergearticles-merge-success-header": "Het samenvoegen van de pagina is gelukt!",
