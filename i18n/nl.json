@@ -20,7 +20,7 @@
 	"mergearticles-back-to-overview": "Terug naar het overzicht",
 	"mergearticles-file-layout-label": "Bestand",
 	"mergearticles-file-info-name": "Naam: $1",
-	"mergearticles-file-info-extension": "Extensie: $1",
+	"mergearticles-file-info-extension": "Achtervoegsel: $1",
 	"mergearticles-file-info-mime": "MIME-type: $1",
 	"mergearticles-file-info-size": "Grootte: $1",
 	"mergearticles-diff-action-accept": "Goedkeuren",
