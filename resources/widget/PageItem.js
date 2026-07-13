@@ -83,7 +83,7 @@
 			labelText = mw.message( 'mergearticles-page-item-action-review' ).text();
 		}
 
-		const button = new OO.ui.ButtonWidget( {
+		const button = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			title: labelText,
 			icon: 'next',
 			flags: [

@@ -34,7 +34,7 @@
 
 	mergeArticles.panel.Compare.prototype.makeFileDiff = function () {
 
-		const fileReject = new OO.ui.ButtonWidget( {
+		const fileReject = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: 'close',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-refuse' ).text(),
@@ -44,7 +44,7 @@
 			]
 		} );
 
-		const fileApprove = new OO.ui.ButtonWidget( {
+		const fileApprove = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: 'check',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-accept' ).text(),
@@ -72,7 +72,7 @@
 			classes: outcome ? [ 'approve' ] : [ 'reject' ],
 			label: outcome ? mw.message( 'mergearticles-diff-accepted' ).text() : mw.message( 'mergearticles-diff-refused' ).text()
 		} );
-		const undoButton = new OO.ui.ButtonWidget( {
+		const undoButton = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: 'undo',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-item-undo' ).text()
@@ -118,7 +118,7 @@
 	};
 
 	mergeArticles.panel.Compare.prototype.getDiffActions = function ( diffID ) {
-		const buttonAccept = new OO.ui.ButtonWidget( {
+		const buttonAccept = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: 'check',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-accept' ).text(),
@@ -127,7 +127,7 @@
 				'primary'
 			]
 		} );
-		const buttonRefuse = new OO.ui.ButtonWidget( {
+		const buttonRefuse = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: 'cancel',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-action-refuse' ).text(),
@@ -152,7 +152,7 @@
 		buttonContainer.append( buttonAccept.$element, buttonRefuse.$element );
 
 		if ( this.enableBeta ) {
-			const buttonAcceptBoth = new OO.ui.ButtonWidget( {
+			const buttonAcceptBoth = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 				icon: 'checkAll',
 				framed: false,
 				title: mw.message( 'mergearticles-diff-action-accept-both' ).text(),
@@ -167,7 +167,7 @@
 				applyToBoth: true
 			}, this.resolveChange.bind( this ) );
 
-			const buttonRejectBoth = new OO.ui.ButtonWidget( {
+			const buttonRejectBoth = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 				icon: 'block',
 				framed: false,
 				title: mw.message( 'mergearticles-diff-action-refuse-both' ).text(),
@@ -315,7 +315,7 @@
 			label: mw.message( messageKey ).text()
 		} );
 
-		const undoButton = new OO.ui.ButtonWidget( {
+		const undoButton = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: 'undo',
 			framed: false,
 			title: mw.message( 'mergearticles-diff-item-undo' ).text()
