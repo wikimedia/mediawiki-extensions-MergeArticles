@@ -38,7 +38,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param string $subPage
 	 */
 	public function execute( $subPage ) {
@@ -72,7 +71,7 @@ class MergeArticles extends SpecialPage {
 	}
 
 	protected function addReview() {
-		$this->getOutput()->setPageTitle( wfMessage( 'mergearticles-sp-review' )->plain() );
+		$this->getOutput()->setPageTitle( $this->msg( 'mergearticles-sp-review' )->plain() );
 
 		$originID = $this->getRequest()->getInt( 'originID' );
 		$targetText = $this->getRequest()->getText( 'targetText' );
@@ -118,7 +117,7 @@ class MergeArticles extends SpecialPage {
 	}
 
 	protected function addComparison() {
-		$this->getOutput()->setPageTitle( wfMessage( 'mergearticles-sp-compare' )->plain() );
+		$this->getOutput()->setPageTitle( $this->msg( 'mergearticles-sp-compare' )->plain() );
 
 		$originID = $this->getRequest()->getInt( 'originID', 0 );
 		$targetID = $this->getRequest()->getInt( 'targetID', 0 );
@@ -176,7 +175,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getPageNamesHTML() {
@@ -200,7 +198,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return ButtonWidget
 	 */
 	protected function getOverviewButton() {
@@ -209,7 +206,7 @@ class MergeArticles extends SpecialPage {
 			'framed' => false,
 			'icon' => 'previous',
 			// make "arrowPrevious" in newer OOJS,
-			'title' => wfMessage( 'mergearticles-back-to-overview' )->plain(),
+			'title' => $this->msg( 'mergearticles-back-to-overview' )->plain(),
 			'id' => 'ma-overview-button',
 			'href' => $this->getPageTitle()->getLocalURL()
 		] );
@@ -218,7 +215,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param bool|false $exists
 	 * @return string
 	 */
@@ -232,7 +228,7 @@ class MergeArticles extends SpecialPage {
 			$labelKey = 'mergearticles-merge-existing-help';
 		}
 		$label = new LabelWidget( [
-			'label' => wfMessage( $labelKey, $targetPage )->plain()
+			'label' => $this->msg( $labelKey, $targetPage )->plain()
 		] );
 
 		$help = Html::openElement( 'div', [ 'class' => 'ma-merge-help' ] );
@@ -244,7 +240,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array $stats
 	 * @return string
 	 */
@@ -252,7 +247,7 @@ class MergeArticles extends SpecialPage {
 		$header = Html::openElement( 'div', [ 'class' => 'ma-diff-header' ] );
 		$header .= Html::element( 'span', [
 			'class' => 'ma-diff-header-label'
-		], wfMessage( 'mergearticles-diff-header' )->escaped() );
+		], $this->msg( 'mergearticles-diff-header' )->escaped() );
 		$header .= Html::openElement( 'span', [ 'class' => 'ma-diff-header-stats' ] );
 		$header .= Html::element( 'span', [
 			'class' => 'ma-diff-header-added'
@@ -266,13 +261,12 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getReviewHeader() {
 		$header = Html::openElement( 'div', [ 'class' => 'ma-review-header' ] );
 		$header .= new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-review-header' )->plain()
+			'label' => $this->msg( 'mergearticles-review-header' )->plain()
 		] );
 		$header .= Html::closeElement( 'div' );
 		return $header;
@@ -286,26 +280,24 @@ class MergeArticles extends SpecialPage {
 		$header = Html::openElement( 'div', [ 'class' => 'ma-diff-header diff-file' ] );
 		$header .= Html::element( 'span', [
 			'class' => 'ma-file-diff-header-label'
-		], wfMessage( 'mergearticles-file-diff-header' )->escaped() );
+		], $this->msg( 'mergearticles-file-diff-header' )->escaped() );
 		$header .= Html::closeElement( 'div' );
 		return $header;
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getFileReviewHeader() {
 		$header = Html::openElement( 'div', [ 'class' => 'ma-review-header review-file' ] );
 		$header .= new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-layout-label' )->plain()
+			'label' => $this->msg( 'mergearticles-file-layout-label' )->plain()
 		] );
 		$header .= Html::closeElement( 'div' );
 		return $header;
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getFileDiffHTML() {
@@ -314,7 +306,7 @@ class MergeArticles extends SpecialPage {
 		$html = Html::openElement( 'div', [ 'class' => 'ma-file-diff' ] );
 		$html .= Html::openElement( 'div', [ 'class' => 'ma-origin-file' ] );
 		$originLabel = new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-origin-header' )->plain()
+			'label' => $this->msg( 'mergearticles-file-origin-header' )->plain()
 		] );
 		$originLabel->addClasses( [ 'ma-file-header-label' ] );
 		$html .= $originLabel;
@@ -322,7 +314,7 @@ class MergeArticles extends SpecialPage {
 		$html .= Html::closeElement( 'div' );
 		$html .= Html::openElement( 'div', [ 'class' => 'ma-target-file' ] );
 		$targetLabel = new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-target-header' )->plain()
+			'label' => $this->msg( 'mergearticles-file-target-header' )->plain()
 		] );
 		$targetLabel->addClasses( [ 'ma-file-header-label' ] );
 		$html .= $targetLabel;
@@ -334,7 +326,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getFileReviewHTML() {
@@ -350,7 +341,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array $info
 	 * @return string
 	 */
@@ -358,16 +348,16 @@ class MergeArticles extends SpecialPage {
 		$html = Html::openElement( 'div', [ 'class' => 'ma-file-layout' ] );
 		$html .= Html::openElement( 'div', [ 'class' => 'ma-review-file-info' ] );
 		$html .= new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-info-name', $info[ 'name' ] )->plain()
+			'label' => $this->msg( 'mergearticles-file-info-name', $info[ 'name' ] )->plain()
 		] );
 		$html .= new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-info-extension', $info[ 'extension' ] )->plain()
+			'label' => $this->msg( 'mergearticles-file-info-extension', $info[ 'extension' ] )->plain()
 		] );
 		$html .= new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-info-mime', $info[ 'mime_type' ] )->plain()
+			'label' => $this->msg( 'mergearticles-file-info-mime', $info[ 'mime_type' ] )->plain()
 		] );
 		$html .= new LabelWidget( [
-			'label' => wfMessage( 'mergearticles-file-info-size', $info[ 'size' ] )->plain()
+			'label' => $this->msg( 'mergearticles-file-info-size', $info[ 'size' ] )->plain()
 		] );
 		$html .= Html::closeElement( 'div' );
 		if ( strpos( $info[ 'mime_type' ], 'image' ) !== false ) {
@@ -393,7 +383,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array &$availablePages
 	 */
 	protected function getPages( &$availablePages ) {
@@ -428,7 +417,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array &$availablePages
 	 */
 	protected function getFiles( &$availablePages ) {
@@ -536,7 +524,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getFileInfo() {
@@ -569,7 +556,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param int $size
 	 * @return string
 	 */
@@ -585,7 +571,6 @@ class MergeArticles extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param Title $title
 	 * @return string
 	 */
@@ -595,6 +580,9 @@ class MergeArticles extends SpecialPage {
 		return ( $content instanceof TextContent ) ? $content->getText() : '';
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function verifyTitles() {
 		if ( !$this->originTitle instanceof Title ) {
 			return false;
@@ -606,18 +594,18 @@ class MergeArticles extends SpecialPage {
 	}
 
 	protected function displayInvalid() {
-		$html = Html::element( 'h3', [], wfMessage( 'mergearticles-request-invalid' )->plain() );
+		$html = Html::element( 'h3', [], $this->msg( 'mergearticles-request-invalid' )->plain() );
 		$html .= Html::element( 'a', [
 			'href' => $this->getPageTitle()->getLocalURL()
-		], wfMessage( 'mergearticles-back-to-overview' )->escaped() );
+		], $this->msg( 'mergearticles-back-to-overview' )->escaped() );
 		$this->getOutput()->addHTML( $html );
 	}
 
 	protected function displayUnknownAction() {
-		$html = Html::element( 'h3', [], wfMessage( 'mergearticles-action-unknown' )->plain() );
+		$html = Html::element( 'h3', [], $this->msg( 'mergearticles-action-unknown' )->plain() );
 		$html .= Html::element( 'a', [
 			'href' => $this->getPageTitle()->getLocalURL()
-		], wfMessage( 'mergearticles-back-to-overview' )->escaped() );
+		], $this->msg( 'mergearticles-back-to-overview' )->escaped() );
 
 		$this->getOutput()->addHTML( $html );
 	}
