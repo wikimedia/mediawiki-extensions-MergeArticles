@@ -8,9 +8,14 @@ use Wikimedia\Diff\DiffFormatter;
 use Wikimedia\Diff\DiffOp;
 
 class HTMLDiffFormatter extends DiffFormatter {
+
+	/** @var array */
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
+	/** @var array */
 	protected $arrayData = [];
+	/** @var int */
 	protected $idCounter = 0;
+	/** @var string */
 	protected $html = '';
 
 	/**
@@ -65,7 +70,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	public function getArrayData() {
@@ -73,7 +77,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	public function getChangeCount() {
@@ -92,7 +95,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param string $diff
 	 * @param string $type
 	 * @param bool|false $counter
@@ -120,7 +122,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param DiffOp $edit
 	 * @return array
 	 */
@@ -137,7 +138,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param array $ar1
 	 * @param array $ar2
 	 * @return array
@@ -154,7 +154,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param DiffOp $edit
 	 */
 	protected function blockAdd( $edit ) {
@@ -168,7 +167,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param DiffOp $edit
 	 */
 	protected function lineByLineAdd( $edit ) {
@@ -183,7 +181,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param DiffOp $edit
 	 */
 	protected function blockDelete( $edit ) {
@@ -197,7 +194,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param DiffOp $edit
 	 */
 	protected function lineByLineDelete( $edit ) {
@@ -212,7 +208,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param array $orig
 	 * @param array $closing
 	 */
@@ -236,7 +231,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param array $orig
 	 * @param array $closing
 	 */
@@ -260,7 +254,6 @@ class HTMLDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 *
 	 * @param DiffOp $edit
 	 */
 	protected function blockCopy( $edit ) {
