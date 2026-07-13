@@ -8,7 +8,10 @@ use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class SetRelatedTitle extends ApiBase {
+
+	/** @var Title */
 	protected $targetTitle;
+	/** @var int */
 	protected $relatedTo;
 
 	/** @var Status */
@@ -47,6 +50,9 @@ class SetRelatedTitle extends ApiBase {
 		$this->relatedTo = $this->getParameter( 'relatedTo' );
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function setPageProps() {
 		if ( !$this->targetTitle instanceof Title || !$this->targetTitle->exists() ) {
 			$this->status = Status::newFatal( 'invalid-origin' );

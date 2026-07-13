@@ -8,9 +8,14 @@ use Wikimedia\Diff\DiffFormatter;
 use Wikimedia\Diff\DiffOp;
 
 class HTMLDiffFormatter extends DiffFormatter {
+
+	/** @var array */
 	protected $stats = [ 'add' => 0, 'delete' => 0 ];
+	/** @var array */
 	protected $arrayData = [];
+	/** @var int */
 	protected $idCounter = 0;
+	/** @var string */
 	protected $html = '';
 
 	/**

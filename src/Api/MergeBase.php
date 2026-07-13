@@ -31,7 +31,7 @@ class MergeBase extends ApiBase {
 	protected string $text = '';
 	/** @var Status */
 	protected Status $status;
-
+	/** @var int */
 	protected $editFlag = 1;
 
 	/** @var bool */

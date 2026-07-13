@@ -7,6 +7,8 @@ use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class MergeExistingPage extends MergeBase {
+
+	/** @var int */
 	protected $editFlag = 2;
 
 	/**
@@ -29,6 +31,9 @@ class MergeExistingPage extends MergeBase {
 		$this->targetTitle = Title::newFromID( $targetID );
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function verifyTarget() {
 		if ( $this->targetTitle->exists() === false ) {
 			$this->status = Status::newFatal( 'target-does-not-exist' );
