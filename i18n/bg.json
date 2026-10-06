@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"StanProg"
 		]
 	},
 	"mergearticles-target-new-label": "Нова страница",
@@ -12,6 +13,7 @@
 	"mergearticles-do-merge-label": "Сливане",
 	"mergearticles-file-layout-label": "Файл",
 	"mergearticles-diff-action-refuse": "Отхвърляне",
+	"mergearticles-diff-option-hide-identical-blocks-label": "Скриване на идентични блокирания",
 	"mergearticles-diff-item-undo": "Отмяна",
 	"mergearticles-file-diff-header": "Файл"
 }
