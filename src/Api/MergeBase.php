@@ -8,6 +8,7 @@ use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -18,7 +19,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MWContentSerializationException;
 use MWUnknownContentModelException;
-use RepoGroup;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 
